@@ -1,0 +1,22 @@
+"0",""
+"0","#music <- musix %&% mutate(music, )"
+"0",""
+"0","glimpse(music)"
+"1","Rows: 21"
+"1",""
+"1","
+"
+"1","Columns: 7"
+"1",""
+"1","
+"
+"1","$ Timestamp        [3m[38;5;246m<chr>[39m[23m ""2021/09/27 2:37:53 PM AST"", ""2021/09/27 2:42:47 PM AST"", ""2021/09/27 2:43:51 PM AST"", ""2021/09/27 2:47:28 PM AST"", ""2…
+$ primary_discover [3m[38;5;246m<chr>[39m[23m ""A streaming service (Spotify, Apple Music, Pandora, Deezer, etc...)"", ""Personal recommendations from friends/family"",…
+$ purchase         [3m[38;5;246m<chr>[39m[23m ""At live shows from the artist"", ""iTunes store"", ""I don’t purchase , I use Spotify "", ""iTunes store"", ""I do not purcha…
+$ follow           [3m[38;5;246m<chr>[39m[23m ""Yes"", ""Yes"", ""No"", ""Yes"", ""Yes"", ""No"", ""No"", ""Yes"", ""No"", ""Yes"", ""No"", ""No"", ""Yes"", ""No"", ""No"", ""No"", ""No"", ""No"", ""No…
+$ lyrics           [3m[38;5;246m<chr>[39m[23m ""Yes"", ""No"", ""No"", ""Yes"", ""Yes"", ""Yes"", ""Yes"", ""Yes"", ""Yes"", ""Yes"", ""Yes"", ""Yes"", ""Yes"", ""Yes"", ""Yes"", ""Yes"", ""Yes"", ""…
+$ volume           [3m[38;5;246m<chr>[39m[23m ""76-100%"", ""76-100%"", ""76-100%"", ""51-75%"", ""76-100%"", ""76-100%"", ""51-75%"", ""51-75%"", ""76-100%"", ""51-75%"", ""51-75%"", ""0…
+$ primary_medium   [3m[38;5;246m<chr>[39m[23m ""Headphones/Earphones"", ""Headphones/Earphones"", ""Headphones, car , home Audio , sometimes TV"", ""Headphones/Earphones"",…"
+"1",""
+"1","
+"

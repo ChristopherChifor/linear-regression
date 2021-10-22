@@ -1,0 +1,5 @@
+"0",""
+"0","type_of_distractor <- sample(c(""Texting"", ""Social Media"", ""Pets""),size=100, replace = TRUE)"
+"0",""
+"0","time_distracted_min <- rpois(n, lambda=100)"
+"0","hist(time_distracted_min)"

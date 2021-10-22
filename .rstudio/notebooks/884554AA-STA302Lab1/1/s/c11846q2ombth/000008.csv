@@ -1,0 +1,8 @@
+"0","# add your plot code here"
+"0",""
+"0","scatterplot1 <- cleaning_sim %>% ggplot(aes(x=cleaning_sim$Crews, y=cleaning_sim$Rooms)) +"
+"0","  geom_point(color = 'blue') +"
+"0","  labs(x= 'Crews', y='Rooms', title = ""Scatterplot of Crew Members and Rooms"")"
+"0",""
+"0","scatterplot1"
+"0",""

@@ -1,0 +1,161 @@
+---
+title: "Module 1 In-Class Lab #1"
+date: "due Thursday September 23 by 11:59PM ET"
+output: pdf_document
+---
+
+# General Instructions
+
+1. Take the first 5 minutes to introduce yourselves, telling everyone your name, your degree program, and one thing you're excited to do on the weekend.\
+
+2. Decide amongst yourselves on the role that each student will perform and add the names to the role below:
+    - Timekeeper: Ruidong Yang
+    - Submission Manager: Wei Ting Mao
+    - Live Coder: Christopher Chifor
+    - Moderator: Nitin Mahtani
+    - (if needed) Help finder: Carvan Jia 
+  
+3. Get set up for conducting your roles by making sure everyone can see the shared screen (shared by the LIVE CODER) and that everyone knows who will be contributing verbally and/or by chat and can see/hear each other (MODERATOR should keep track).  
+
+    - The SUBMISSION MANAGER should use this time to access the Crowdmark link and create a group submission link by adding the group members to the group.
+
+4. To get help at any time, anyone in the group (or the HELP FINDER if there is one) can tag the instructor by typing @Katherine Daignault or the TA (TBD) in the chat with a question. The TIMEKEEPER should keep track of how long the group spends on each part so that the group will be able to finish the lab during class time.
+
+# Submission Instructions
+
+All students will receive an email from Crowdmark which will be used to submit the knitted PDF you produce in your group. YOU WILL NEED TO CREATE YOUR GROUP BEFORE SUBMITTING. To do this:  
+
+  1. The SUBMISSION MANAGER on the team should use the emailed link to access the assignment page on Crowdmark.\
+  2. There will be an option to add group members to the submission.\
+  3. Using the names you've entered for the group roles above, search for your teammates and add them to your group.\
+  4. All teammembers will receive an email from Crowdmark stating they have been added to the group.\
+  5. At the end of the lab (or before the submission deadline), the SUBMISSION MANAGER should upload the PDF you create from this document to Crowdmark using the group submission link that was created. This will submit the lab for everyone :)
+
+# Lab 1 - Motivating the Regression Line of Best Fit
+
+## Summary
+
+This lab is meant to get you playing with R and learning some coding practices and tools from others. It is also meant to have you perform a small exploratory data analysis and comment on the results. Lastly it will motivate the interpretation of the line of best fit that a linear regression model fits to data.  
+
+The data this week are 200 observations from a cleaning company. The information in this dataset is:  
+
+   - Case: the observation number (just an identifier, won't be used)
+   - Crews: the number of members in a cleaning crew sent to a job
+   - Rooms: the number of rooms cleaned by that cleaning crew
+
+## Part 1: Load the data and perform some data explorations
+
+In this part, you will need to:\  
+
+1. Load the dataset (cleaning_sim.csv) that can be downloaded from Quercus (ensure that you allow the code to be printed in the report). Don't forget to give your dataset a meaningful name.\
+
+```{r}
+# load dataset here
+
+```
+
+2. Find the mean and standard deviation of the numerical variables and ensure that the result prints in the report. Also make a boxplot of each of the variables.\
+
+```{r}
+# find and print the mean and standard deviations here
+
+```
+
+3. Produce a scatterplot of the two variables, with Rooms as the y-axis and Crews on the x-axis, with appropriate title and axis labels.\
+
+```{r}
+# add your plot code here
+
+```
+
+*Comment on what you observe about the general trend in the scatterplot and on the distributions of the two variables: *  
+
+ADD COMMENTS HERE
+
+## Part 2: Looking at the distribution of Rooms within each value of Crews
+
+For this section, we are going to work with the fact that we have discrete values of Crews, and can therefore directly look at the distribution of Rooms at each unique value of Crews. To do this, we will:
+
+1. Create a new variable that lists the unique values of your Crews variable. *(Hint: try looking in the help function for the function "unique")*\
+
+```{r}
+# create your variable here
+
+```
+
+2. Find the mean of Rooms at each unique value of Crews. This will require a **for loop** which has been started for you. To run, you will need to un-comment the code by deleting the number signs, and to replace the following variables in the code below to match the variable names you have:\
+
+    - unique_variable: this is the variable from the previous step
+    - data$...: replace data with whatever you called your dataset at the start\
+
+```{r}
+# modify this code based on your variable names
+
+ymeans <- NULL  # initialize your storage
+# for(i in unique_variable){
+#   values <- data$Rooms[data$Crews==i]
+#   ymeans <- c(ymeans, mean(values))
+# }
+ymeans
+
+```
+
+*Can you understand what this code is doing? Try to explain it.*  
+
+ADD COMMENTS HERE\ 
+
+   3. Now let's take our previous scatterplot and add these means:\
+
+```{r}
+# add previous plot code here
+
+# add points using the code below and feel free to change the color and dot type 
+# (look up pch or points in the help file to see how)
+
+# points(ymeans~unique_variable, col="blue", pch=19)
+```
+
+*What do you notice about the relationship between the means as X increases?* 
+
+ADD COMMENTS HERE  
+
+## Part 3: Digging deeper into the change in means as X increases
+
+This last part will look more deeply into whether there is a consistent trend associated with how the mean of Rooms changes as Crews increases.\ 
+
+1. Let's investigate the difference between these means as Crews increases. First let's sort our means into increasing order and then take the difference between the subsequent values:\
+
+```{r}
+sorted <- sort(ymeans)
+
+diffs <- NULL
+for(i in 1:(length(sorted)-1)){
+  diffs <- c(diffs, sorted[i+1]-sorted[i])
+}
+diffs
+
+```
+
+2. Find the mean of these differences.\
+
+```{r}
+# compute the mean here
+
+```
+
+*What do you think this value represents in the context of the data?*
+
+ADD COMMENTS HERE
+
+3. A line of best fit has been found for these data, which has a slope of 3.79 and an intercept of -0.61, i.e. $y = -0.61 + 3.79x$. Add a line with these properties to the scatterplot from earlier that also has the means.\
+
+```{r}
+# add your previous plot code here with the points added
+
+# uncomment below and replace the words slope and intercept with the values abova
+# abline(a = intercept, b = slope)
+```
+
+*What do you notice about the line of best fit? What trend does it seem to represent?*
+
+ADD COMMENTS HERE

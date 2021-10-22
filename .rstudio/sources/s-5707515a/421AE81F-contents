@@ -1,0 +1,85 @@
+---
+title: "Research Proposal"
+author: "Christopher Chifor 1006001899"
+date: '2021-10-19'
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(openintro)
+library(opendatatoronto)
+library(dplyr)
+library(patchwork)
+library(tidyverse)
+```
+
+# Title
+Automobile thefts in Toronto's neighbourhoods
+
+
+# Research question
+I am curious to uncover if the number of automobile thefts in Toronto's neighbourhoods are related to their population size in 2020. This initial idea for the research comes from the fact that the police services are reporting that various crime rates have gone up in 2020, including automobile thefts (Katawazi, 2020).This is important since the entire city of Toronto would like to bring crime rates down as it is interested in being the safest city to live in. My interest in this stems from my interest in cars, as well as the importance of being able to keep one's belongings safe. 
+
+
+#Background literature
+
+I will study the effect of auto thefts on all of the neighbourhoods in Toronto as well as taking into account their population sizes to see if there is a correlation between the two. The Toronto Police as well as the York Regional Police publish official data on all of the quantifiable crime rates. These statistics are open data published on their respective websites, and their chiefs of police has mentioned that the rates have gone up. However, there has been no statistical analysis done to observe the relationship between the amount of people in a given neighbourhood in Toronto versus the amount of stolen automobiles. Statistics Canada reported that there were 18% fewer crimes commited in April 2020 with respect to April 2019 (Moreau, 2021), however this is not indicative of our sample size which will just be the city of Toronto. York Regional Police noted that auto thefts have increased 44% during the pandemic (mind you this was written on April 1, 2020) (Katawazi, 2020); however, this is not indicative of the entire years worth of data, and was not collected from the city of Toronto. And finally, from (Foran, 2021) we see that in certain regions in Toronto we have that upwards of 50 vehicles have been stolen in Scarborough in July 2021. We are interested to see which neighbourhoods have higher crime rates than others to inform Toronto Police Services to reinforce those neighbourhoods so that less crime occurs. These are all motivation ideas to assist us in hypothesizing about the research we will conduct. 
+
+# Data Source
+
+The data was collected from https://open.toronto.ca/dataset/neighbourhood-crime-rates/ and it includes the Crime Data by neighbourhood in Toronto. The entire data set has count variables for: Assault, Auto Theft, Break and Enter, Robbery, Theft Over, Homicide and Shooting & Firearm Discharges. For the sake of this analysis we will only be focusing on the Auto Theft variable as well as the Population variable. It is important to note that the crime rate is defined as StatsCan says: "crime rate is calculated as the crime count per 100,000 population". Finally, it is important to discuss that there are 140 neighbourhoods in Toronto considered by the Toronto Police Services.
+
+ 
+ 
+#Exploratory Data Analysis
+```{r}
+
+# Here you can load in and clean the data (you may need to do the cleaning in a separate R script). 
+
+# You may need additional chunks.
+
+# I would recommend not including any of the Cleaning process output here. 
+
+# get package
+package <- show_package("fc4d95a6-591f-411f-af17-327e6c5d03c7")
+package
+
+# get all resources for this package
+resources <- list_package_resources("fc4d95a6-591f-411f-af17-327e6c5d03c7")
+
+# identify datastore resources; by default, Toronto Open Data sets datastore resource format to CSV for non-geospatial and GeoJSON for geospatial resources
+datastore_resources <- filter(resources, tolower(format) %in% c('csv', 'geojson'))
+
+# load the first datastore resource as a sample
+data <- filter(datastore_resources, row_number()==1) %>% get_resource()
+data
+```
+
+```{r}
+summary(data$F2020_Population_Projection)
+sqrt(var(data$F2020_Population_Projection))
+summary(data$AutoTheft_Rate2020)
+sqrt(var(data$AutoTheft_Rate2020))
+```
+
+
+|Toronto's Neighbourhood Populations|
+| ------- | ------ | ------ | ------- | ------ |
+| Minimum | Median | Mean | Maximum   |Standard Deviation |
+| ------------ | ------------ | ------------ | ------------ |--------------|
+| 7,130 | 18,378 |  21,729 | 87,808 | 11,839.46 |
+
+
+The following is a table of the various notable numerical measures:
+
+
+
+
+# References
+
+[1] Katawazi, M. (2020, April 1). These are the crimes that have been on the rise since the COVID-19 pandemic. Toronto. Retrieved October 19, 2021, from https://toronto.ctvnews.ca/these-are-the-crimes-that-have-been-on-the-rise-since-the-covid-19-pandemic-1.4877760. 
+
+[2] Moreau, G. (2021, July 27). Police-reported crime statistics in Canada, 2020. Statistics Canada. Retrieved October 19, 2021, from https://www150.statcan.gc.ca/n1/pub/85-002-x/2021001/article/00013-eng.html
+
+[3] Foran, P. (2021, August 7). Car thieves go on crime spree in Scarborough. CTV Toronto. https://toronto.ctvnews.ca/car-thieves-go-on-crime-spree-in-scarborough-1.5537720

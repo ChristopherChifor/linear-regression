@@ -1,0 +1,40 @@
+---
+title: "Week 2 Simulations"
+author: "Chris"
+date: '2021-09-22'
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+```
+
+```{r}
+
+ages <- c(3,4,5)
+
+sample(ages, 2)
+
+time <- runif(n=600, min = 1, max = 10)
+time
+
+hist(time)
+
+```
+
+```{r}
+
+cGPA <- 4*rbeta(n=100, 4, 1)
+
+hist(cGPA)
+
+type_of_distractor <- sample(c("Texting", "Social Media", "Pets"),size=100, replace = TRUE)
+
+time_distracted_min <- rpois(n, lambda=100)
+hist(time_distracted_min)
+
+my_data <- tibble(cGPA, type_of_distractor, time_distracted_min)
+my_data
+```
+

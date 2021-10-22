@@ -1,0 +1,32 @@
+install.packages("patchwork")
+## Here you can code your simulation and create the 3 plots.
+## Here is some starter code for the simulation:
+set.seed(123) # Set this seed to be the last 3 digits of your student number.
+n = 50 #pre-specify your sample size
+sigma_sq = 1
+## Simulating from Normal
+rnorm(n, mean=0, sd=sqrt(sigma_sq))
+## Create your plots below. (I recommend using ggplot)
+## Remember the patchwork package might be helpful.
+library(tidyverse)
+#options(scipen=999)
+set.seed(452)
+likelihood <- function(theta_hat,xbar,n) theta_hat^(-n)*exp(-n*xbar/theta_hat)
+n <- seq(10,80, 10)
+theta = 4
+likelihood_ratio <- rep(NA, length(n))
+for(i in 1:length(n)){
+exp_data <- rexp(n, 1/theta)
+xbar_data <- mean(exp_data)
+median_data <- median(exp_data)
+L_xbar <- likelihood(theta_hat = xbar_data, xbar = xbar_data, n=n[i])
+L_median <- likelihood(theta_hat = median_data, xbar = xbar_data, n=n[i])
+likelihood_ratio[i] <- L_xbar/L_median
+}
+tibble(n, likelihood_ratio) %>%
+ggplot(aes(x = n)) +
+geom_line(aes(y = likelihood_ratio), color = "blue") +
+labs(x = "n", y = "likelihood ratio",
+title = "Likelihood  Ratio for different n",
+subtitle = "Mean over Median",
+color = "" ) + ylim(0,20)

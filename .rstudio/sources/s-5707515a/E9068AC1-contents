@@ -1,0 +1,300 @@
+---
+title: "STA238 - Winter 2021"
+author: "Group 200: Christopher Chifor & Parssa Kyanzadeh"
+date: March 19, 2021
+subtitle: Assignment 4
+output:
+  pdf_document: default
+---
+
+```{r, include=FALSE}
+knitr::opts_chunk$set(warning = FALSE, message = FALSE)
+library(openintro)
+#devtools::install_github("warint/statcanR")
+library(statcanR)
+library(tidyverse)
+require(scales)
+```
+# Part 1
+## Step 1 (Mathematical Justification)
+
+
+
+Firstly, assume that $X_1,...,X_n \stackrel{iid}{\sim} Normal(\mu = 0, \sigma^2)$. Our goal is to find the Maximum Likelihood Estimator of $\sigma^2$. We also know that the probability function is: $f(x)= \frac{1}{\sigma\sqrt{2\pi}}e^{-\frac{1}{2}(\frac{x}{\sigma})^2}$. Where $\mu = 0$. So we have:
+
+$$
+\begin{aligned}
+L(\mu=0, \sigma^2|X_1, \dots, X_n)&= L(0, \sigma^2 | X_1) \dots L(0, \sigma^2 | X_n)\\
+L(\mu=0, \sigma^2|X_1, \dots, X_n)&= f_{\sigma^2}(x_1,\dots x_n)\\
+L(\mu=0, \sigma^2|X_1, \dots, X_n)&=f_{\sigma^2}(x_1)\cdot f_{\sigma^2}(x_2) \dots f_{\sigma^2}(x_n)
+\end{aligned}
+$$
+We can do this due to the fact that our realisations of random variables are independent. Substituting for each we get:
+$$
+\begin{aligned}
+L(\mu=0, \sigma^2|X_1, \dots, X_n)&= \bigg(\frac{1}{\sigma\sqrt{2\pi}}e^{-\frac{1}{2}(\frac{x_1}{\sigma})^2} \bigg)\cdot \bigg(\frac{1}{\sigma\sqrt{2\pi}}e^{-\frac{1}{2}(\frac{x_2}{\sigma})^2} \bigg)\dots \bigg(\frac{1}{\sigma\sqrt{2\pi}}e^{-\frac{1}{2}(\frac{x_n}{\sigma})^2} \bigg)\\
+L(\mu=0, \sigma^2|X_1, \dots, X_n)&=\bigg(\frac{1}{\sigma\sqrt{2\pi}}\bigg)^n \bigg(e^{-\frac{1}{2} (\frac{x_1}{\sigma})^2 -\frac{1}{2} (\frac{x_2}{\sigma})^2 - \dots - \frac{1}{2} (\frac{x_n}{\sigma})^2}\bigg)\\
+L(\mu=0, \sigma^2|X_1, \dots, X_n)&=\bigg(\frac{1}{\sigma\sqrt{2\pi}}\bigg)^n e^{-\frac{1}{2\sigma^2} \bigg(\sum_{i=1}^{n} x_i^2\bigg)}
+\end{aligned}
+$$
+Thus, we have $L(\sigma^2) = \bigg(\frac{1}{\sigma\sqrt{2\pi}}\bigg)^n e^{-\frac{1}{2\sigma^2} \bigg(\sum_{i=1}^{n} x_i^2\bigg)}$. We can now take the loglikelihood of this as follows:
+$$
+\begin{aligned}
+l(\sigma^2) &= ln(L(\sigma^2))\\
+l(\sigma^2) &= ln\Bigg(\bigg(\frac{1}{\sigma\sqrt{2\pi}}\bigg)^n e^{-\frac{1}{2\sigma^2} \bigg(\sum_{i=1}^{n} x_i^2\bigg)}\Bigg)\\
+l(\sigma^2) &= ln\Bigg(\bigg(\frac{1}{\sigma\sqrt{2\pi}}\bigg)^n\Bigg) + ln\bigg( e^{-\frac{1}{2\sigma^2} \bigg(\sum_{i=1}^{n} x_i^2\bigg)} \bigg)\\
+l(\sigma^2) &= n ln\bigg(\frac{1}{\sigma\sqrt{2\pi}}\bigg) - {\frac{1}{2\sigma^2} \sum_{i=1}^{n} x_i^2}\\
+\end{aligned}
+$$
+Now we can proceed with finding the MLE of $\sigma^2$ as such:
+$$
+\begin{aligned}
+\frac{\partial l}{\partial \sigma^2} &= -n + \frac{\sum_{i=1}^{n} x_i^2}{\sigma^2}\\
+\frac{\partial l}{\partial \sigma^2} &= -n + \frac{1}{\sigma^2}\bigg(\sum_{i=1}^{n} x_i^2 \bigg)
+\end{aligned}
+$$
+So, to find the maximum of sigma^2 we need to set the first derivative equal to 0.
+
+$$
+\begin{aligned}
+\frac{\partial l}{\partial \sigma^2} &= 0 = -n + \frac{\sum_{i=1}^{n} x_i^2}{\sigma^2}\\
+n &= \frac{\sum_{i=1}^{n} x_i^2}{\sigma^2}\\
+\sigma^2 &= \frac{1}{n}\sum_{i=1}^{n} x_i^2\\
+\hat{\sigma}_{MLE}^2 &= \frac{1}{n}\sum_{i=1}^{n} x_i^2
+\end{aligned}
+$$
+Now this could either be a maximum or a minimum. We need it to be a maximum so let's do the second derivative test. We get:
+
+$$
+\begin{aligned}
+\frac{\partial^2 l}{\partial (\sigma^2)^2} &= -\frac{1}{\sigma^3} \sum_{i=1}^{n} x_i^2\\
+\frac{\partial^2 l}{\partial (\sigma^2)^2} &< 0
+\end{aligned}
+$$
+Since our second derivative is negative, by the second derivative test we can conclude that our MLE is indeed a maximum.
+
+## Step 2 (Simulation Justification)
+```{r, include = FALSE}
+
+## Here you can code your simulation and create the 3 plots.
+
+## Here is some starter code for the simulation:
+
+set.seed(123) # Set this seed to be the last 3 digits of your student number.
+n = 50 #pre-specify your sample size
+sigma_sq = 1
+
+## Simulating from Normal
+rnorm(n, mean=0, sd=sqrt(sigma_sq))
+
+
+## Create your plots below. (I recommend using ggplot) 
+
+
+## Remember the patchwork package might be helpful.
+
+
+```
+```{r, include=FALSE}
+
+set.seed(899)
+
+T1 <- function(n, x) ((1/(n-1)) * sum(x^2))
+T2 <- function(n, x) ((1/(n)) * sum(x^2))
+
+n <- seq(10,100, 10)
+sigma_sq = 1
+
+likelihood_ratio <- rep(NA, length(n))
+
+for(i in 1:length(n)){
+  norm_data <- rnorm(n, mean=0, sd=sqrt(sigma_sq))
+  L_T1 <- T1(n =n[i], norm_data)
+  L_T2 <- T2(n =n[i], norm_data)
+  likelihood_ratio[i] <- L_T1/L_T2
+}
+
+
+tibble(n, likelihood_ratio) %>% 
+    ggplot(aes(x = n)) + 
+    geom_line(aes(y = likelihood_ratio), color = "blue") + 
+    labs(x = "n", y = "likelihood ratio", 
+         title = "LikelihoodRatio for different n values for sigma squared = 1",
+         subtitle = "T1 over T2",
+         color = "" )
+```
+
+```{r, include=FALSE}
+set.seed(899)
+T1 <- function(n, x) ((1/(n-1)) * sum(x^2))
+T2 <- function(n, x) ((1/(n)) * sum(x^2))
+
+n <- seq(10,100, 10)
+sigma_sq1 = 100000
+
+likelihood_ratio1 <- rep(NA, length(n))
+
+for(i in 1:length(n)){
+  norm_data1 <- rnorm(n, mean=0, sd=sqrt(sigma_sq1))
+  L_T1_1 <- T1(n =n[i], norm_data1)
+  L_T2_1 <- T2(n =n[i], norm_data1)
+  likelihood_ratio1[i] <- L_T1_1/L_T2_1
+}
+
+
+tibble(n, likelihood_ratio) %>% 
+    ggplot(aes(x = n)) + 
+    geom_line(aes(y = likelihood_ratio1), color = "red") + 
+    labs(x = "n", y = "likelihood ratio", 
+         title = "LikelihoodRatio for different n values for sigma squared = 100000",
+         subtitle = "T1 over T2",
+         color = "" )
+```
+
+From our derivation in Step 1, we see that our population variance matches up with out MLE of $\sigma^2$. This makes sense as it should because the population variance is our $\hat{\sigma}_{MLE}^2$ value. This is our estimator $T_2$. From our graphs, with sample mean being 0, we can see that our two graphs are almost identical. This is because both of our estimators are so similar. Our first estimator which is our sample variance, we divide by $n-1$ and since our $n$ values: 10, 20,..., 100 are relatively large enough, we see almost no difference between our two estimators. When $n = 100$ for example, $T_1$ would be the sum of the first 100 realizations and we would divide by $(100-1) = 99$ which is virtually $100$, which is what we are dividing by for our $T_2$ estimator. Since our two estimators are virtually the same, we see our graphs our virtually the same. These results are in line with what we showed in Step 1. This is because when n is small, we have $T_1> T_2$, this is because for small values of $n$ our first estimator will be dividing by a smaller number (from the -1 part) thus yielding a larger value estimated. It follows that for small $n$, $T_2$ is smaller than $T_1$. When n is much larger we see that the ratio of $T_1$ and $T_2$ are converging to 1 which means the estimators are converging to a likelihood of 1. This is also clear from our Step 1 derivations.
+\newpage
+
+# Part 2
+
+## Introduction
+
+Statistics Canada is an open source website that allows anyone to observe and analyse a multitude of civic and economic issues around Canada. This report will focus on a data set named: "Adult admissions to correctional services". This dataset include the 2001-2019  annual custodial admissions. The goal is to solve the issue of fluctuating crime rates across Canada, by identifying and analysing the past two decade's data.
+We hypothesize that the total custodial admissions over the 20 year period will be consistent throughout, i.e. there is a minimal variance from the observed mean over the 20 year period.
+
+## Data
+
+This data was collected and provided by Statistics Canada (https://www150.statcan.gc.ca/t1/tbl1/en/tv.action?pid=3510001401). The data was collected through the annual Adult Correctional Services survey (https://www23.statcan.gc.ca/imdb/p2SV.pl?Function=getSurvey&SDDS=3306).
+This dataset includes data ranging from 2001 to 2019 per province, and it includes counts for Probation, Conditional sentence, remand, and much more. For the purposes of our study, our goal is to group the subsections of correctional services into a total number of admissions in custody. 
+
+```{r, include = FALSE}
+# Here you can load in and clean the data (you may need to do the cleaning in a separate R script). 
+malaa <- statcan_data("35-10-0014-01", "eng")
+malaa <- malaa %>% filter(malaa$`Custodial and community admissions` == "Total custodial admissions") 
+malaa <- malaa %>% filter(malaa$GEO == "Provinces and territories")
+malaa <- malaa %>% select(REF_DATE, VALUE)
+malaa <- malaa %>% mutate(REF_DATE = substr(REF_DATE, 6, 9))
+malaa
+```
+
+```{r, include=FALSE}
+
+```
+
+It's important to note, that in our cleaning process, we removed all rows that did not include "Total custodial admissions" in the Custodial and community admissions column, and then filtered the data to only include the overall Provinces and territories value for total custodial admissions.
+
+The variable to focus on is the Total Custodial Admissions, as that is what we will be using in our analysis. The reason we do this is so that we can group every subcategory of admisssion to give an overall perspective of the admission rates in Canada.
+
+```{r, include=FALSE}
+# Use this to calculate some summary measures. 
+summary(malaa$VALUE)
+var(malaa$VALUE)
+```
+### Numerical Summaries
+| Minimum | Median |  Mean | Maximum | Observed variance |
+|------------|------------ | --------| ------ |------|
+| 197454 | 226048 |  226933 | 255775| 543831061 |
+
+Over the 20 year period the data was collected, we can note that the minimum, maximum, mean, and observed variance from the table shown above.
+
+From this table we can see there was one year which had 197454 overall admissions into custody and on the other side of the spectrum, another year had 255775 overall admissions into custody. This signifies the minimum and maximum observations respectively. Overall in Canada, we should expect to see 226933 yearly admissions into custody on average. Our observed variance is 543831061, and we will dive more into the significance of this value later into the analysis.
+For now, consider the observed variance of annual custodial admissions and try to predict the predictibility of the quantity of admissions into custody, and to see if Canadian correctional facilities have proper resources to house a steady influx of convicts. 
+
+
+```{r, echo = FALSE}
+  ggplot(data=malaa, aes(x=REF_DATE, y=VALUE, group = 1)) +
+  geom_point()+
+  geom_path()+
+  theme_classic()+
+  ggtitle("Quantity of total custodial admissions per year from 2001-2019 in Canada")+
+  ylab("Total admissions")+
+  xlab("Year")
+
+```
+The above line plot shows the trend of total custodial admissions per year ranging from 2001-2019 in Canada. From this we can see that there is a very erratic behaviour in the influx of convicts throughout the years. 
+As we can see from 2001-2005, and from 2012-2016 we have a relatively low amount of convictions, and to contrast that, from 2005-2012 and 2017-2019, we have a relatively high amount. These fluctuations create a challenge for Canadian correctional facilities to control the in-flow & out-flow of inmates, and controlling the population in correctional facilities. If there were be a conviction in Toronto, we would not want to send our inmates to Vancouver, due to a lack of space. If we were able to see a more consistent annual conviction rate, we would be able to better predict and control correctional facility populations.
+
+## Methods
+
+A confidence interval for the mean is a statistical measurement used in order to determine what the range of likely values will be over a given range, centered around the mean.
+
+In our analysis, we will be using a 95% confidence interval for the mean of annual custodial admissions, as well as a 95% confidence interval for the bootstrapped variance of annual custodial admissions. We chose a 95% confidence interval for both, because it best represents the middle 95% of our observed/bootstrapped data.
+
+We will be using an empirical bootstrap sample for one of our confidence interval analysises. An empirical bootstrap sample takes multiple random samples with replacement of a test statistic. This technique allows estimation of the sampling distribution of almost any statistic using random sampling methods. In the case of our analysis, we will be using the sample variance. 
+
+We begin with a sample of size of 5 years from the population data (we assume it is representative). Then we do 1000 bootstrap samples of size 5 (i.e. with replacement) from the original sample. For each bootstrap sample, we calculate our sample variance. The distribution of the values of the sample variance is the bootstrap sampling distribution (this is simply a way to estimate various test statistics). 
+Note that bootstrapping does not create new data. It simply is a tool to allow us to explore the variability of estimates from our original sample. 
+
+All analysis for this report was programmed using `R version 4.0.2`. 
+
+## Results 
+```{r, include=FALSE}
+malaa %>%   
+  summarise(
+  mean_val = mean(VALUE),
+  sd_val = sd(VALUE),
+  n_val = n())
+
+226933.3+ qnorm(0.975)*(23320.19/sqrt(19))
+226933.3- qnorm(0.975)*(23320.19/sqrt(19))
+
+```
+The 95% confidence interval for mean annual custodial admissions is [216447.5, 237419.1]. We calculated this confidence interval by using the "z critical value method". We calculate the z critical value method by doing $\bar{x}\pm z_{\alpha/2}\frac{s}{\sqrt{n}}$, where $s$ is the standard deviation, $\bar{x}$ is the sample mean, $\alpha=0.05$, and $n=19$, i.e. the number of years in the dataset. This confidence interval can be interpreted by saying that 95% of the data, when centered around the mean, would be between between 216447.5 and 237419.1. 
+
+The results yielded from the confidence intervals based around the mean seem reasonable, as we had previously found in the Numerical Summaries that the observed mean was in 226933, with a minimum and maximum of 197454, and 255775 respectively. Our confidence interval lies inside of the observed dataset, thus making it a reasonable interval.
+
+```{r, include=FALSE}
+set.seed(899)
+
+observed_data <- malaa %>%
+  sample_n(size=5, replace = TRUE)
+
+boot_vars <- rep(NA, 1000)
+  
+for(i in 1:1000) {
+  boot_samp <- observed_data %>% sample_n(size=5, replace=TRUE)
+  boot_vars[i] <- as.numeric(boot_samp %>%summarize(var_crime = var(VALUE)))
+}
+quantile(boot_vars, c(0.05, 0.95)) 
+boot_vars <- tibble(var_crime = boot_vars)
+```
+
+```{r, echo=FALSE}
+plot <- ggplot(boot_vars, aes(x=var_crime)) +
+  geom_histogram(fill="light blue", color="blue", bins=20) +
+  labs(x="Variances from bootstrap samples", y = "Count",
+       title=" Histogram of Bootstrap sampling distribution for the \n variance in annual custodial admissions from 2001 to 2019 \n in Canada")+
+  theme_classic()+
+  geom_vline(xintercept = 46128000, col ="red")+
+  geom_vline(xintercept = 381435669, col ="red")
+
+
+plot + scale_x_continuous(labels = comma)
+```
+
+For our second confidence interval, we use the bootstrap technique, depicted by the histogram shown above. We can see the confidence interval represented by the two red lines, which are positioned at 46128000 and 381435669, respectively. These numbers represent our two sample variance amounts for the 2.5 quantile and 97.5 quantile, respectively. This means that 95% of our bootstrap sample variances lie between [46128000, 381435669] (in between the two red lines).
+
+The results yielded from the confidence intervals based around the variance seem reasonable, as we had previously noticed in the Numerical Summaries, that the data had a very large observed variance, and significant fluctuations found in the line graph representation in the Data section.
+
+## Conclusions
+
+We hypothesized that the total custodial admissions over the 20 year period will be consistent throughout, i.e. there is a minimal variance from the observed mean over the 20 year period, which we have shown was incorrect. In our Data section, we observed the fluctuations in our line graph. We used two confidence intervals, one based on the observed mean, and another which was based on the bootstrapped sample variances. 
+
+The intervals were calculated using the "z critical value method" and the bootstrapping method respectively, and both were 95% confidence intervals. From those intervals, we found evidence against our hypothesis; namely there was a large range in the sample variance intervals.
+
+The purpose of this report was to identify and generate some insight towards the fluctating admission rates into correctional facilities across Canada. From our analysis, we have successfully identified the severity of the fluctations over the last two decades. Our goal is to bring awareness to these fluctuations in admissions, and ideally lower the spread in admissions for the coming years. We would like to use our government resources to try to allocate our inmates at facilities which can house them more efficiently.
+
+One weakness of this analysis is the limited time period that the data was collected over. Ideally, if we had 2-3 more decades of data to include in the analysis, we could draw more meaningful conclusions of how the judicial system increases and decreases it's rate of convicts over a larger period of time.
+
+From our two calculated confidence intervals, we have showcased our data in a more meaningful manner, and shed some light into the problems our judicial system faces when convicting and housing people over a long period of time.
+
+\newpage
+## Bibliography
+
+1. Grolemund, G. (2014, July 16) *Introduction to R Markdown*. RStudio. [https://rmarkdown.rstudio.com/articles_intro.html](https://rmarkdown.rstudio.com/articles_intro.html). (Last Accessed: January 15, 2021) 
+
+2. Dekking, F. M., et al. (2005) *A Modern Introduction to Probability and Statistics: Understanding why and how.* Springer Science & Business Media.
+
+3.  Allaire, J.J., et. el. *References: Introduction to R Markdown*. RStudio. [https://rmarkdown.rstudio.com/docs/](https://rmarkdown.rstudio.com/docs/). (Last Accessed: January 15, 2021) 
+
+4.  Statistics Canada. Table 35-10-0014-01  Adult admissions to correctional services
+[https://www150.statcan.gc.ca/t1/tbl1/en/tv.action?pid=3510001401]

@@ -1,0 +1,31 @@
+---
+title: "Simulation"
+author: "Chris"
+date: "1/21/2021"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+```
+
+We want to simulate some data 
+
+```{r}
+set.seed(1006001899)
+eat_brocolli <- sample(x=c("Never", "Always", "Sometimes"),
+                       size = 10,
+                       replace = TRUE,
+                       prob = c(0.8, 0.15, 0.05))
+
+eat_brocolli
+
+hair_loss <- runif(n=10, min=0, max=10)
+
+age <- rpois(n = 10, lambda = 35)
+
+my_data <- tibble(age, eat_brocolli, hair_loss)
+my_data
+```
+

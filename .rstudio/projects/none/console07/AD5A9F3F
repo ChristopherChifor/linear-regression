@@ -1,0 +1,67 @@
+]0;/home/jovyanjovyan@jupyter-ac5fcdab-2dd3bf-2d41ca-2db6c9-2da6bb964be8ad:~$ [Kjovyan@jupyter-ac5fcdab-2dd3bf-2d41ca-2db6c9-2da6bb964be8ad:~$ echo "# linear-regression" >> README.md
+]0;/home/jovyanjovyan@jupyter-ac5fcdab-2dd3bf-2d41ca-2db6c9-2da6bb964be8ad:~$ git init
+Initialized empty Git repository in /home/jovyan/.git/
+]0;/home/jovyanjovyan@jupyter-ac5fcdab-2dd3bf-2d41ca-2db6c9-2da6bb964be8ad:~$ git add README.md
+]0;/home/jovyanjovyan@jupyter-ac5fcdab-2dd3bf-2d41ca-2db6c9-2da6bb964be8ad:~$ git commit -m "first commit"
+
+*** Please tell me who you are.
+
+Run
+
+  git config --global user.email "you@example.com"
+  git config --global user.name "Your Name"
+
+to set your account's default identity.
+Omit --global to set the identity only in this repository.
+
+fatal: unable to auto-detect email address (got 'jovyan@jupyter-ac5fcdab-2dd3bf-2d41ca-2db6c9-2da6bb964be8ad.(none)')
+]0;/home/jovyanjovyan@jupyter-ac5fcdab-2dd3bf-2d41ca-2db6c9-2da6bb964be8ad:~$ git branch -M main
+error: refname refs/heads/master not found
+fatal: Branch rename failed
+]0;/home/jovyanjovyan@jupyter-ac5fcdab-2dd3bf-2d41ca-2db6c9-2da6bb964be8ad:~$ git remote add origin https://github.com/ChristopherChifor/linear-regression.git
+]0;/home/jovyanjovyan@jupyter-ac5fcdab-2dd3bf-2d41ca-2db6c9-2da6bb964be8ad:~$ git push -u origin main
+error: src refspec main does not match any
+[31merror: failed to push some refs to 'https://github.com/ChristopherChifor/linear-regression.git'
+[m]0;/home/jovyanjovyan@jupyter-ac5fcdab-2dd3bf-2d41ca-2db6c9-2da6bb964be8ad:~$ ls
+README.md  Sta238  Sta302  Sta304  STA304-F21-Assignment2.git  Sta314
+]0;/home/jovyanjovyan@jupyter-ac5fcdab-2dd3bf-2d41ca-2db6c9-2da6bb964be8ad:~$ git remote add origin https://github.com/ChristopherChifor/linear-regression.git
+fatal: remote origin already exists.
+]0;/home/jovyanjovyan@jupyter-ac5fcdab-2dd3bf-2d41ca-2db6c9-2da6bb964be8ad:~$ git branch -M main
+error: refname refs/heads/master not found
+fatal: Branch rename failed
+]0;/home/jovyanjovyan@jupyter-ac5fcdab-2dd3bf-2d41ca-2db6c9-2da6bb964be8ad:~$ git push -u origin main
+error: src refspec main does not match any
+[31merror: failed to push some refs to 'https://github.com/ChristopherChifor/linear-regression.git'
+[m]0;/home/jovyanjovyan@jupyter-ac5fcdab-2dd3bf-2d41ca-2db6c9-2da6bb964be8ad:~$ clear
+[H[2J[3J]0;/home/jovyanjovyan@jupyter-ac5fcdab-2dd3bf-2d41ca-2db6c9-2da6bb964be8ad:~$ ls
+README.md  Sta238  Sta302  Sta304  STA304-F21-Assignment2.git  Sta314
+]0;/home/jovyanjovyan@jupyter-ac5fcdab-2dd3bf-2d41ca-2db6c9-2da6bb964be8ad:~$ cds[K s[KSta302
+]0;/home/jovyan/Sta302jovyan@jupyter-ac5fcdab-2dd3bf-2d41ca-2db6c9-2da6bb964be8ad:~/Sta302$ git remote add origin https://github.com/ChristopherChifor/linear-regression.git
+fatal: remote origin already exists.
+]0;/home/jovyan/Sta302jovyan@jupyter-ac5fcdab-2dd3bf-2d41ca-2db6c9-2da6bb964be8ad:~/Sta302$ git branch -M main
+error: refname refs/heads/master not found
+fatal: Branch rename failed
+]0;/home/jovyan/Sta302jovyan@jupyter-ac5fcdab-2dd3bf-2d41ca-2db6c9-2da6bb964be8ad:~/Sta302$ git push -u origin main[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[Kgit statuis[K[Ks
+On branch master
+
+No commits yet
+
+Changes to be committed:
+  (use "git rm --cached <file>..." to unstage)
+	[32mnew file:   ../README.md[m
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	[31m../.config/[m
+	[31m../.ipython/[m
+	[31m../.jupyter/[m
+	[31m../.local/[m
+	[31m../.rstudio/[m
+	[31m../.subversion/[m
+	[31m../STA304-F21-Assignment2.git/[m
+	[31m../Sta238/[m
+	[31m./[m
+	[31m../Sta304/[m
+	[31m../Sta314/[m
+
+]0;/home/jovyan/Sta302jovyan@jupyter-ac5fcdab-2dd3bf-2d41ca-2db6c9-2da6bb964be8ad:~/Sta302$ git add -A

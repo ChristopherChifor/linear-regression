@@ -1,0 +1,7 @@
+"0","# add previous plot code here"
+"0",""
+"0","# add points using the code below and feel free to change the color and dot type "
+"0","# (look up pch or points in the help file to see how)"
+"0","             "
+"0","plot(cleaning_sim$Crews, cleaning_sim$Rooms, main=""Scatterplot of Crews and Rooms with red dots signifying their means"","
+"0","   xlab=""Crews"", ylab=""Rooms"", pch=19, col='lightblue')"

@@ -1,0 +1,15 @@
+help/doc/html/Search?pattern=groupby&title=1&keyword=1&alias=1,R: Search Results
+help/library/dplyr/html/group_by.html,R: Group by one or more variables
+help/library/base/html/sum.html,R: Sum of Vector Elements
+help/library/stats/html/Chisquare.html,R: The (non-central) Chi-Squared Distribution
+help/doc/home/,Home
+help/library/base/html/summary.html,R: Object Summaries
+help/library/base/html/Round.html,R: Rounding of Numbers
+help/library/stats/html/TDist.html,R: The Student t Distribution
+help/library/graphics/html/boxplot.html,R: Box Plots
+help/library/base/html/unique.html,R: Extract Unique Elements
+help/doc/html/Search?pattern=plot&title=1&keyword=1&alias=1,R: Search Results
+help/doc/html/Search?pattern=plot%28%29&title=1&keyword=1&alias=1,R: Search Results
+help/library/dplyr/html/select.html,R: Subset columns using their names and types
+help/doc/html/Search?pattern=ls%28%29&title=1&keyword=1&alias=1,R: Search Results
+help/library/base/html/ls.html,R: List Objects

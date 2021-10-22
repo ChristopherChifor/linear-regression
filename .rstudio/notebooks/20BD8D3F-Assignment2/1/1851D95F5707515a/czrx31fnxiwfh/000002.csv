@@ -1,0 +1,13 @@
+"0","knitr::opts_chunk$set(warning = FALSE, message = FALSE)"
+"0",""
+"0","library(openintro)"
+"2","Loading required package: airports
+"
+"2","Loading required package: cherryblossom
+"
+"2","Loading required package: usdata
+"
+"0","library(opendatatoronto)"
+"0","library(dplyr)"
+"0","library(patchwork)"
+"0","library(tidyverse)"

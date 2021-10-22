@@ -1,0 +1,182 @@
+---
+title: "STA238 - Winter 2021"
+author: "Christopher Chifor - 1006001899"
+header-includes:
+   - \usepackage{amsmath}
+date: January 29, 2021
+subtitle: Assignment 1
+output:
+  pdf_document: default
+---
+
+```{r, include=FALSE}
+knitr::opts_chunk$set(warning = FALSE, message = FALSE)
+library(opendatatoronto)
+library(dplyr)
+library(tidyverse)
+library(ggplot2)
+```
+
+# Part 1
+
+
+*Exercise:*
+
+A certain group of 1000 students at the University of Toronto listen to music and make note of the length of their favourite songs. The average length of their favourite song is 185 seconds, with a standard deviation of 25 seconds. If 53 students are chosen at random, what is the probability that a song has a length of more than 190 seconds. We let $X_1,\: X_2, \dots, X_i$ denote a sequence of independent and identically distributed (iid) random variables, where $X_i$ is the outcome of $i^{th}$ repetition of the experiment. Note: the distribution is unknown. 
+
+
+*Solution:* 
+
+
+We are looking $P(\bar{X_n} > 190)$. To do this we need to apply Central Limit Theorem. We can do this because we have a sequence of independent identically distributed random variables with a finite positive variance. Now to apply it. By the Central Limit Theorem we have:
+
+$$
+\begin{aligned}
+P(\bar{X_n} > 190) &= P(\frac{{\bar{X}_n} - \mu}{\sigma/\sqrt{n}} > \frac{190 - 185}{25/\sqrt{53}}) \text{,(Substituting from the given values in the exercise)}\\
+P(\bar{X_n} > 190) &= P(Z_n > 1.45602)\\
+P(\bar{X_n} > 190) &= 1 - P(Z_n < 1.45602 )
+\end{aligned}
+$$
+
+From the Central Limit theorem, we know $Z_n$ converges to a standard normal distribution. Thus, $Z_n \sim N(0,1)$. Graphically:
+
+```{r}
+x <- seq(-4, 4, length=1000)
+y <- dnorm(x)
+plot(x,y, main="Standard normal distribution",
+  xlab="Z-score", ylab="Probability density")
+  abline(v=1.45602, col="blue")
+```
+
+From the graph and from the mathematical calulation, we can see that we are looking for the area under the black curve and to the right of the blue line. Note: the blue line is at x = 1.45602. We can calculate the actual probability that a song has a length of more than 190 seconds, given that n = 53 as follows:
+Using R:
+
+```{r}
+probability <- 1 - pnorm(1.45602)
+probability
+```
+
+Thus, if 53 students are chosen at random, the probability that a song has a length of more than 190 seconds is about 7.3%
+\newpage
+
+# Part 2
+
+## Data
+
+```{r}
+
+#This code was taken from 
+#https://open.toronto.ca/dataset/safety-zone-watch-your-speed-program-monthly-summary/
+
+# get package
+package <- show_package("e0a82533-93d5-4f63-81f5-128f8b665200")
+package
+
+# get all resources for this package
+resources <- list_package_resources("e0a82533-93d5-4f63-81f5-128f8b665200")
+
+# identify datastore resources; by default, 
+# Toronto Open Data sets datastore resource format to CSV for 
+#non-geospatial and GeoJSON for geospatial resources
+datastore_resources <- filter(resources, tolower(format) %in% c('csv', 'geojson'))
+
+# load the first datastore resource as a sample
+data <- filter(datastore_resources, row_number()==1) %>% get_resource()
+data
+```
+
+\newpage
+
+```{r}
+Sept2020data <- data %>%
+  filter(month == "2020-09-01")
+Sept2020data
+```
+
+
+### Introduction of the data
+
+On the open.toronto.ca website, one can find many free data sets to work with. From a variety of civic issues, the dataset discussed in this was discovered on this website and is called: The Safety Zone Watch Your Speed Program (WYSP) - Monthly Summary. It can be found at: https://open.toronto.ca/dataset/safety-zone-watch-your-speed-program-monthly-summary/. The Safety Zone Watch Your Speed Program is a monthly summary program which captures the speed of cars at many locations around Toronto. The WYSP uses systems that include a radar device and an LED display, called speed display signs or driver input signs. Such indicators are connected to existing hydro poles or streetlights. The radar monitors the oncoming vehicles' speeds and the LED sign shows the passing motorists their speeds, warning them to monitor their speeds and comply with speed limits. The permanent units of the city are located in the Safety Zones. The monthly overview of observed speeds for these signs is included in this dataset. Important notes: The count of number of vehicles is not equal to the traffic volume count, Speed accuracy is ± 1 km/hr.
+
+Here is a link to connect the "_id" variable to the actual location of the radar.
+https://open.toronto.ca/dataset/school-safety-zone-watch-your-speed-program-locations/
+
+
+### Cleaning Process of the data
+
+The cleaning process was straightforward as the open data set from the city of Toronto was already "clean". All of the columns (variables) were filled and all of the rows (observations) were filled. This means, there was no need to remove NA values as there aren't any. That being said, the data was still cleaned by filtering the month variable to create a new data set which only has observations from 2020-09-01. The reason this was done was 1) to have the latest information and all of the newest radar signs installed with data recorded, 2) to avoid re-counting when performing exploratory data analysis, and 3) to only analyse one month of data rather than over multiple months. It is more challenging to draw a proper conclusion from a study done over different time frames. In the coming sections it will become more apparent why the data was cleaned in this fashion. Note: the cleaned data set is called `Sept2020data`.
+
+
+### Important Variables
+
+Some Important Variables include pct_05, pct_10,..., pct_95, where pct_x is the $x$-th percentile speed observed at this location where the sign was installed, where $x \in \{5,10,15,20,25,...90,95\}$. This is important because it signifies the percentile of a speed driven, at a specific radar sign. This speed is measured in km/h. More important variables are: spd_05, spd_10, spd_15,...,spd_90, spd_95, spd_100_and_above. These variables represent the count of vehicles observed within this 5 km/hr speed bin, from $x$ km/hr to $x + 4$ km/hr inclusive. So for spd_x, where $x \in \{5,10,15,20,25,...90,95,100\}$. For example, when $x = 40$, spd_40 includes the number of cars who were clocked going 40-44km/h at this radar. The volume variable represents the total number of vehicles observed during this month. It is important to note that this does not necessarily reflect traffic volume.
+
+```{r, echo=TRUE}
+#Numerical Summaries for the total number of vehicles observed during Sept. 2020
+Sept2020data$volume <- as.numeric(as.character(Sept2020data$volume))
+summ <- summary(Sept2020data$volume) 
+summ["Std.Dev."] <- round(sd(Sept2020data$volume),2)
+summ
+```
+
+### Description of Numerical Summaries
+
+A numerical summary is a value calculated to describe a specific characteristic about a data set. In the case of `Sept2020data`, many different numerical summaries were calculated. In terms of centre of data, the following were computed: mean, median. In terms of variability of data, we have: standard seviation, min/max. And finally, in terms of Empirical Quantiles: the 1st and 3rd quartiles were computed. These can be seen in the table above. The reason these values were computed was to create a deeper understanding on the volume of cars captured by the radar signs in Toronto. From this we can see that on average 85484 cars were recorded by each of the radar signs. However, only 58520 is our median number of cars recorded. Since our median is less than our mean, we can expect our data to be skewed to the right. The best inference for why this occurs is because some of the radar signs placed around the city are not picking up as many cars as some other ones, and thus would be more costly for the city to operate some radar signs in low traffic volume neighbourhoods. Ideally, we want the median to be as close as possible to the mean so that the city of Toronto would optimize their resources efficiently. 
+
+\newpage
+
+## Plots
+```{r, echo = TRUE}
+vol <- (Sept2020data$volume)
+
+ggplot(data = Sept2020data,
+       aes(x = vol)) +
+  geom_histogram(bins=30,colour="black",
+                 fill = "light blue")+
+  xlab("Volume of Cars")+
+  ylab("Number of radar signs")+
+  ggtitle("Histogram of volume of cars recorded by a radar sign in Toronto in Sept. 2020")
+```
+
+### Description of Histogram
+
+Above, a histogram of volume of cars recorded by a radar sign in Toronto in September 2020 is pictured. The x-axis represents the volume of cars recorded by a radar sign, and the y-axis represents the number of radar signs. Essentially, the y-axis represents a count of how many radar signs picked up a certain volume of cars. The graph is, evidently, skewed to the right as inferred from the Description of Numerical Summaries part. This is due to a mean which is larger than the median. This only furthers the idea that the City of Toronto must crack down on some of these radar sign placements. The first bin contains 13 distinct radar signs placed around Toronto which are clocking in approximately 30 times less than the average sign. This may be a misuse of resources. It is also important to note that this histogram is unimodal, which means there is one unique mode where most of the radar signs lie in. Ideally, we would want a uniform modality in this case (similar mean and median). However, this is a relatively new program and there are improvements to be made.
+
+
+\newpage
+
+```{r, echo = TRUE}
+Sept2020data %>%
+  ggplot(aes(y = vol)) +
+  theme_classic() +
+  geom_boxplot(width = .1, fill="light blue") +
+  labs(title = "Boxplot of volume of cars recorded by a radar sign in Toronto in Sept. 2020",
+       y = "Volume of Cars") +
+  
+  coord_cartesian(xlim = c(-.15,.15)) +
+  theme(axis.text.x = element_blank())
+```
+
+### Description of Boxplot
+
+The Boxplot of volume of cars recorded by a radar sign in Toronto in September 2020 pictured above, showcases a similar message to the histogram aforementioned. However, the main takeaways are the mininimum, maximum, first and third quartiles, and the interquartile range (IQR). Firstly, the lowest point on the whiskers represents the minimum value, which was calculated in the table of Numerical Summaries to be 2230. On the contrary, we have a maximum of 433846 cars. This large range between the minimum and the maximum illustrates how different some neighbourhoods are in terms of volume of cars that pass through. The distance between the top and bottom line of the large rectangle represents the interquartile range. This is between the 25th and 75th percentile. The reason we have outliers, is due to the fact that some neighbourhoods have many more cars that pass by a radar sign. The dark black bar inside the rectangle represents the median of the data set. Lastly, similar to the histogram, the boxplot is right skewed, as the median bar is closer to the lower quartile. 
+
+All analysis for this report was programmed using `R version 4.0.2` via packages: opendatatoronto. 
+
+
+## Bibliography
+
+1. Grolemund, G. (2014, July 16) *Introduction to R Markdown*. RStudio. [https://rmarkdown.rstudio.com/articles_intro.html](https://rmarkdown.rstudio.com/articles_intro.html). (Last Accessed: January 15, 2021) 
+
+2. Dekking, F. M., et al. (2005) *A Modern Introduction to Probability and Statistics: Understanding why and how.* Springer Science & Business Media.
+
+3.  Allaire, J.J., et. el. *References: Introduction to R Markdown*. RStudio. [https://rmarkdown.rstudio.com/docs/](https://rmarkdown.rstudio.com/docs/). (Last Accessed: January 15, 2021) 
+
+4. City of Toronto. https://open.toronto.ca/dataset/safety-zone-watch-your-speed-program-monthly-summary/
+
+
+
+
+
+
+

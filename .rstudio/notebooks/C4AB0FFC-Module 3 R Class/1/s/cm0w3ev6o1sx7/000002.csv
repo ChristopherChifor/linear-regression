@@ -1,0 +1,1 @@
+"0","nyc <- read.csv(file=""nyc.csv"", header=T)"

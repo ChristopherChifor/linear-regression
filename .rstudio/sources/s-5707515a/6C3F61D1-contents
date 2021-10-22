@@ -1,0 +1,193 @@
+---
+title: "Module 3 Class Code"
+author: "Katherine Daignault"
+output: pdf_document
+---
+
+# Extracting Elements from Regression Models in R
+
+As mentioned last week, we can fit a linear model in R without the need to "hand calculate" everything using formulae. As a refresher, let's load up our NYC restaurant data and refit some models:\
+
+```{r}
+nyc <- read.csv(file="nyc.csv", header=T)
+```
+
+The model we will consider is the model that includes all the predictors.\
+
+```{r}
+model <- lm(Price ~ Food + Decor + Service + East, data=nyc)
+model
+```
+
+
+Viewing the results of your model in this way only gives us information about the coefficients. But now that we know how to also estimate variances for the estimators, we can view the model in a different way (although it still contains more information than we know what to do with).\
+
+```{r}
+summary(model)
+```
+
+
+There are ways to also extract all of these estimates from the saved model if you only need to view or work with some of them.\
+
+```{r, eval=F}
+output <- summary(model)
+output$coefficients
+# To extract just the coefficients in a vector:
+model$coefficients
+coef(model)
+output$coefficients[,1]
+
+# To extract the estimated standard errors of the coefficients:
+output$coefficients[,2]
+
+# To extract the fitted values from the model
+# these are your y-hat values (plugging in the predictor values
+# for each observations into the model and getting the conditional mean estimate)
+yhat <- fitted(model)
+head(yhat)
+
+yhat <- model$fitted.values
+head(yhat)
+
+# To extract the residuals from the model
+e <- residuals(model)
+head(e)
+
+e <- model$residuals
+head(e)
+
+e <- resid(model)
+head(e)
+
+# To extract the estimated error variance
+output$sigma     # this actually gives the square root of the estimate
+output$sigma^2
+```
+
+
+We can also extract a lot of other components of regression from the saved model. For example, we could find the matrix of predictor information in the model, instead of trying to create it ourselves
+
+```{r, eval=F}
+X <- model.matrix(model)
+
+# We can also use this and what we saw last week to find the estimated
+# covariance matrix of the coefficients:
+
+XtX <- t(X) %*% X
+XtXinv <- solve(XtX)
+cov.mat <- output$sigma^2 * XtXinv
+cov.mat
+
+# The square root diagonal elements of this matrix are reported as standard errors
+# in the summary of the model
+
+sqrt(diag(cov.mat))
+output$coefficients[,2]
+```
+
+
+# Simulating Violated Assumptions
+
+## Sampling distributions when assumptions hold
+
+Let's create some code to illustrate what the sampling distribution looks like when all assumptions actually hold. We will do this by generating data under satisfied assumptions and then fitting a model many times on newly generated sets of data to illustrate getting a distribution of betas under a large number of samples from the same population.\  
+
+To build a simulation, it's best to decide what factors you may want to change and list them early. Then if you use the names of these instead of the values, you can change the values at the start, and this changes everything later on.\
+
+```{r}
+# Initialize the conditions of your simulation
+error_mean = 0
+error_sd = 1
+no_runs = 500
+sample_size = 20
+no_preds = 2
+```
+
+Now we can create two functions that will do the following things:  
+
+  1. generate data to be used in the models
+  2. fit the models for each run and extract model properties.
+
+```{r}
+# Function 1 will generate the data
+data_gen <- function(n, mu_e, sigma){
+  e <- rnorm(n, mu_e, sigma)  # generates the random errors
+  x1 <- rep(c(1:5), each=(n/5))   # create one predictor
+  x2 <- rep(c(0,1), times=(n/2))  # create a binary predictor
+  y <- 1 + 2*x1 + 3*x2 + e   # generate the random responses using true relationship
+  
+  data <- as.matrix(cbind(y, x1, x2, e))
+  return(data)   # what the function will spit out after being run
+}
+
+# Function 2 will take the data and use it to fit models
+model_fitting <- function(response, predictors){
+  model <- lm(response ~ predictors)
+  
+  # extract the coefficients, standard errors
+  betas <- model$coefficients
+  ses <- summary(model)$coefficients[,2]
+  return(rbind(betas, ses))
+}
+```
+
+
+The functions are written to be super general so you can "break" assumptions without too much change to the functions themselves. Now let's see the sampling distributions of the coefficients when the assumptions work:\  
+
+```{r}
+# First initialize how you will store your results
+betas <- matrix(NA, nrow=no_runs, ncol=no_preds + 1)
+ses <- matrix(NA, nrow=no_runs, ncol=no_preds + 1)
+
+# create a loop to get results for each run
+for(i in 1:no_runs){
+  dataset <- data_gen(sample_size, error_mean, error_sd)
+  model_results <- model_fitting(dataset[,1], dataset[,c(2,3)])
+  betas[i,] <- model_results[1,]
+  ses[i,] <- model_results[2,]
+}
+```
+
+```{r}
+# plot the distribution of betas
+par(mfrow=c(2,2))
+hist(betas[,1], main="Intercept Distribution", xlab="Intercept")
+hist(betas[,2], main="X1 Slope Distribution", xlab="X1 Slope")
+hist(betas[,3], main="X2 Slope Distribution", xlab="X2 Slope")
+```
+
+## Sampling distributions when assumptions are violated
+
+### Violating Linearity
+
+To violate linearity, we can misspecify our model. We know (because we set it to be true) that the true relationship in the population is $E(Y \mid X) = 1 + 2x_{i1} + 3x_{i2}$ so we can violate our first assumption in a few ways:\  
+
+  1. Omit one of the two variables
+  2. Change the functional form of the variables (maybe square them)
+
+We can modify the code above to incorporate these changes and see that we end up getting some biased estimates of our coefficients.
+
+### Violating Uncorrelated Errors
+
+To violate uncorrelated errors, we will need to modify how the random errors are generated. We will need to use a different random normal generator which can take in a covariance matrix to create correlated variables:
+
+```{r, eval=FALSE}
+library(mvtnorm)
+Sigma = matrix(rep(1, 400), nrow=20, ncol=20)   # create covariance matrix
+r <- as.vector(rmvnorm(n=1, mean=rep(0, times=20), sigma = Sigma))
+```
+
+By modifying our code earlier, we can see that this will cause us to have much larger sampling error than we should.
+
+### Violating Constant Variance
+
+To violate constant variance, we need to have different variance values either for all observations with the same X value, or just different variances for all observations. Again, like the previous violation, we get much larger spread than we should for these estimates.
+
+### Violating Normality
+
+To violate Normality, we simply need to change the distribution that is generating the errors to something else. We can see the effect really well if we pick something that is highly skewed, such as a log-Normal distribution. We can do this using:
+
+```{r}
+r <- rlnorm(20, 0, 1)
+```
+

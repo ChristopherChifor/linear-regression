@@ -1,0 +1,334 @@
+---
+title: "STA238 - Winter 2021"
+author: "GROUP 219: Christopher Chifor, Parssa Kyanzadeh"
+date: March 5, 2021
+subtitle: Assignment 3
+output:
+  pdf_document: default
+---
+
+```{r, include=FALSE}
+knitr::opts_chunk$set(warning = FALSE, message = FALSE)
+library(openintro)
+library(opendatatoronto)
+library(dplyr)
+library(patchwork)
+library(tidyverse)
+library(sf)
+```
+
+
+# Part 1
+
+
+## Step 1 (Mathematical Justification)
+
+To begin, we will need to make a few assumptions. 1) Assume $X_1, X_2, X_3, \dots, X_n \stackrel{iid}{\sim} Poisson(\lambda)$. 2) Assume $\lambda \sim Exponential(\beta)$, where $\lambda$ is the prior distribution, and $\beta$ is the mean parameter, such that $f(\lambda)=\frac{1}{\beta}e^{-\lambda /\beta}$, for $\lambda \geq 0.$
+
+We will now find the posterior distribution of $\lambda$.
+$$
+\begin{aligned}
+P(\lambda|\text{ data }) & = \frac{P(\text{data}|\lambda)P(\lambda)}{P(\text{data})} \\
+P(\lambda|X_1, X_2, X_3,...,X_n) & = \frac{P(X_1, X_2, X_3,...,X_n|\lambda)P(\lambda)}{P(X_1, X_2, X_3,...,X_n)} \\
+P(\lambda|X_1, X_2, X_3,...,X_n) & = \frac{P(X_1|\lambda)P(X_2|\lambda)...P(X_n|\lambda)P(\lambda)}{P(X_1, X_2, X_3,...,X_n)} \\
+P(\lambda|X_1, X_2, X_3,...,X_n) & = \frac{\Pi_{i=1}^{n}( P(X_i|\lambda))\cdot P(\lambda)}{P(X_1, X_2, X_3,...,X_n)} \\
+P(\lambda|X_1, X_2, X_3,...,X_n) & = \frac{\Pi_{i=1}^{n}(\frac{e^{-\lambda}\lambda^{X_i}}{X_i !})\cdot \frac{1}{\beta} \cdot e^{-\frac{\lambda}{\beta}}}{P(X_1, X_2, X_3...X_n)} 
+\end{aligned}
+$$
+
+
+We want to find the functional form with respect to $\lambda$. Thus, all but $\lambda$ will be treated as a constant, call it $C$.
+
+$$
+\begin{aligned}
+P(\lambda|X_1, X_2, X_3,...,X_n) &= C \cdot\Pi_{i=1}^{n}({e^{-\lambda}\lambda^{X_i}})\cdot e^{-\frac{\lambda}{\beta}}\\
+P(\lambda|X_1, X_2, X_3,...,X_n) &= C \cdot({e^{-n\lambda}\lambda^{X_1+X_2+\dots+X_n}})\cdot e^{-\frac{\lambda}{\beta}}\\
+P(\lambda|X_1, X_2, X_3,...,X_n) &= Ce^{-n\lambda -\frac{\lambda}{\beta}}\lambda^{X_1+X_2+\dots+X_n}\\
+P(\lambda|X_1, X_2, X_3,...,X_n) &= Ce^{-\lambda(1 +\frac{1}{\beta})}\lambda^{X_1+X_2+\dots+X_n}
+\end{aligned}
+$$
+
+
+Since $\bar{X} = \frac{X_1+X_2+\dots +X_n}{n}$, we will rewrite $\bar{X}$ in terms of $X_1+X_2+\dots  +X_n$, which gives us $n\cdot\bar{X} = X_1+X_2+\dots +X_n$.
+
+And so we get $P(\lambda|X_1, X_2, X_3,...,X_n) = Ce^{-\lambda(1 +\frac{1}{\beta})}\lambda^{n\cdot\bar{X}}$.
+
+Thus, we have derived that the posterior distribution of $\lambda \sim Gamma(\alpha, \beta)$, where $\alpha = n\bar{X}$, and $\beta=\frac{1}{n+\frac{1}{\beta}}$.
+
+
+## Step 2 (Simulation Justification)
+
+
+```{r, echo=FALSE}
+library(tidyverse)
+
+prior <- function(lambda) dexp(lambda, rate = 5) 
+#prior <- function(theta) dbeta(theta,shape1 = 12,shape2 = 12)
+
+posterior <- function(lambda, sumx, n) dgamma(lambda, shape = 1 + sumx, scale = 1/(n + 5))
+#posterior <- function(theta,sumx,n) dbeta(theta,shape1 = 12 + sumx,shape2 = 12 + n - sumx)
+
+data_frame(x = c(0.01,0.99)) %>%
+  ggplot(aes(x = x)) +
+  theme_classic() + 
+  stat_function(fun = prior,
+                colour = "blue") +
+  stat_function(fun = posterior,
+                args = list(sumx = 5,n = 10),
+                colour = "purple") +
+  stat_function(fun = posterior,
+                args = list(sumx = 10,n = 10),
+                colour = "red") +
+  stat_function(fun = posterior,
+                args = list(sumx = 15,n = 10),
+                colour = "orange") +
+  labs(title = "Exponential Prior vs Posterior for Lambda, n = 10 hours",
+       subtitle = "Blue: Prior. Purple: 5 users/hour.  Red: 10 users/hour. Orange: 15 users/hour",
+       x = "Lambda",
+       y = "Density") +
+  scale_x_continuous(breaks = seq(0,1,by=0.1))
+
+data_frame(x = c(0.01,0.99)) %>%
+  ggplot(aes(x = x)) +
+  theme_classic() + 
+  stat_function(fun = prior,
+                colour = "blue") +
+  stat_function(fun = posterior,
+                args = list(sumx = 5,n = 100),
+                colour = "purple") +
+  stat_function(fun = posterior,
+                args = list(sumx = 10,n = 100),
+                colour = "red") +
+  stat_function(fun = posterior,
+                args = list(sumx = 15,n = 100),
+                colour = "orange") +
+  labs(title = "Exponential Prior vs Posterior for Lambda, n = 100 hours",
+       subtitle = "Blue: Prior. Purple: 5 users/hour.  Red: 10 users/hour. Orange: 15 users/hour",
+       x = "Lambda",
+       y = "Density") +
+  scale_x_continuous(breaks = seq(0,1,by=0.1))
+```
+
+
+For both graphs, our prior is pictured in blue and we have purple, red, and orange lines which represent 5, 10, 15 users/hour respectively. Our first graph depicts the relationship between the posterior and the prior for a small value of $n$ which is 10. Our second graph represents a similar relationship just with a larger value for $n$ which is 100. As we can see, when $n$ is larger, and our posterior gets larger too, namely the $n\bar{X}$ value gets larger, which is our sample size multiplied by our sample mean, we converge to our true mean for our exponential distribution. Now, observe the graph with smaller $n$ value. As we increase our $n\bar{X}$ value, we stray away from our true mean. As we go from purple to red to orange curves, we see that our distribution is less and less centred around our true mean. Note: Our true mean is $\beta = 0.2$. From this analysis we can conclude that as we increase our sample size of users that enter the website, we approach our actual average of users who are on the website at any given hour.
+
+
+\newpage
+
+# Part 2
+
+
+## Introduction
+
+
+
+Open Data Toronto is a open source website that allows anyone to use free datasets to observe and analyse a multitude of civic issues around Toronto. This report will focus on the data set named: "Neighbourhood Crime Rates". This dataset includes the 2014-2019 Crime Data by Neighbourhood in Toronto. The goal is to solve the issue of stolen vehicles per neighbourhood by identifying and analysing past year's data. Our search is to assist the police force to reallocate officers to neighbourhoods who report more auto thefts than others in Toronto. Our goal is to find the average number of autothefts reported in the city of Toronto. Some neighbourhoods in Toronto have a higher crime rate than others. For this study we aim to identify the proportion of high auto theft related crimes in neighbourhoods around Toronto. We hypothesize that about 10% of neighbourhoods in Toronto have a high Crime rate and there are a handful of auto thefts per year on average. We will uncover these ideas later in our statistical analysis.
+
+
+## Data
+
+This dataset includes the 2014-2019 Crime Data by Neighbourhood. Counts are available for Assault, Auto Theft, Break and Enter, Robbery, and Homicide. Data also includes five year averages and crime rates per 100,000 people by neighbourhood based on 2016 Census Population. The data was collected and provided by the Toronto Police and posted on https://open.toronto.ca/dataset/neighbourhood-crime-rates/.
+
+```{r, include = FALSE}
+
+# Here you can load in and clean the data (you may need to do the cleaning in a separate R script). 
+
+# You may need additional chunks, in case you want to include some of the cleaning output.
+# get package
+package <- show_package("fc4d95a6-591f-411f-af17-327e6c5d03c7")
+package
+
+# get all resources for this package
+resources <- list_package_resources("fc4d95a6-591f-411f-af17-327e6c5d03c7")
+
+# identify datastore resources; by default, Toronto Open Data sets datastore resource format to CSV for non-geospatial and GeoJSON for geospatial resources
+datastore_resources <- filter(resources, tolower(format) %in% c('csv', 'geojson'))
+
+# load the first datastore resource as a sample
+data <- filter(datastore_resources, row_number()==1) %>% get_resource()
+data
+
+data <-data %>% filter(data$Hood_ID != "001")
+data
+```
+
+
+It is important to note that we removed the data point of the neighbourhood called West Humber Clairville. The reason the data was cleaned in this fashion is due to a disproportionate number of auto thefts that occured in that neighbourhood causing the rest of the data to be more challenging to visualize. This will become more apparent as we complete our analysis.
+
+
+### Numerical Summaries
+
+The variable used in this report is the average auto thefts from 2014-2019. This is a numerical value for the quantity of auto thefts that occured annually on average for each neighbourhood in Toronto. Here is a table of the average auto theft values to get a deeper understanding of the data.
+
+| Minimum | Median |  Mean | Maximum | Proportion of >40 auto thefts
+|------------|------------ | --------| ------ |------|
+| 2.70 | 18.80 |  25.40 | 126.50| 0.18 |
+
+
+
+```{r, include= FALSE}
+
+# Use this to calculate some summary measures. 
+summary(data$AutoTheft_AVG)
+
+```
+
+
+From this table we can see there is one neighbourhood who had 2.7 auto thefts on average and on the other side of the spectrum, another neighbourhood had 126.50 auto thefts on average. This signifies the minimum and maximum observations respectively. Overall in Toronto, we should expect to see 25.40 auto thefts per neighbourhood on average. For the sake of this analysis we will be considering more than 40 auto thefts per neighbourhood as a *high* amount of thefts per year. We will go into this deeper in the next section. For now, consider the mean amount of auto thefts per neighbourhood and try to predict the proportion of neighbourhoods that have more than 40 auto thefts per year on average. The histogram below will assist in visualising the amount of high crime neighbourhoods. The final column in our above table represents the proportion of Toronto neighbourhoods who have greater than 40 auto thefts per year on average. This is about 18% which means 18% of neighbourhoods are considered more criminally active and need more police intervention to decrease the frequency of auto thefts.
+
+```{r, echo = FALSE}
+
+# Use this to create some plots. 
+  data %>%
+  ggplot(aes(x = AutoTheft_AVG))+
+  geom_histogram(fill = "light blue", col = "blue", binwidth = 6)+
+  ggtitle("Histogram of average auto thefts per neighbourhood in Toronto")+
+  xlab("Average Auto Thefts")+
+  ylab("Number of Neighbourhoods")+
+  scale_x_continuous(breaks = seq(0,200,by=20))+
+  theme_classic()
+  
+
+```
+
+
+
+Above is a histogram of the average auto theft per neighbourhood. The x-axis represents the number of auto thefts that occured in each neighbourhood and the y-axis represents the quantity of neighbourhoods. The graph is slightly skewed to the right, as can be inferred from the Numerical Summaries portion. This is due to having a smaller median than mean. Since we would like to allocate our police officers to neighbourhoods that need the most assistance on crime reduction, we want to see a more uniform histogram that is not as unimodal in shape. Observe that most of the data lies in the left side of the plot and only a few neighbourhoods have more than 40 auto thefts per year on average. We aim to bring those high crime neighbourhoods to lower levels for the next years. 
+
+## Methods
+
+
+
+To carry out our analysis, we will be using a statistical technique called an empirical bootstrap sample. Essentially, this is taking multiple random samples with replacement of a test statistic. This technique allows estimation of the sampling distribution of almost any statistic using random sampling methods. In the case of our analysis, we will be using the sample mean as well as the proportion of neighbourhoods who have greater than 40 auto thefts per year on average as our statistics we will be estimating.
+
+We begin with a sample of size of 25 neighbourhoods from the population (we assume it is representative). Then we draw many bootstrap samples of size 25 (i.e. with replacement) from the original sample. Next, for each bootstrap sample, we calculate our two statistics. These are 1) sample mean 2) the proportion of neighbourhoods who have more than 40 auto thefts per year on average. The distribution of the values of the the sample mean and the proportion for all bootstrap samples is the bootstrap sampling distribution (this is simply a way to estimate various test statistics).
+
+Note that bootstrapping does not create new data. It simply is a tool to allow us to explore the variability of estimates from our original sample.
+
+We will be using an emperical bootstrap sample which is essentially just a sampling approach with replacement from our original data set collected by the Toronto Police Service. We will also be using something called a confidence interval to showcase our findings. Effectively, a confidence interval is an estimation derived from our observed data that gives us a range of values for our bootstrap sample mean and proportion. We will be using a 95% confidence interval which is the middle 95% of the data. We will showcase this more clearly in our graphs but for now just think of it as a measure of how "confident" we are to find a parameter of interest in a range of values. Our parameters of interest are the mean of our data set and the proportion of high crime rate neighbourhoods. 
+
+For the bootstrapping method in this report, we used a sample size of 25 neighbourhoods with replacement. Then we calculated the mean for that sample. We repeated the process 1000 times to give 1000 different sample means. We then calculated the average of those 1000 means, which then yielded us a bootstrap mean of 25.69186. This represents our average of bootstrap means and should closely resemble the population mean which is 25.4 (as calculated in the Numerical Summaries).
+
+
+
+
+
+
+## Results 
+
+```{r, include=FALSE}
+
+df <- data %>% select(AutoTheft_AVG)
+df <- st_drop_geometry(df)
+
+set.seed(899)
+
+
+ observed_data <- df %>%
+  sample_n(size=25, replace = TRUE)
+ 
+ obs_mean <- observed_data %>%
+  summarize(mean(AutoTheft_AVG))
+  as.numeric(obs_mean)
+
+
+boot_means <- rep(NA, 1000)
+  
+  for(i in 1:1000){
+  boot_samp <- observed_data %>% sample_n(size=25, replace=TRUE)
+  boot_means[i] <- as.numeric(boot_samp %>%summarize(mean_theft = mean(AutoTheft_AVG)))
+}
+
+boot_means <- data_frame(mean_theft = boot_means)
+mean(boot_means$mean_theft)
+
+```
+
+
+```{r,echo=FALSE}
+ggplot(boot_means, aes(x=mean_theft)) +
+  geom_histogram(binwidth=1, fill="light blue", color="blue") +
+  labs(x="Means from bootstrap samples", y = "Count",
+       title=" Histogram of Bootstrap sampling distribution for the \nmean auto thefts average from 2014 to 2019 in Toronto")+
+  geom_vline(xintercept = 17.9224, col ="red")+
+  geom_vline(xintercept = 34.0517, col = "red")+
+  theme_classic()
+
+```
+
+| 2.5 percentile | 97.5 percentile |
+|------------|------------ |
+| 20.2783 | 30.9931 |
+
+
+From the above histogram, our x-axis represents the means from each of the 1000 bootstrap samples, and the y-axis represent the count of those means. Annotated on the graph are two vertical red lines which represents the confidence interval as aforementioned. It is important to note that 95% of the data falls between those two lines. This plot seems reasonable as it closely resembles the mean of the population data which was introduced in the data section. This was our goal with the bootstrapping and we have successfully shown it. 
+
+The two red lines represent the confidence interval for the bootstrap of means. They are [20.2783, 30.9931]. Where 20.2783 and 30.9931 represent the 2.5 and 97.5 percentiles respectively. This means that 2.5% of our bootstrap sample means are less than or equal to 20.2783 and 97.5% of the bootstrap sample means are less than or equal to 30.9931.
+
+```{r, include=FALSE}
+set.seed(899)
+
+
+ observed_data <- df %>%
+  sample_n(size=25, replace = TRUE)
+ 
+ obs_mean <- observed_data %>%
+  summarize(mean(AutoTheft_AVG))
+  as.numeric(obs_mean)
+
+
+boot_prop <- rep(NA, 1000)
+  
+  for(i in 1:1000){
+  boot_samp_2 <- observed_data %>% sample_n(size=25, replace=TRUE)
+  boot_prop[i] <- as.numeric((boot_samp_2 %>% filter(AutoTheft_AVG > 40)) %>% summarise(n()))/25
+}
+
+boot_prop <- data_frame(prop_theft = boot_prop)
+mean(boot_prop$prop_theft)
+```
+
+
+```{r,echo=FALSE}
+ggplot(boot_prop, aes(x=prop_theft)) +
+  geom_histogram(bins=12, fill="light blue", color="blue") +
+  labs(x="Proportions from bootstrap samples", y ="Count",
+       title="Bootstrap sampling distribution for the proportion of\n more than 40 auto thefts average per neighbourhood from \n 2014 to 2019 in Toronto")+
+  geom_vline(xintercept = 0.080, col ="red")+
+  geom_vline(xintercept = 0.401, col = "red")+
+  theme_classic()
+
+```
+
+| 2.5 percentile | 97.5 percentile |
+|------------|------------ |
+| 0.080 | 0.401 |
+
+From the above histogram, our x-axis represents the proportions of auto theft per neighbourhood from each of the 1000 bootstrap samples, and the y-axis represent the count of those proportions. Annotated on the graph are two vertical red lines which represents the confidence interval. It is important to note that 95% of the data falls between those two lines. This plot seems reasonable as it closely resembles the proportion of auto thefts who were more than 40 per year of the population data which was introduced in the data section. This was our goal with the bootstrapping and we have successfully shown it. If we glance back at the data section, and draw an imaginary vertical line at 40 and sum up all the counts to the right of that line, we should expect to see about 18% of the data. This means that about one fifth of the neighbourhoods in Toronto are considered high crime. Our above histogram showcases the sampled version of this observation. Most of the bootstrap samples are around the 0.2 mark on the graph.
+
+The two red lines represent the confidence interval for the bootstrap of proportions. They are [0.080, 0.401]. Where 0.080 and 0.401 represent the 2.5 and 97.5 percentiles respectively. So essentially, 2.5% of the bootstrap sample proportions are less than or equal 0.08 and 97.5% of the bootstrap sample proportions are less than or equal to 0.4. This is provides some insight on the purpose of the confidence interval.
+
+
+## Conclusions
+
+And so to recap, we found that on average, a neighbourhood in Toronto experienced an average of 25.4 auto thefts per year, with the highest at 126.40 auto thefts per year, and the lowest at 2.7 per year. The distribution of all the neighbourhoods showed us there was a right skew in auto thefts among all Toronto neighbourhoods, with roughly 20% of neighbourhoods experiencing over 40 auto thefts per year, on average.
+
+Our empirical bootstrapping analysis uncovered that if we started with different samples and repeated the sampling procedure various times, and getting a confidence interval each time, 95% of those confidence intervals would include our true mean auto thefts and our true proportion of greater than 40 auto thefts per neighbourhood on average respectively. [20.2783, 30.9931] is our bootstrap sampling confidence interval for our mean auto thefts and [0.080, 0.401] is our bootstrap sampling confidence interval for our proportion of auto thefts greater than 40 per neighbourhood. These are reasonable results as they include our true mean and true proportion calculated from our population data.
+
+
+Some limitations that occured in the making of this report were that we only had data for the last 5 years for neighbourhoods across Toronto, and if we were able to use data for a larger time period, we would be able to determine more meaningful results with how the Police's efforts towards combatting auto theft in neighbourhoods have boded thus far.
+
+As for next steps, this report could be conducted every 5 years, in order to assess how the Toronto Police's efforts in reallocating their resources affect the spread of auto thefts across Toronto neighbourhoods. If they are successful, we should see the spread of auto thefts become more uniform rather than unimodal in shape. As determined by our analysis, there is an uneven distribution of annual auto thefts for each neighbourhood in Toronto and our hope is that the Toronto Police can reallocate their resources to assist high crime neighbourhoods in decreasing auto theft.
+
+
+All analysis for this report was programmed using `R version 4.0.2` via packages: opendatatoronto.
+
+## Bibliography
+
+1. Grolemund, G. (2014, July 16) *Introduction to R Markdown*. RStudio. [https://rmarkdown.rstudio.com/articles_intro.html](https://rmarkdown.rstudio.com/articles_intro.html). (Last Accessed: January 15, 2021) 
+
+2. Dekking, F. M., et al. (2005) *A Modern Introduction to Probability and Statistics: Understanding why and how.* Springer Science & Business Media.
+
+3.  Allaire, J.J., et. el. *References: Introduction to R Markdown*. RStudio. [https://rmarkdown.rstudio.com/docs/](https://rmarkdown.rstudio.com/docs/). (Last Accessed: January 15, 2021) 
+
+4. The City of Toronto [https://open.toronto.ca/dataset/neighbourhood-crime-rates/]

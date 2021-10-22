@@ -1,0 +1,414 @@
+---
+title: "STA238 - Winter 2021"
+author: "Christopher Chifor - 1006001899"
+date: February 12, 2021
+subtitle: Assignment 2
+output:
+  pdf_document: default
+---
+
+```{r, include=FALSE}
+knitr::opts_chunk$set(warning = FALSE, message = FALSE)
+
+library(openintro)
+library(opendatatoronto)
+library(dplyr)
+library(patchwork)
+library(tidyverse)
+```
+
+
+# Part 1
+
+
+## Step 1 (Mathematical Justification)
+
+Firstly, assuming the following statements:\newline
+-Assume $X_1,...,X_n \stackrel{iid}{\sim} Normal(\mu, \sigma^2)$\newline
+-Assume there is sampling without replacement
+
+Our two estimators $T_1$ and $T_2$, are defined as follows. Note: our parameter of interest is $\theta = \sigma^2$.
+$$
+\begin{aligned}
+T_1 &= S^2= \frac{1}{n-1}\sum_{i=1}^{n} (X_i - \bar{X})^2\\
+T_2 &= S_*^2= \frac{1}{n}\sum_{i=1}^{n} (X_i - \bar{X})^2
+\end{aligned}
+$$
+
+
+
+$$
+\begin{aligned}
+T_1 &= S^2= \frac{1}{n-1}\sum_{i=1}^{n} (X_i - \bar{X})^2\\
+E[T_1] &= E\bigg[\frac{1}{n-1}\bigg] E\bigg[\sum_{i=1}^{n} (X_i^2 - 2X_i\bar{X} + \bar{X}^2)\bigg]\\
+E[T_1] &= E\bigg[\frac{1}{n-1}\bigg] E\bigg[\sum_{i=1}^{n} X_i^2 - \sum_{i=1}^{n}2X_i\bar{X} + \sum_{i=1}^{n}\bar{X}^2\bigg]\\
+E[T_1] &= E\bigg[\frac{1}{n-1}\bigg] E\bigg[\sum_{i=1}^{n} X_i^2 - 2\bar{X}\sum_{i=1}^{n}X_i + n\bar{X}^2\bigg]
+\end{aligned}
+$$
+Note: $\bar{X}^2$ added n-times is $n\bar{X}^2$. Also, when we sum from 1 to n, $\bar{X}$ is the same for all i, where $\bar{X} = \frac{\sum_{i=1}^{n} X_i}{n}$. This implies, $\sum_{i=1}^{n} X_i = n\bar{X}$. Now we have:
+
+$$
+\begin{aligned}
+E[T_1] &= E\bigg[\frac{1}{n-1}\bigg] E\bigg[\sum_{i=1}^{n} X_i^2 - 2\bar{X}n\bar{X} + n\bar{X}^2\bigg]\\
+E[T_1] &= E\bigg[\frac{1}{n-1}\bigg] E\bigg[\sum_{i=1}^{n} X_i^2 - 2n\bar{X}^2 + n\bar{X}^2\bigg]\\
+E[T_1] &= E\bigg[\frac{1}{n-1}\bigg] E\bigg[\sum_{i=1}^{n} X_i^2 - n\bar{X}^2\bigg]\\
+E[T_1] &= E\bigg[\frac{1}{n-1}\bigg] E\bigg[\sum_{i=1}^{n} X_i^2\bigg] - E\bigg[n\bar{X}^2\bigg]\\
+E[T_1] &= E\bigg[\frac{1}{n-1}\bigg] \bigg(E\bigg[\sum_{i=1}^{n} X_i^2\bigg] - nE\bigg[\bar{X}^2\bigg]\bigg)\\
+E[T_1] &= E\bigg[\frac{1}{n-1}\bigg] \bigg(\sum_{i=1}^{n}E[ X_i^2] - nE[\bar{X}^2]\bigg)
+\end{aligned}
+$$
+Now, from page 97 of MIPS we have the following useful relation: $Var[X] = E[X^2] - (E[X])^2$. From this, it follows that: $Var[\bar{X}] = E[\bar{X}^2] - (E[\bar{X}])^2$. With that being said, after rearranging and applying the definition from page 182 of MIPS, we have: $E[\bar{X}] = Var[\bar{X}] + (E[\bar{X}])^2$, which implies $E[\bar{X}] = \frac{\sigma^2}{n}+ \mu^2$. And it follows that: $E[X^2] = Var[X] + (E[X])^2$. Which simplifies to: $E[X^2] = \sigma^2 + \mu^2$. We are now equipped to simplify this equation. Simplifying we get:
+$$
+\begin{aligned}
+E[T_1] &= E\bigg[\frac{1}{n-1}\bigg] \bigg(\sum_{i=1}^{n}E[ X_i^2] - nE[\bar{X}^2]\bigg)\\
+E[T_1] &= E\bigg[\frac{1}{n-1}\bigg] \bigg(\sum_{i=1}^{n}(\sigma^2+\mu^2) - n(\frac{\sigma^2}{n}+\mu^2)\bigg)\\
+E[T_1] &= E\bigg[\frac{1}{n-1}\bigg] \bigg(n(\sigma^2+\mu^2) - \sigma^2 - n\mu^2)\bigg)\\
+E[T_1] &= E\bigg[\frac{1}{n-1}\bigg] \bigg(n\sigma^2+n\mu^2 - \sigma^2 - n\mu^2)\bigg)\\
+E[T_1] &= E\bigg[\frac{1}{n-1}\bigg] \bigg(n\sigma^2 - \sigma^2\bigg)\\
+E[T_1] &= E\bigg[\frac{1}{n-1}\bigg] \bigg(\sigma^2(n - 1)\bigg)\\
+E[T_1] &= \frac{1}{n-1} \bigg(\sigma^2(n - 1)\bigg)\\
+E[T_1] &= \frac{\sigma^2(n - 1)}{n-1}\\
+E[T_1] &= \sigma^2
+\end{aligned}
+$$
+Thus, we have that $E[T_1] = \sigma^2$. Now, we would like to solve for $E[T_2]$. To approach this, we use the given hint that $T_2 = \frac{n-1}{n}T_1$. Now we just take the expectation of $T_2$. Note: $\frac{n-1}{n}$ can be treated as a constant here. We have:
+
+$$
+\begin{aligned}
+E[T_2] &= E\bigg[\frac{n-1}{n}T_1\bigg]\\
+E[T_2] &= \bigg(\frac{n-1}{n}\bigg)E[T_1]\\
+E[T_2] &= \bigg(\frac{n-1}{n}\bigg)\sigma^2\\
+E[T_2] &= \frac{(n-1)\sigma^2}{n}
+\end{aligned}
+$$
+Now we are interested in calculating the bias. To do this, we use the simple relation: $bias(T) = E[T]-\theta$, where $T$ is an estimator and $\theta$ is our parameter of interest. In our case, for $T_1$ we have that:
+$$
+\begin{aligned}
+bias(T_1) &= E[T_1] - \theta\\
+bias(T_1) &= \sigma^2 - \sigma^2\\
+bias(T_1) &= 0
+\end{aligned}
+$$
+So for the estimator $T_1$, we can see that $T_1$ is unbiased as the bias function yields the value 0. Similarily for $T_2$ we have:
+
+$$
+\begin{aligned}
+bias(T_2) &= E[T_2] - \theta\\
+bias(T_2) &= \frac{\sigma^2(n-1)}{n} - \sigma^2\\
+bias(T_2) &= \sigma^2\bigg(\frac{n-1}{n} - 1\bigg)\\
+bias(T_2) &= \sigma^2\bigg(\frac{n-1-n}{n} \bigg)\\
+bias(T_2) &= \sigma^2\bigg(-\frac{1}{n}\bigg)\\
+bias(T_2) &= -\frac{\sigma^2}{n}\\
+\end{aligned}
+$$
+
+After our calculation, since $bias(T_2) \neq 0$, we have that $T_2$ is biased.
+
+\newpage
+
+## Step 2 (Simulation Justification)
+
+First, we start our simulation justification with the assumption that $X_{1},\ldots,X_{n}\overset{iid}{\sim}\text{Normal}(\mu = 0, \sigma^2)$. Our sample size will be $n = 100$, and we will simulate 1000 times from the normal distribution for each estimator. To begin our simulation we first take $\sigma^2= 1, 2,3,\dots, 100$. By assumption we then simulation 1000 values of each estimator $T_1$ and $T_2$. We then take each one of those $\sigma^2$ values and store them in a list which is then implemented into the following histograms. Note: the first set of graphs represents the MSE for each estimator, the second set represents the bias for each estimator and the final set represents the variance of each estimator.
+
+```{r}
+set.seed(899)
+mse1 = numeric(10)
+mse2 = numeric(10)
+
+for(i in 1:100){
+  sigma_sq = i
+  T1 <- function(x) (1/(n-1)) * ((sum(x-mean(x)^2)))
+  T2 <- function(x) (1/n) * (sum(x-mean(x)^2))
+
+  n <- 100
+  M <- 1000
+
+
+  sim <- list(
+    T1 = numeric(M),
+    T2 = numeric(M)
+  )
+  for (j in 1:M) {
+  # Sample from Normal
+  thesample <- rnorm(n, mean=0, sd=sqrt(sigma_sq))
+  # Record the values of the two estimators:
+  sim$T1[j] <- T1(thesample)
+  sim$T2[j] <- T2(thesample)
+}
+
+#MSE
+MSE_T1 <- var(sim$T1) + (mean(sim$T1) - sigma_sq)^2
+MSE_T2 <- var(sim$T2) + (mean(sim$T2) - sigma_sq)^2
+
+mse1[i] = MSE_T1
+mse2[i] = MSE_T2
+}
+```
+
+
+
+
+```{r}
+## Create your plots below. (I recommend using ggplot)
+
+leftplot <- tibble(T1 = mse1) %>%
+  ggplot(aes(x = T1)) +
+  theme_classic() + 
+  ggtitle("Histogram of MSE for multiple sigma squared values")+
+  theme(plot.title = element_text(size=8))+
+  xlab("MSE of estimator T1")+
+  geom_histogram(aes(y = ..count..),bins = 15,colour = "black",fill = "light blue")
+
+rightplot <- tibble(T2 = mse2) %>%
+  ggplot(aes(x = T2)) +
+  theme_classic() + 
+  ggtitle("Histogram of MSE for multiple sigma squared values")+
+  theme(plot.title = element_text(size=8))+
+  xlab("MSE of estimator T2")+
+  geom_histogram(aes(y = ..count..),bins = 15,colour = "black",fill = "light blue")
+
+leftplot | rightplot
+
+```
+
+
+```{r}
+set.seed(899)
+bias1 = numeric(10)
+bias2 = numeric(10)
+
+for(a in 1:100){
+  sigma_sq = a
+  T1 <- function(x) (1/(n-1)) * ((sum(x-mean(x)^2)))
+  T2 <- function(x) (1/n) * (sum(x-mean(x)^2))
+
+  n <- 100
+  M <- 1000
+
+
+  sim <- list(
+    T1 = numeric(M),
+    T2 = numeric(M)
+  )
+  for (b in 1:M) {
+  # Sample from Normal
+  thesample <- rnorm(n, mean=0, sd=sqrt(sigma_sq))
+  # Record the values of the two estimators:
+  sim$T1[b] <- T1(thesample)
+  sim$T2[b] <- T2(thesample)
+}
+
+#Bias
+
+Bias_T1 <- mean(sim$T1) - sigma_sq
+Bias_T2 <- mean(sim$T2) - sigma_sq
+
+bias1[a] = Bias_T1
+bias2[a] = Bias_T2
+}
+
+```
+
+
+```{r}
+leftplotbias <- tibble(T1 = bias1) %>%
+  ggplot(aes(x = bias1)) +
+  theme_classic() + 
+  ggtitle("Histogram of bias for multiple sigma squared values")+
+  theme(plot.title = element_text(size=8))+
+  xlab("Bias of estimator T1")+
+  geom_histogram(aes(y = ..count..),bins = 15,colour = "black",fill = "light blue")
+
+rightplotbias <- tibble(T2 = bias2) %>%
+  ggplot(aes(x = bias2)) +
+  theme_classic() + 
+  ggtitle("Histogram of bias for multiple sigma squared values")+
+  theme(plot.title = element_text(size=8))+
+  xlab("Bias of estimator T2")+
+  geom_histogram(aes(y = ..count..),bins = 15,colour = "black",fill = "light blue")
+
+leftplotbias | rightplotbias
+```
+
+```{r}
+set.seed(899)
+var1 = numeric(10)
+var2 = numeric(10)
+
+for(c in 1:100){
+  sigma_sq = c
+  T1 <- function(x) (1/(n-1)) * ((sum(x-mean(x)^2)))
+  T2 <- function(x) (1/n) * (sum(x-mean(x)^2))
+
+  n <- 100
+  M <- 1000
+
+
+  sim <- list(
+    T1 = numeric(M),
+    T2 = numeric(M)
+  )
+  for (d in 1:M) {
+  # Sample from Normal
+  thesample <- rnorm(n, mean=0, sd=sqrt(sigma_sq))
+  # Record the values of the two estimators:
+  sim$T1[d] <- T1(thesample)
+  sim$T2[d] <- T2(thesample)
+}
+
+#Bias
+
+Var_T1 <- var(sim$T1)
+Var_T2 <- var(sim$T2)
+
+var1[c] = Var_T1
+var2[c] = Var_T2
+}
+```
+
+```{r}
+leftplotvar <- tibble(T1 = var1) %>%
+  ggplot(aes(x = var1)) +
+  theme_classic() + 
+  xlab("Variance of estimator T1")+
+  ggtitle("Histogram of variance for multiple sigma squared values")+
+  theme(plot.title = element_text(size=7))+
+  geom_histogram(aes(y = ..count..),bins = 15,colour = "black",fill = "light blue")
+
+rightplotvar <- tibble(T2 = var2) %>%
+  ggplot(aes(x = var2)) +
+  theme_classic() + 
+  ggtitle("Histogram of variance for multiple sigma squared values")+
+  theme(plot.title = element_text(size=7))+
+  xlab("Variance of estimator T2")+
+  geom_histogram(aes(y = ..count..),bins = 15,colour = "black",fill = "light blue")
+
+leftplotvar | rightplotvar
+```
+
+
+
+As we can see from the above 6 graphs of the bias, MSE and variance of our estimators $T_1$ and $T_2$, they are very similar. In fact, they are so similar, below there is a table included of the average of the bias, MSE, and variance samples. Essentially, for each value of our parameter of interest $\sigma^2 = 1,2,3,\dots,100$, we calculated the bias, MSE and variance for each estimator. For those 100 values of each estimators, the mean was taken and placed in the table below. Note: this table was created to showcase the difference between our two estimators as the histograms were not clear enough. This could provide some insight, as our estimators are quite similar.
+
+| Estimator | MSE | Bias | Variance| 
+|------------|------------| --------|---------|
+| $T_1$ | 3452.724 | -51.0063 | 1.176529 |
+|------------|------------ | --------|--------|
+| $T_2$ | 3452.016 | -51.00124 | 1.153116  |
+
+
+From our simulation, we can see that the estimator $T_1$ has greater values of each MSE, bias and variance on average. The average mean squared error between both estimators is nearly the same. The same can be said about the average bias. The most notable difference is that the variance between the two estimators as $T_1$ is about 0.02 larger. 
+
+\newpage
+
+# Part 2
+
+## Model
+
+
+The model which will be used for this section of the report will be the (simple) linear regression model. The linear regression technique attempts to model the relationship between two variables by fitting a linear equation to some observed bivariate (x,y) data. One variable is considered to be the independent variable (x), and the other is considered to be a dependent variable (y). Linear regression models are used to show/predict the relationship between two variables. We want to try to fit a straight line through the middle of the data, to summarize the general pattern/trend we see. In layman's terms we are essentially looking for "the best" straight line we can draw encompassing the entire observed data with our estimated data. Mathematically we have:
+
+$$ Y_i = \alpha + \beta x_i + U_i $$
+
+
+Firstly, we assume that we are given a bivariate dataset, ie. $(x_1,y_1), (x_2,y_2), \dots, (x_n, y_n)$. Also assume that $x_1,x_2,\dots, x_n$ are nonrandom and $y_1,y_2,\dots, y_n$ are realizations of random variables $Y_1,Y_2,\dots, Y_n$. The line $y = \alpha + \beta x$ is named the regression line. The parameters $\alpha$ and $\beta$ represent the y-intercept and the slope of the line respectively. The random variables $U_1, U_2, \dots, U_n$ are assumed to be independent of eachother. These random variables are assumed to have an expected value of 0. This is because the random fluctuation, which is what each $U_i$ represents, is considered to be approximated to the regression line. Lastly, since each of random fluctuation has the same variability, we assume that each $U_i$ term has the exact same variance. It is also important to note that $E[Y_i] = \alpha + \beta x_i$, since $E[U_i] = 0$. The model is appropiate for our case as we will be using two numerical variables which we can compare on our x and y axes.
+
+
+## Results 
+
+```{r}
+
+# Here you can load in and clean the data (you may need to do the cleaning in a separate R script). 
+
+# You may need additional chunks.
+
+# I would recommend not including any of the Cleaning process output here. 
+
+# get package
+package <- show_package("fc4d95a6-591f-411f-af17-327e6c5d03c7")
+package
+
+# get all resources for this package
+resources <- list_package_resources("fc4d95a6-591f-411f-af17-327e6c5d03c7")
+
+# identify datastore resources; by default, Toronto Open Data sets datastore resource format to CSV for non-geospatial and GeoJSON for geospatial resources
+datastore_resources <- filter(resources, tolower(format) %in% c('csv', 'geojson'))
+
+# load the first datastore resource as a sample
+data <- filter(datastore_resources, row_number()==1) %>% get_resource()
+data
+```
+
+
+The above dataset includes the 2014-2019 Crime Data by Neighbourhood in Toronto. Counts are available for Assault, Auto Theft, Break and Enter, Robbery, and Homicide. Data also includes five year averages and crime rates per 100,000 people by neighbourhood based on 2016 Census Population. There are plenty of variables to apply our simple linear regression model to. However, the two variables used in this report and for the further analysis will be the 2016 census population, and the average number of auto thefts from 2014-2019 in each neighbourhood.
+
+
+
+First we begin by taking a look at the data for our two variables on a scatterplot, as such:
+
+```{r}
+data %>%
+  ggplot(aes(x = Population, y=AutoTheft_AVG))+
+  ggtitle("Scatterplot of average auto thefts per neighbourhood to population in Toronto")+
+  theme(plot.title = element_text(size=12))+
+  geom_point(col = "blue")
+```
+
+The idea here, is to try to draw a straight line on our observed data that is "equidistant" from each observed point. Call that line the regression line of estimated data. Using R, we get:
+ 
+
+```{r}
+# Here you can run a linear regression on your two variables of interest.
+
+lm(AutoTheft_AVG ~ Population, data = data)
+
+```
+
+
+
+| y-intercept | $\hat{\alpha}$ |   -0.598671 |
+|------------|------------ | --------|
+| slope | $\hat{\beta}$  |   0.001457 |
+
+Here, we have that our slope is 0.001457 and our y intercept is -0.598671. This yields the following simple linear regression model:
+$$
+y = -0.59867 + 0.001457x
+$$
+
+
+
+The table above shows the slope and y-intercept values. This is done by taking an x and y variable from a dataset and outputting an estimated slope and y-intercept for our estimated data. Practically speaking, our y-intercept does not give us much motivation in our case. However, the value for our slope is a bit better. Essentially it means, for every 1000 people in our population, we should expect to see, on average, 1 auto theft. This is due to the $\frac{\Delta y}{\Delta x}$ nature of our gradient, where y represents the average auto thefts and x represents the census population. Suppose for example, we would like to use our new model to *interpolate* a possible population value. Essentially, for some level of population, our model should output a level of average auto thefts, or vice versa. Take an arbitrary level of population, say 35,000 people. Now, if we substitute that into our equation, we get $y = -0.59867 + 0.001457(35,000) \approx 50$. So for an arbitrary neighbourhood of 35,000 inhabitants, we should expect to see around 50 auto thefts on average.
+
+
+
+With our new found values of our linear model, we can go ahead and plot the slope and y-intercept on our scatterplot of average auto thefts with respect to population.
+
+```{r}
+
+# Use this to calculate generate a scatterplot of your variables.
+# Don't forget to use abline to overlay the scatterplot with the regression line.
+
+data %>%
+  ggplot(aes(x = Population, y=AutoTheft_AVG))+
+  geom_point(col = "blue")+
+  ggtitle("Scatterplot of average auto thefts per neighbourhood to population in Toronto")+
+  theme(plot.title = element_text(size=12))+
+  geom_abline(slope = 0.001457, intercept = -0.598671, col="red")
+```
+
+
+
+As seen from the above scatterplot, we have added our regression line in red, ie $y = -0.59867 + 0.001457x$ was plotted on our axes. We can now more clearly see our slope and make sense of the practical application of it. It also appears that all of our initial assumptions hold in this case. The assumption is that the true relationship between x and y in the population is actually linear holds, the assumption that the error terms are mutually independent holds, and the assumption that all error terms have the same variance holds too since they are centred around the regression line. This regression line will help us predict and analyze data from our data set. This also seems to be quite reasonable as our population values are much larger than our average auto theft values. We should expect a positive slope, but one that is less than 1. Another notable finding is that our estimated y-intercept value is negative, which in reality, does not make sense. However, this is irrelevant to our study as we cannot extrapolate to a negative population. This only helps when interpolating values within our minimum and maximum values for population.
+
+All analysis for this report was programmed using `R version 4.0.2`. 
+
+
+## Bibliography
+
+1. Grolemund, G. (2014, July 16) *Introduction to R Markdown*. RStudio. [https://rmarkdown.rstudio.com/articles_intro.html](https://rmarkdown.rstudio.com/articles_intro.html). (Last Accessed: January 15, 2021) 
+
+2. Dekking, F. M., et al. (2005) *A Modern Introduction to Probability and Statistics: Understanding why and how.* Springer Science & Business Media.
+
+3.  Allaire, J.J., et. el. *References: Introduction to R Markdown*. RStudio. [https://rmarkdown.rstudio.com/docs/](https://rmarkdown.rstudio.com/docs/). (Last Accessed: January 15, 2021) 
+
+4. The City of Toronto [https://open.toronto.ca/dataset/neighbourhood-crime-rates/]

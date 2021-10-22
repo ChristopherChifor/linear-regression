@@ -1,0 +1,8 @@
+"0",""
+"0","my_data <- tibble(cGPA, type_of_distractor, time_distracted_min)"
+"2","Error: Tibble columns must have compatible sizes.
+* Size 100: Existing data.
+* Size 8: Column at position 3.
+[34mℹ[39m Only values of size one are recycled.
+[90mRun `rlang::last_error()` to see where the error occurred.[39m
+"

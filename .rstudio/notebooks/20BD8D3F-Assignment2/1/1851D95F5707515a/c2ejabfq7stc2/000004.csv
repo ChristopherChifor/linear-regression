@@ -1,0 +1,25 @@
+"0","# Here you can run a linear regression on your two variables of interest."
+"0",""
+"0","lm(AutoTheft_Rate2020 ~ F2020_Population_Projection, data = data)"
+"1","
+Call:
+"
+"1",""
+"1","lm(formula = AutoTheft_Rate2020 ~ F2020_Population_Projection, 
+    data = data)"
+"1",""
+"1","
+
+"
+"1","Coefficients:
+"
+"1","                (Intercept)  "
+"1","F2020_Population_Projection  "
+"1","
+"
+"1","                  1.775e+02  "
+"1","                  2.624e-04  "
+"1","
+"
+"1","
+"

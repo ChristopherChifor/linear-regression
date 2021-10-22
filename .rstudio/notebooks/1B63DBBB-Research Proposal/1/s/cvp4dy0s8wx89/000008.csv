@@ -1,0 +1,23 @@
+"0",""
+"0","# get all resources for this package"
+"0","resources <- list_package_resources(""fc4d95a6-591f-411f-af17-327e6c5d03c7"")"
+"0",""
+"0","# identify datastore resources; by default, Toronto Open Data sets datastore resource format to CSV for non-geospatial and GeoJSON for geospatial resources"
+"0","datastore_resources <- filter(resources, tolower(format) %in% c('csv', 'geojson'))"
+"0",""
+"0","# load the first datastore resource as a sample"
+"0","data <- filter(datastore_resources, row_number()==1) %>% get_resource()"
+"0","data"
+"1","Simple feature collection with 140 features and 103 fields"
+"1","
+"
+"1","Geometry type: POLYGON
+"
+"1","Dimension:     XY
+"
+"1","Bounding box:  "
+"1","xmin: -79.63923 ymin: 43.581 xmax: -79.1152 ymax: 43.85545"
+"1","
+"
+"1","Geodetic CRS:  WGS 84
+"

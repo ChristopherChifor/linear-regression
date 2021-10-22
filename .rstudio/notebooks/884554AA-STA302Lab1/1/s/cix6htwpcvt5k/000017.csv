@@ -1,0 +1,7 @@
+"0",""
+"0","boxplot2 <- cleaning_sim %>% ggplot(aes(y=cleaning_sim$Rooms)) +"
+"0","  geom_boxplot(color = 'blue', fill = 'lightblue') +"
+"0","  labs(y='Distribution of Rooms', title = ""Boxplot of Rooms"")"
+"0",""
+"0","boxplot2"
+"0",""

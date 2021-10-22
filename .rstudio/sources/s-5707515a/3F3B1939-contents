@@ -1,0 +1,175 @@
+---
+title: "STA304 - Fall 2021"
+author: "[Christopher Chifor - 1006001899]"
+subtitle: Assignment 1
+output:
+  pdf_document: default
+---
+
+```{r, include=FALSE}
+knitr::opts_chunk$set(warning = FALSE, message = FALSE)
+library(openintro)
+```
+
+
+# Part 1
+
+
+### Goal
+
+The survey, *How do you consume music?* was intended to ascertain how university students consume music in their everyday lives. The interest began with the idea of why streaming services are gaining so much popularity [4] among the younger generations. Just some years ago, when one desired to hear the new album of their favourite artist, one had to go out to their nearby record shop and purchase a CD or Vinyl of it. Now, we have instant access to all of the works of artists we all love. The aim of this survey, in the new technological space of music streaming services, is to gain a deeper understanding on consumer preferences when it comes to their choices in music consumption. *How do you consume music?* touches on what devices consumers use to listen to their music, how consumers discover new musicians and their music, and whether or not consumers follow their favourite artists on social media. This survey will assist us in analysing the behaviour of university students and their music consumption preferences with regards to how they purchase music, and explore new music and artists.
+
+### Procedure
+
+*How do you consume music?* was made for university students to take, and data will be collected based on the responses of the university students. The survey was sent to some classmates via email, and all of them were in their third year at the University of Toronto. They were prompted to complete the survey via Google Forms and once they completed it, a notification was sent and allowed results to be viewed. The survey was intended to be for a relatively small and controlled sample size. There was no intention to post to multiple internet forums to get results that were biased. Essentially, the survey was not meant to be done by a senior citizen or a middle-aged adult. The survey was purely for classmates studying in university, thus, this survey was privately distributed via email. The target population for this study was university students, and the main objective of this was to provide insight on university student's music consumption habits. The frame population in this case was 25 students that were sent the email. This was meant to be for all students known in the same year at university. However, since only 21 of those 25 students participated in the survey, the sample population was 21 students. With that being said, there are some weaknesses to this technique. Namely, that of the possibility of students not replying to the email and not completing the survey while the intent was for them to complete it. Another limitation is that some of the students could be in different faculties and be less inclined to listen to music or more inclined to listen to music (music majors), thus creating a bias in response. Contrarily, a strength of this sampling procedure would be that the only people able to do the survey are students in university and not people in different stages of their lives. This provides us with more accurate results for the population.
+
+\newpage
+### Showcasing the survey.
+
+*How do you consume music?* can be found at the following link: [https://forms.gle/rpkjqMJhGT7TL3xD8](https://forms.gle/rpkjqMJhGT7TL3xD8).
+
+Below are a select three of the questions on *How do you consume music?*:
+
+| **Question** | **Benefit** | **Drawback** |
+|------------|-------|--------|
+| **Q1)** What is your primary way to discover new music from new artists? (Select one that best answers the question) | Forces the student to choose their primary which simplifies analysis | Some students may discover new music from multiple places equally and not have a "primary" way to discover|
+| **Q2)** Where do you purchase your music from? (Select your most frequented retailer and streaming services do not apply) | Student must pick their most frequented purchasing location, leaves no bias for students who buy their music from multiple places | Question is slightly outdated as most people do not purchase physical copies of music anymore |
+| **Q3)** What is the primary medium you use to listen to music? | Useful to understand the consumer behaviour and has option "other" where the student can input anything not given | Students may listen to music on multiple devices equally and be forced to choose, should allow select multiple options |
+
+The reason for choosing **Q1)** was to gain an understanding on how heavily the sample prefers their music recommendations based on the recommendation algorithms developed by popular streaming services. A following point from this was to observe if the sample still receives their music recommendations from broadcast radio. **Q2)** was chosen to discover if any student in the sample still purchases their music from locations that do not include a monthly subscription. Finally, **Q3)** was chosen simply to observe *how* people listen to their music. With the introduction of information technology, namely that of cell phones, it has become more popular to use a cell phone as your music player. This question aims to observe the percentage of people who enjoy music alone (via headphones/earphones).
+
+\newpage
+
+# Part 2
+
+## Data
+
+This dataset includes 21 observations and 7 variables. The 21 observations are the responses to the 6 questions posed in the survey conducted. The 6 questions correspond to the 6 variables plus an additional one added by Google Forms named "Timestamp", which simply records the time at which each of the 21 students (observations) completed the survey at. The data was collected via the aforementioned survey *How do you consume music?*. Let's talk a bit about the variables. We have 6 questions/variables as part of our survey/dataset. They are defined as follows:
+
+**1)**What is your primary way to discover new music from new artists? (Select one that best answers the question) \newline
+**2)**Where do you purchase your music from? (Select your most frequented retailer and streaming services do not apply) \newline
+**3)**Do you follow your favourite artists on social media? \newline
+**4)**If applicable, do you search for the lyrics of songs you enjoy? \newline
+**5)**At what volume do you most frequently listen to your music at? \newline
+**6)**What is the primary medium you use to listen to music? \newline
+\newline
+See the Appendix section for a more detailed look at the variables. As mentioned before, the way the survey was collected was by sending out a copy to third year students via email. It is important to note that the data did not need to be cleaned as we have a small sample, and had no outlying observations. All variables are categorical variables with the exception of **3)** from above, which is an indicator variable, as the only possible answer is "Yes" or "No". \newline
+\newline
+Now, lets visit some of the most important variables. Recall **Q1)**, **Q2)**, and **Q3)** from Part 1 of the report. These were the most influential questions/variables as they were the backbone of the survey. The purpose of them was to gauge how university students purchase, discover and consume their music. These questions were inspired from the linked article in the Bibliography section [4].
+
+```{r, echo = F}
+
+# Here you can load in (or simulate) and clean the data (you may need to do the cleaning in a separate R script - this is up to you). 
+
+library(readr)
+library(tidyverse)
+music <- read.csv("music.csv")
+
+slices <- c(18,3)
+
+lbls <- c("Streaming Services\n(Spotify, Apple Music, Deezer...) \n", "Personal Recommendations \nfrom Friends/Family\n")
+pct <- round(slices/sum(slices)*100)
+lbls <- paste(lbls, pct) # add percents to labels 
+lbls <- paste(lbls,"%",sep="") # ad % to labels
+
+pie(slices, labels = lbls, col=rainbow(length(lbls)), main= "What is your primary way to discover new music from new artists? \n (Select one that best answers the question)")
+
+# You may need additional chunks, in case you want to include some of the cleaning output.
+
+```
+
+The above pie graph, represents the responses to  **1)** of *How do you consume music?*. As we can observe, approximately 86% of the student who took the survey discover new music based on streaming service recommendations. This seems to be in line with our tone towards the idea that more and more people are using streaming services such as Spotify to discover music. This means they are allowing Spotify to suggest each user with what Spotify believes is the best music for you. This is actually Spotify's business model and why they are so successful in the artificial intelligence space of the tech world. It appears that less students are discussing with other human beings about new music, as we can see from the 14% in the above graph. It is clear that the average person prefers to discover new music via streaming services rather than any other way.
+
+
+### Numerical Summaries
+
+For the variable: At what volume do you most frequently listen to your music at?, students were asked to input the percentage of volume they most frequently listen to their music at. We have that 1 person listens at 25%, 5 people listen at 50%, 8 people listen at 75% and 7 people listen at 100%. If we take the average of these values, we have that the average person in this sample will listen to music at 75% volume. This is illustrated below in our numerical summaries alongside the standard deviation of the volume students listen to music at:
+
+| Mean | Standard Deviation |
+| ------------ | ------------ |
+| 0.75 | 0.2236 |
+
+```{r, include=F}
+
+# Use this to calculate some summary measures. 
+
+vol <- c(25, 50, 50, 50, 50, 50, 75, 75, 75, 75, 75, 75, 75, 75, 100, 100, 100, 100, 100, 100, 100)
+mean_vol <- mean(vol)
+mean_vol
+sd_vol <- sd(vol)
+sd_vol
+```
+
+
+All analysis for this report was programmed using `R version 4.0.2`. 
+
+
+## Methods
+
+We will be using various statistical methods to further comprehend the data and begin to formulate an idea of our initial hypothesis and answer our initially posed question. Firstly, we will be doing a 95% confidence interval for the mean of volume percentage students listen to music at. This will help us further understand the range of likely values will be over our interval, centered around the mean. We will also conduct a hypothesis test of the mean of volume percentage students listen to music at, testing to see if an initial hypothesis we have is true or not.
+
+Our goal for this section is to formulate a null hypothesis ($H_0$) and alternative hypothesis ($H_A$). We will be using our observed data from *How do you consume music?* to find a test statistic and and a p-value. Then we will make a decision to see if our hypothesis holds true or not based on our data and our calculations. We claim that on the most frequent volume percentage students in our sample listen to music at is 50%.
+
+We will use the following as our formula: $\frac{(\bar{X}-\mu)}{\sigma/\sqrt{n}} \sim N(0,1)$. From our Numerical Summaries, we know the sample mean of these 21 observations is 75% and the standard deviation is 22.36%. Now, let's use our data to test if our initial claim is reasonable. Firstly, we must assume that the distribution of the data is normally distributed. Which implies that the sample mean is also normally distributed. 
+
+Our null hypothesis is: $H_0: \mu = 0.5$. \newline
+Our alternative hypothesis is: $H_A: \mu \neq 0.5$
+
+Next we will calculate the test statistic and finally draw some conclusion from this. This will be done in the results section.
+
+
+We will be looking at the 95% confidence interval for the volume percentage mean. A confidence interval for the mean is a statistical measurement used in order to determine what the range of likely values will be over a given interval, centered around the mean. In our analysis, we will be using a 95% confidence interval for the mean of the volume students listen to music at. We will use a 95% confidence interval for this because it best represents the middle 95% of our observed data. Since we have more than 21 observations we will be using this formula to calculate it: $\bar{x}\pm z_{\alpha/2}\frac{\sigma}{\sqrt{n}}$, where $\sigma$ is the population standard deviation, $\bar{x}$ is the sample mean, $\alpha=0.05$, and $n=21$, i.e. the number of students who participated in the survey. This will yield an interval, which is further discussed in the results section.
+
+
+
+## Results 
+
+To build on our discussion of our hypothesis test from the Methods section, we will be using the fact that,
+$$
+\frac{(\bar{X}-\mu)}{\sigma/\sqrt{n}} \sim N(0,1)
+$$
+Now to substitute our values we get that our test statistic is approximately 5.12363. Now let us find our p-value. This is the probability of observing our test statistic (or something more extreme) given a null hypothesis that is true. Let us assume we are using a significance level of $\alpha=0.05$, using the R function `pnorm()` we can calculate a two tailed p value of 2.997088e-07. Our p-value is evidently less than $\alpha$ so we have enough evidence to reject our null hypothesis that we have on average 50% volume for students who listen to music.
+
+After calculating using the technique elaborated upon in the methods section, we get the following confidence interval for mean population: [0.6543665, 0.8456335] calculated via the Z critical value approach. We interpret this confidence interval by saying that 95% of the data, when centred around the mean, would be between 0.6543665 and 0.8456335. This represents the amount of volume students listen to their music at, similarily, our interval can also be interpreted as: [65.43665%, 84.56335%]. The results yielded from the confidence interval based around the mean seem reasonable, as we had previously found in the Numerical Summaries, the observed mean was 0.75.
+
+We calculated this confidence interval by using the "z critical value method". We calculate the z critical value method by doing $\bar{x}\pm z_{\alpha/2}\frac{\sigma}{\sqrt{n}}$, where $\sigma$ is the standard deviation, $\bar{x}$ is the sample mean, $\alpha=0.05$, and $n=21$.
+
+
+```{r, include = F}
+
+# Here you can run a your HT/CIs.
+
+# Here you can derive the CIs of interest.
+pnorm(-5.12363)+ pnorm(5.12363, lower.tail = FALSE)
+
+0.75+ qnorm(0.975)*(0.2236/sqrt(21))
+0.75- qnorm(0.975)*(0.2236/sqrt(21))
+
+```
+
+
+## Bibliography
+
+1. Grolemund, G. (2014, July 16) *Introduction to R Markdown*. RStudio. [https://rmarkdown.rstudio.com/articles_intro.html](https://rmarkdown.rstudio.com/articles_intro.html). (Last Accessed: May 5, 2021) 
+
+2. Dekking, F. M., et al. (2005) *A Modern Introduction to Probability and Statistics: Understanding why and how.* Springer Science & Business Media.
+
+3.  Allaire, J.J., et. el. *References: Introduction to R Markdown*. RStudio. [https://rmarkdown.rstudio.com/docs/](https://rmarkdown.rstudio.com/docs/). (Last Accessed: May 5, 2021) 
+
+4. Howe, Neil. “How Music Streaming Won over Millennials.” Forbes, Forbes Magazine, 16 Jan. 2019, https://www.forbes.com/sites/neilhowe/2019/01/16/how-music-streaming-won-over-millennials/?sh=593a469b25c7. 
+
+
+## Appendix
+
+
+Here is a glimpse of the data set simulated/surveyed:
+
+```{r, echo = FALSE}
+
+glimpse(music)
+
+```
+
+
+
+

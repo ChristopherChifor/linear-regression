@@ -1,0 +1,532 @@
+---
+title: "Analysing The Effects Of Fertility Rate On Female Population"
+author: "Christopher Chifor - 1006001899"
+date: April 19, 2021
+output:
+  pdf_document: default
+---
+
+```{r, include=FALSE}
+knitr::opts_chunk$set(warning = FALSE, message = FALSE)
+library(openintro)
+library(tidyverse)
+library(dplyr)
+```
+
+
+```{r, include=FALSE}
+fertility <- read_csv("Fertility.csv")
+femalepop <- read_csv("FemalePopulation.csv")
+```
+
+
+
+# Abstract
+
+
+The issue of overpopulation is one of many problems major nations are facing today. The World Bank compiles important economic data for every country part of the UN, with an emphasis on economic factors. For the sake of this study we are only concered with female population and fertility rates. We plan to unpack this issue into further detail using our statistical tools to draw some important conclusions that a nation could use. We construct linear regression models, find confidence intervals, create Bayesian credible intervals, execute hypothesis tests and goodness of fit tests to elaborate on our findings with evidence. Initially we suggest there must be some relation between fertility rates and female population globally. Through rigorous statistical analysis we reveal the correlation of these two variables which are major factors in the issue of overpopulation.
+
+
+# Introduction
+
+
+
+  The World Bank is a global financial institution which provides loans and grants to the governments of low-to-middle income nations for purposes of pursuing capital projects, and it's main intention is that of global economic development. Because of this, the World Bank collects and distributes large scales of data for each country on earth. This includes: annual GDP, educations rates, immunizations and many more. For purposes of this report, we will be discussing female popoulation and fertility rates for each country in the UN. All data on the World Bank is free and open access on the internet at: https://data.worldbank.org. We will dive deeper into the relationship between the number of women in a country to the fertility rate in that country. We will be using data from 1960-2018 and will include every country recognized by the United Nations. However, it is important to note that some smaller nations such as the island nation of Palau, do not have up to date data and will generally not be considered in this analysis unless specifically mentioned. 
+
+  We should expect to see some sort of a relationship between female population and fertility rates. We hypothesize that as population increases, fertility rate should decrease. Upon further analysis using various statistical methods, we will have an answer to this global issue and hopefully provide some insight to the World Bank when it comes to their economic modelling. Note: Total fertility rate represents the number of children that would be born to a woman if she were to live to the end of her childbearing years and bear children in accordance with age-specific fertility rates of the specified year. For the rest of the report, when we discuss population it will be that of female population unless specifically mentioned.
+
+\newpage
+# Data
+
+
+
+As aforementioned, in accordance with the United Nations, the World Bank collects their data based on census data in each respective country. Essentially, each country will compile their own data and then submit it to the UN. For instance, in 2018, Afghanistan reported and average of 4.5 children born per mother, i.e., a fertility rate of 4.5. For the sake of this study, we will focus on the year 2018, as this is the most recent and relevant data to our current global economic state. Due to the COVID-19 pandemic, most countries had to reallocate their resources towards supressing the spread of the virus, thus leading to less important data collection and more resources towards COVID-19 treatment.
+
+```{r, include= FALSE}
+
+# Here you can load in and clean the data (you may need to do the cleaning in a separate R script). 
+
+# You may need additional chunks, in case you want to include some of the cleaning output.
+
+fertility <- fertility %>%
+  select(`Data Source` ,X63) %>%
+  filter(!is.na(X63)) %>%
+  rename(Country = `Data Source`)%>%
+  rename(Fertility_Rate = X63) %>%
+  filter(Country != "Country Name") %>%
+  filter(Country != "Bermuda" & Country != "Eritrea" & Country != "Faroe Islands" & Country != "Greenland" & Country != "Liechtenstein" & Country != "St. Martin (French part)" & Country != "Kosovo" & Country != "World" & Country != "Arab World" & Country != "Central Europe and the Baltics" & Country != "East Asia & Pacific (excluding high income)" & Country != "Early-demographic dividend" & Country != "East Asia & Pacific" & Country != "Europe & Central Asia (excluding high income)" & Country != "Europe & Central Asia" & Country != "Euro area" & Country != "European Union" & Country != "Fragile and conflict affected situations" & Country != "High income" & Country != "Heavily indebted poor countries (HIPC)" & Country != "IBRD only" & Country != "IDA total" & Country != "IDA blend" & Country != "IDA only" & Country != "Latin America & Caribbean (excluding high income)" & Country != "Latin America & Caribbean" & Country != "Least developed countries: UN classification" & Country != "Low income" & Country != "Lower middle income" & Country != "Low & middle income" & Country != "Late-demographic dividend" & Country != "Middle East & North Africa" & Country != "Middle income" & Country != "Middle East & North Africa (excluding high income)" & Country != "North America" & Country != "OECD members" & Country != "" & Country != "Other small states" & Country != "Pre-demographic dividend" & Country != "Pacific island small states" & Country != "Post-demographic dividend" & Country != "Sub-Saharan Africa (excluding high income)" & Country != "Small states" & Country != "East Asia & Pacific (IDA & IBRD countries)" & Country != "Europe & Central Asia (IDA & IBRD countries)" & Country != "Latin America & the Caribbean (IDA & IBRD countries)" & Country != "Middle East & North Africa (IDA & IBRD countries)" & Country != "South Asia (IDA & IBRD)" & Country != "Sub-Saharan Africa (IDA & IBRD countries)" & Country != "Upper middle income" & Country != "IDA & IBRD total" & Country != "South Asia")
+fertility
+
+femalepop <- femalepop %>%
+  select(`Data Source` ,X63) %>%
+  filter(!is.na(X63)) %>%
+  rename(Country = `Data Source`)%>%
+  rename(Population = X63) %>%
+  filter(Country != "Country Name" & Country != "World" & Country != "Arab World" & Country != "Central Europe and the Baltics" & Country != "East Asia & Pacific (excluding high income)" & Country != "Early-demographic dividend" & Country != "East Asia & Pacific" & Country != "Europe & Central Asia (excluding high income)" & Country != "Europe & Central Asia" & Country != "Euro area" & Country != "European Union" & Country != "Fragile and conflict affected situations" & Country != "High income" & Country != "Heavily indebted poor countries (HIPC)" & Country != "IBRD only" & Country != "IDA total" & Country != "IDA blend" & Country != "IDA only" & Country != "Latin America & Caribbean (excluding high income)" & Country != "Latin America & Caribbean" & Country != "Least developed countries: UN classification" & Country != "Low income" & Country != "Lower middle income" & Country != "Low & middle income" & Country != "Late-demographic dividend" & Country != "Middle East & North Africa" & Country != "Middle income" & Country != "Middle East & North Africa (excluding high income)" & Country != "North America" & Country != "OECD members" & Country != "Other small states" & Country != "Pre-demographic dividend" & Country != "Pacific island small states" & Country != "Post-demographic dividend" & Country != "Sub-Saharan Africa (excluding high income)" & Country != "Small states" & Country != "East Asia & Pacific (IDA & IBRD countries)" & Country != "Europe & Central Asia (IDA & IBRD countries)" & Country != "Latin America & the Caribbean (IDA & IBRD countries)" & Country != "Middle East & North Africa (IDA & IBRD countries)" & Country != "South Asia (IDA & IBRD)" & Country != "Sub-Saharan Africa (IDA & IBRD countries)" & Country != "Upper middle income" & Country != "IDA & IBRD total" & Country != "South Asia")
+femalepop
+```
+
+
+We will be using two data sets for this report. The first one being global female population found at: https://data.worldbank.org/indicator/SP.POP.TOTL.FE.IN and the second one being total fertility rate found at: https://data.worldbank.org/indicator/SP.DYN.TFRT.IN. In our first data set, global female population, we have 65 Variables with 265 observations. The same can be said about the second data set as they come from the same source. The 65 variables are Country name (example: Ghana), Country code (example: GHA), an indicator name of the dataset, an indicator code of the data set, and the rest of the variables are the years 1960-2018. The same can be said about both data sets. In terms of the observations of both data sets, we will remove all of the countries who do not have the data in both data sets, and groupings of nations the World Bank uses such as South East Asia, as these are not considered countries. Essentially, we will be removing all of the countries with NA values in both of the datasets. Note: this includes countries who have data in one but not both of the data sets. We are removing the following nations: Andorra, American Samoa, Bermuda, Cayman Islands, Dominica, Faroe Islands, Gibraltar, Greenland, St Kitts and Nevis, Liechtenstein, Monaco, Marshall Islands, Nauru, Palau, San Marino, Turks and Caicos Islands, Tuvalu, British Virgin Islands. Now, we will only need our fertility rates and population rates for the year 2018, so we will remove all other years from our analysis and be left with just 3 columns of country name, fertility rate in 2018 and population in 2018. As such:
+
+| Country | Fertility Rate in 2018 | Female Population in 2018 |
+|------------|------------ | ----- |
+| Canada | 1.4988 | 18,673,975 |
+
+Where Country will include all but the above mentioned countries and their respective fertility and population rates, with Canada just as an example. Since we are only concerned with these three variables, these will be our main focus for our statistical analysis. All of the important variables for our analysis are included in the above table.
+
+
+## Numerical Summaries
+
+```{r, include= FALSE}
+# Use this to calculate some summary measures. 
+summary(fertility$Fertility_Rate)
+summary(femalepop$Population)
+sqrt(var(fertility$Fertility_Rate))
+sqrt(var(femalepop$Population))
+```
+
+|Fertility Rate 2018|
+| ------- | ------ | ------ | ------- | ------ |
+| Minimum | Median | Mean | Maximum   |Standard Deviation |
+| ------------ | ------------ | ------------ | ------------ |--------------|
+| 0.977 | 2.222 |  2.670 | 6.913 | 1.275 |
+
+
+|Female Population 2018|
+| ------- | ------ | ------ | ------- | ------ |
+| Minimum | Median | Mean | Maximum   |Standard Deviation |
+| ------------ | ------------ | ------------ | ------------ |--------------|
+| 47,079 | 4,293,531 |  22,017,735 | 677,972,245  | 79,062,105 |
+
+
+
+
+As we can observe from the above two tables, the minimum fertility rate is 0.977 (South Korea) and the median is 2.222 children born per woman. The worldwide average fertility rate in 2018 was 2.67 and a maximum fertility rate of 6.913 (Niger). We can also note that the standard deviation for global fertility rate is 1.275. In our other table for female population in 2018 we can see that we have a minimum female population of 47,079 (Seychelles) and a maximum of 677,972,245 (China). Notably in our population table we can see that the mean is much higher than the median. This indicates that we have heavily right skewed data which is typical for global populations as only a few countries have extremely high population (as shown in histogram below). We should also have slightly right skewed data for our fertility rates as our median is less than our mean.
+
+Note: Due to our cleaning process, we are yeilding slightly different than globally accurate numbers in our numerical summary. For example, the country with the smallest population is actually Vatican City. However, since Vatican City does not have an official fertility rate, we removed the observation from our study and our analysis. We will follow this general principal throughout the report, as our goal is to convey statistical analysis methods and not global accuracy. 
+
+
+## Some Graphical Representation
+
+```{r, echo = FALSE}
+
+# Use this to create some plots.
+options(scipen=999)
+
+pop <- (femalepop$Population)
+
+ggplot(data = femalepop,
+       aes(x = pop)) +
+  geom_histogram(bins= 25,colour="black",
+                 fill = "light blue")+
+  xlab("Population")+
+  ylab("Number of countries")+
+  scale_x_continuous()+
+  theme_classic()+
+  ggtitle("Histogram of global female population in 2018")
+
+```
+```{r, echo=FALSE}
+options(scipen=999)
+
+fert <- (fertility$Fertility_Rate)
+
+ggplot(data = fertility,
+       aes(x = fert)) +
+  geom_histogram(bins= 20,colour="black",
+                 fill = "light blue")+
+  xlab("Fertility rate")+
+  ylab("Number of countries")+
+  scale_x_continuous()+
+  theme_classic()+
+  ggtitle("Histogram of global fertility rates in 2018")
+```
+
+As we can see from the above two histograms that show the distribution of population and fertility rate respectively, both of them are rightly skewed with the histogram of population being much more rightly skewed as have some extreme outliers at above half a billion females. Fertility rate seems to be relatively more constant with lower spread of data and most of the values hovering around 1.5 babies per mother globally. These two graphs help us visualize what was discussed in the numerical summaries portion of the report. Let's see how this relates to our idea that for larger populations, we have smaller fertility rates.
+
+
+
+
+All analysis for this report was programmed using `R version 4.0.4`.
+
+
+# Methods
+
+
+
+We will be using various statistical methods to further comprehend the data and begin to formulate an idea of our initial hypothesis and answer our initially posed question. Firstly, we will be doing a 95% confidence interval for the population mean globally. This will help us further understand   the range of likely values will be over our interval, centered around the mean. We will also be doing a maximum likelihood derivation which will help us understand the maximum likelihood of our assumed distribution of observations. On top of this, we will do a hypothesis test of average global fertility rate, testing to see if an initial hypothesis we have is true or not. We will do a goodness of fit test to describe how well our model will fit our observations, a Baysian Credible interval which will assist us in describing and summarising the uncertainty related to the unknown parameters we are trying to estimate. Finally, we will execute a simple linear regression model to observe the correlation between population and fertility rates. 
+
+
+## Confidence Interval
+
+We will be looking at the 95% confidence interval for the population mean globally. A confidence interval for the mean is a statistical measurement used in order to determine what the range of likely values will be over a given interval, centered around the mean. In our analysis, we will be using a 95% confidence interval for the mean of population of 2018. We will use a 95% confidence interval for this because it best represents the middle 95% of our observed data. Since we have more than 30 observations we will be using this formula to calculate it: $\bar{x}\pm z_{\alpha/2}\frac{\sigma}{\sqrt{n}}$, where $\sigma$ is the population standard deviation, $\bar{x}$ is the sample mean, $\alpha=0.05$, and $n=195$, i.e. the number of countries in our cleaned dataset. This will yield an interval, which is further discussed in the results section.
+
+## Hypothesis Test
+
+Our goal for this section is to formulate a null hypothesis ($H_0$) and alternative hypothesis ($H_A$). We will be using our observed data from the World Bank to find a test statistic and and a p value. Then we will make a decision to see if our hypothesis holds true or not based on our data and our calculations. 
+
+We claim that we have on average 2.5 children born per mother globally. However we see that Canada for instance, has a fertility rate of 1.4988. If we take 194 more countries into consideration ($n=195$) we will use the following as our formula $\frac{(\bar{X}-\mu)}{\sigma/\sqrt{n}} \sim N(0,1)$. From our Numerical Summaries, we know the sample mean of these 195 countries is 2.670 and the standard deviation is 1.275. Now, let's use our data to test if our initial claim is reasonable. Firstly, we must assume that the distribution of the data is normally distributed. Which implies that the sample mean is also normally distributed. 
+
+Our null hypothesis is: $H_0: \mu = 2.5$. \newline
+Our alternative hypothesis is: $H_A: \mu \neq 2.5$
+
+Next we will calculate the test statistic and finally draw some conclusion from this. This will be done in the results section.
+
+
+## Goodness of Fit Test
+
+
+
+The goal for our goodness of fit test will be do describe how well our model will fit our observations. We will focus on distributions and will use the Chi-squared test in our case. Our example is concerned with three countries, France, United Kingdom and Germany. We are interested to see if these three countries have the same populations in 2018. I.e., the frequency of people is the same in each of these three countries so any one individual is just as likely to live in each country, 1/3, 1/3, 1/3. From our sample, we note their true populations for 2018 are as follows:
+
+| France | United Kingdom | Germany | Total|
+| ------------ | ------------ | ------------ | -------- |
+| 34,543,857 | 33,652,378 |  42,000,374 | 110,196,609
+
+Thus our $\hat{p}$ values are as follows:
+
+| France | United Kingdom | Germany |
+| ------------ | ------------ | ------------ |
+| 0.313 | 0.305 |  0.381 |
+
+So our hypotheses are as follows:\newline
+$H_0:$ all countries have equal population frequencies. Equivalently, $H_0: p_{France}= \frac{1}{3}, p_{UK}= \frac{1}{3}, p_{Germany}= \frac{1}{3}$. 
+This signifies that the distribution fits the data. 
+\newline
+\newline
+On the other hand, when the distribution does not fit the data we have: 
+\newline
+$H_A:$ all countries do not have equal population frequencies. Equivalently, $H_0: p_{France}\neq \frac{1}{3}, p_{UK}\neq \frac{1}{3}, p_{Germany}\neq \frac{1}{3}$. We will compute our test statistic and so forth in the results section.
+
+
+## Linear Regression
+
+The model which will be used for this section of the report will be the simple linear regression model. The linear regression technique attempts to model the relationship between two variables by fitting a linear equation to some observed bivariate (x,y) data. One variable is considered to be the independent variable (x), and the other is considered to be a dependent variable (y). Linear regression models are used to show/predict the relationship between two variables. We want to try to fit a straight line through the middle of the data, to summarize the general pattern/trend we see. We are essentially looking for "the best" straight line we can draw encompassing the entire observed data with our estimated data. Mathematically we have:
+
+$$ Y_i = \alpha + \beta x_i + U_i $$
+
+
+Firstly, we assume that we are given a bivariate dataset, ie. $(x_1,y_1), (x_2,y_2), \dots, (x_n, y_n)$, where $x$ and $y$ will be represented by fertility and population. Also assume that $x_1,x_2,\dots, x_n$ are nonrandom and $y_1,y_2,\dots, y_n$ are realizations of random variables $Y_1,Y_2,\dots, Y_n$. The line $y = \alpha + \beta x$ is named the regression line. The parameters $\alpha$ and $\beta$ represent the y-intercept and the slope of the line respectively. The random variables $U_1, U_2, \dots, U_n$ are assumed to be independent of eachother. These random variables are assumed to have an expected value of 0. This is because the random fluctuation, which is what each $U_i$ represents, is considered to be approximated to the regression line. Lastly, since each of random fluctuation has the same variability, we assume that each $U_i$ term has the exact same variance. It is also important to note that $E[Y_i] = \alpha + \beta x_i$, since $E[U_i] = 0$. The model is appropiate for our case as we will be using two numerical variables which we can compare on our x and y axes.
+
+
+
+## Maximum Likelihood Estimator
+
+Firstly, assume the data is a random sample of Normal random variables. Assume that $X_1,...,X_n \stackrel{iid}{\sim} Normal(\mu = 0, \sigma^2)$. Our goal is to find the Maximum Likelihood Estimator of $\sigma^2$. We also know that the probability function is: $f(x)= \frac{1}{\sigma\sqrt{2\pi}}e^{-\frac{1}{2}(\frac{x}{\sigma})^2}$. Where $\mu = 0$. The MLE of $\sigma^2$ is $\hat{\sigma}_{MLE}^2 = \frac{1}{n}\sum_{i=1}^{n} x_i^2$. All derivations regarding the MLE can be found in Section 1 of the Appendix.
+
+## Bayesian Credible Interval
+
+Assume we would like to find a 95% credible interval for parameter $\lambda$. Suppose our data is a random sample of Poisson random variables with rate parameter $\beta$. The prioer distribution of $\lambda$ is assumed to be $Exp(\beta = 50)$ in hopes of yielding a neutral prior. The posterior distribution of $\lambda$ is $Gamma(\alpha = n\bar{X} +1, \beta = \frac{50}{151})$. Assume we collect a random sample of {55, 50, 47}. In the results section we will find a 95% credible interval for $\lambda$ using our prior.
+
+# Results 
+
+We will be further discussing the ideas from the Methods section in order of appearance. What we will show will indicate our correlation between population and fertility, as well as our hypothesis testing for various parameters in our data. Note that our MLE derivation and Bayesian posterior derivations are in the appendix and we have also made plenty of assumptions to successfully invoke these statistical techniques. In the next coming paragraphs, we discuss our results to the Methods section. 
+
+
+## Confidence Interval
+
+```{r, include=T}
+
+# Here you can calculate your CIs, run a bootstrap, etc.
+
+
+# (maybe you want to use the MLE to find the CI or your test stat. That sounds like a good way to order the analysis... I don't know, just spit balling here.)
+
+
+femalepop %>%   
+  summarise(
+  mean_pop = mean(Population),
+  sd_pop = sd(Population),
+  n_cal = n())
+
+22017735+ qnorm(0.975)*(79062105/sqrt(195))
+22017735- qnorm(0.975)*(79062105/sqrt(195))
+
+```
+
+After calculating using the technique elaborated upon in the methods section, we get the following confidence interval for mean population: [10,920,899, 33,114,571] calculated via the Z critical value approach. We can interpret this confidence interval by saying that 95% of the data, when centred around the mean, would be between 10,920,899 and 33,114,571. The results yielded from the confidence interval based around the mean seem reasonable, as we had previously found in the Numerical Summaries, the observed mean was 22,017,735.
+
+We calculated this confidence interval by using the "z critical value method". We calculate the z critical value method by doing $\bar{x}\pm z_{\alpha/2}\frac{\sigma}{\sqrt{n}}$, where $\sigma$ is the standard deviation, $\bar{x}$ is the sample mean, $\alpha=0.05$, and $n=19$, i.e. the number of years in the dataset. This confidence interval can be interpreted by saying that 95% of the data, when centered around the mean, would be between between 10,920,899 and 33,114,571. 
+
+The results yielded from the confidence intervals based around the mean seem reasonable, as we had previously found in the Numerical Summaries that the observed mean was in 22,017,735, with a minimum and maximum of 47,079, and 677,972,245 respectively. Our confidence interval lies inside of the observed dataset, thus making it a reasonable interval.
+
+
+
+## Hypothesis Test
+
+```{r, include=T}
+
+# Here you can calculate your test stats, critical values, etc.
+
+# (maybe you want to use the MLE to find the CI or your test stat. That sounds like a good way to order the analysis... I don't know, just spit balling here.)
+
+pnorm(-1.98)+ pnorm(1.98, lower.tail = FALSE)
+
+
+```
+
+To build on our discussion from the results section, we will be using the fact that,
+$$
+\frac{(\bar{X}-\mu)}{\sigma/\sqrt{n}} \sim N(0,1)
+$$
+Now to substitute our values we get that our test statistic is approximately 1.98. Now we need to find our p-value. This is the probability of observing our test statistic (or something more extreme) given a true null hypothesis. Let's assume we are using a significance level of $\alpha=0.05$, using the R function `pnorm()` we can calculate a two tailed p value of 0.04770353. Our p-value is evidently less than $\alpha$ so we have enough evidence to reject our null hypothesis that we have on average 2.5 children born per mother globally. 
+
+
+## Goodness of Fit Test
+
+To continue what we discussed in the methodology section, we will calculate our test statistic. We know that our three observations are assumed to be independent. We will be using the following as our test statistic: 
+$$
+-2log\bigg(\frac{L(p_0)}{L(\hat{p})}\bigg)
+$$
+Where $L(p_0)= (\frac{1}{3})^{n_1}\cdot (\frac{1}{3})^{n_2}\cdot (\frac{1}{3})^{n_3}$, where $n_1, n_2, n_3$ represent the population in France, United Kingdom, and Germany respectively. And $L(\hat{p})= 0.313^{n_1} \cdot 0.305^{n_2} \cdot 0.381^{n_3}$. Note: $p_0$ are the probabilities under $H_0$, and $\hat{p}$ are the sample proportions. 
+
+```{r, include = FALSE}
+
+# Here you can calculate your test stats, critical values, etc.
+
+# I feel like this section is exploring the distribution of the data. It may be helpful in describing the data. If that's the case, you should probably put this subsection first. 
+# Alternatively, you could use this to help you find a prior, perhaps?? If that's the case, then put this subsection directly before the Bayesian CI subsection 
+L1 <- (1/3)^(35)*(1/3)^(34)*(1/3)^(42)
+L2 <- (0.313)^(35)*(0.305)^(34)*(0.381)^(42)
+
+teststat <- -2*(log(L1)-log(L2))
+teststat
+```
+After computing, our test statistic is:
+
+$$
+-2log\bigg(\frac{L(p_0)}{L(\hat{p})}\bigg)=0.7808
+$$
+
+
+Now, from the Chi-squared test, we use the `pchisq()` command in R, for 2 degrees of freedom, we calculate the area under and to the right the Chi-squared curve. This yields a p-value of 0.6767861, which we know is large and we can conclude that we will not reject the null hypothesis. From this, we know there is not sufficient evidence to claim that the country's populations are the same. This is our decision based on the data. However, it is important to note that it is possible that we have made a Type II error, as we will not reject the null hypothesis but it is possible that our alternative hypothesis is true. 
+
+
+
+## Linear regression
+
+Apropos to the Methods section, we discussed constructing a simple linear regression model between our two variables. We plan to have fertility rate on the x-axis and population on the y-axis. We want to see if there is a correlation between these two variables to indicate some sort of a trend we can further discuss. Below is our simple linear model:
+
+```{r, echo= FALSE}
+
+# Here you can run your lm... 
+
+# I feel like the linear model should go at the end in terms of ordering. I mean, one variable stuff seems like it should preceed the two variable stuff. This is just a random thought and a bit of a recommendation if you aren't really sure about how to improve on the flow. Again, order things how you want, just be consistent between this section and the Methods (makes it easier for the reader).
+
+total <- data.frame(fertility$Fertility_Rate, femalepop$Population)
+
+#summary(lm(femalepop.Population ~ fertility.Fertility_Rate, data = total))
+#cor(femalepop$Population, fertility$Fertility_Rate)
+
+
+total %>%
+  ggplot(aes(x = fertility.Fertility_Rate , y=femalepop.Population))+
+  geom_point(col = "blue")+
+  ggtitle("Scatterplot of population given fertility")+
+  theme(plot.title = element_text(size=12))+
+  xlab("Fertility Rate")+
+  ylab("Female Population")+
+  theme_classic()+
+  geom_abline(slope = 0.0000000001556, intercept = 2.6664400382993, col="red")
+```
+
+
+Here is the equation of the trendline given in red: 
+$$
+y = 2.6664400382993 + 0.0000000001556x
+$$
+
+As we can observe from this model, since the magnitude of fertility is much smaller than that of the magnitude of population, we have an extremely small positive slope. Essentially what this means, is that for every 1 child increase fertility rate, there is about a 10 billion increase in population. This sounds quite absurd, which is fine, all that it means is that our variables have no correlation. Therefore, we cannot draw any meaningful conclusions from the correlation of the two variables, as they are generally considered unrelated. Also, since our variables are not related, the y-intercept does not give us a meaningful conclusion either. If we were to interpolate our values for example, Canada has a fertility rate of 1.4988, and if we were to substitute this value into our linear model, we would get a population of about 2.666. This is evidently not true as we know the population of Canada is definitely greater than 2.666 people. 
+
+
+```{r, include =FALSE}
+
+
+## Maybe create a nice scatterplot with a regression line laid on top.
+
+
+```
+
+
+
+
+
+## Maximum Likelihood Estimator
+
+```{r, include=FALSE}
+
+# Here you can calculate your MLE based on the data. (Again, if you're using the MLE in your CI, you should probably put this subsection before the CI subsection)..
+
+(1/195)*(sum((femalepop$Population)^2))
+
+```
+
+
+Recall that the MLE of $\sigma^2$ is $\hat{\sigma}_{MLE}^2 = \frac{1}{n}\sum_{i=1}^{n} x_i^2$. So if we square each of the 195 countries populations in our data set and divide by 195, we get: 6,703,541,601,935,624. This maximum likelihood estimator evaluated for $\hat{\sigma}_{MLE}^2$ essentially means that our population variance from our normal distribution is about 6.7 quadrillion. Which is in line with our observed standard deviation for population raised to the exponent of 2. Note: see Numerical Summaries for a reminder of the standard deviation value. 
+
+
+
+
+## Bayesian Credible Interval
+
+```{r, include=FALSE}
+
+# Here you can calculate your Credible Interval
+
+qgamma(0.025, shape =153, scale = 50/151)
+qgamma(0.975, shape =153, scale = 50/151)
+
+```
+
+From our methods section, we have collected a random sample of {55, 50, 47}. We would like to use our prior to find a 95% credible interval for $\lambda$. Now, using `qgamma()` we get the lower 2.5 quantile and upper 97.5 quantile for our credible interval. This yields [42.95271, 58.99875]. Thus, there is a 95% probability that $\lambda$ is between [42.95271, 58.99875].
+
+
+```{r, include = FALSE}
+
+# Here you can include some relevant visualizations.
+
+
+```
+
+# Conclusions
+
+Initially, we hypothesized that as population increases, fertility rate should decrease. We showed through our linear regression analysis that this was not the case, and that the population and fertility rates are not correlated. We also went into further depth to showcase this idea, through means of a hypothesis test of the mean of the global female population. We claimed that we have on average 2.5 children born per mother globally, we then showed this to be not the case. We elaborated by completing a goodness of fit test to showcase the mean population for a sample of 3 countries. On top of these things, we also evaluated a maximum likelihood estimator, and created confidence and a credible interval to showcase the mean and the parameter $\lambda$ respectively. By invoking these statistical methods, we were able to conclude on our hypothesis and come to the realisation that fertility and female population are not related. This is useful information for countries who are worried about their fertility rates. For instance, in China there is an enforced law that a family cannot have more than two children. This is in response to rapidly increasing populations which the government is trying to combat. One would believe that a country that is going through the same situation as China, would take note and implement this for their growing population. However, our analysis shows that this does not occur in reality. Countries are all unique and there is no evidence that there is some meaningful relationship between the number of females in a country to the amount of babies they have. 
+
+## Weaknesses
+
+In our MLE and in our posterier derivations, we are making some assumptions about our data that we do not know for sure. This was done purely for sake of argument and calculation. In reality, this is not exactly a good practice and it comes with some limitations. Sure, we are able to calculate the MLE and we are able to create a credible interval. However, this becomes less and less meaningful in terms of our argument as we must invoke a multitude of assumptions. It was not quite possible to have info about our prior for our Bayesian credible interval in our case given our data. If we did have it, it would make our results much more useful in relation to our analysis. 
+
+## Next Steps
+
+
+For future works, a more calculated set of steps would increase the flow of the report and would assist in delivery. For example, the MLE does not have much significant relevance to our initial hypothesis. However it does help to verify that even if we make various assumptions, it still yields accurate results, which is always a plus. Also, an idea for the future would be to do a parallel analysis for multiple years and compare each analysis over time. This would also create another layer of analysis which would help the reader draw better conclusions to the main problem imposed in our hypothesis.
+
+
+## Discussion
+
+The conversation of overpopulation and population density has been a major issue for the most part of the world. We have extremely dense countries and extremely sparse countries. The ability to optimze our allocation of human lives throughout the world is on the minds of many scientists and was touched upon in this report. It can decrease the standard of living in a country to have many people cooped up in an appartment building with inadequate living conditions. Overpopulation can occur from a various amount of factors, with fertility rates being one of the front runners. If you were a head of state with population density problems in your nation, how would you help with the standard of living of your citizens? 
+
+# Bibliography
+
+1. Grolemund, G. (2014, July 16) *Introduction to R Markdown*. RStudio. [https://rmarkdown.rstudio.com/articles_intro.html](https://rmarkdown.rstudio.com/articles_intro.html). (Last Accessed: January 15, 2021) 
+
+2. Dekking, F. M., et al. (2005) *A Modern Introduction to Probability and Statistics: Understanding why and how.* Springer Science & Business Media.
+
+3.  Allaire, J.J., et. el. *References: Introduction to R Markdown*. RStudio. [https://rmarkdown.rstudio.com/docs/](https://rmarkdown.rstudio.com/docs/). (Last Accessed: January 15, 2021) 
+
+4. The World Bank https://data.worldbank.org/indicator/SP.POP.TOTL.FE.IN  (Female Population)
+
+5. The World Bank https://data.worldbank.org/indicator/SP.DYN.TFRT.IN (Fertility Rate)
+
+\newpage
+
+# Appendix
+
+## Section 1 
+
+
+
+From the Methods section of MLE we have:
+
+$$
+\begin{aligned}
+L(\mu=0, \sigma^2|X_1, \dots, X_n)&= L(0, \sigma^2 | X_1) \dots L(0, \sigma^2 | X_n)\\
+L(\mu=0, \sigma^2|X_1, \dots, X_n)&= f_{\sigma^2}(x_1,\dots x_n)\\
+L(\mu=0, \sigma^2|X_1, \dots, X_n)&=f_{\sigma^2}(x_1)\cdot f_{\sigma^2}(x_2) \dots f_{\sigma^2}(x_n)
+\end{aligned}
+$$
+
+We can do this due to the fact that our realisations of random variables are independent. Substituting for each we get:
+
+$$
+\begin{aligned}
+L(\mu=0, \sigma^2|X_1, \dots, X_n)&= \bigg(\frac{1}{\sigma\sqrt{2\pi}}e^{-\frac{1}{2}(\frac{x_1}{\sigma})^2} \bigg)\cdot \bigg(\frac{1}{\sigma\sqrt{2\pi}}e^{-\frac{1}{2}(\frac{x_2}{\sigma})^2} \bigg)\dots \bigg(\frac{1}{\sigma\sqrt{2\pi}}e^{-\frac{1}{2}(\frac{x_n}{\sigma})^2} \bigg)\\
+L(\mu=0, \sigma^2|X_1, \dots, X_n)&=\bigg(\frac{1}{\sigma\sqrt{2\pi}}\bigg)^n \bigg(e^{-\frac{1}{2} (\frac{x_1}{\sigma})^2 -\frac{1}{2} (\frac{x_2}{\sigma})^2 - \dots - \frac{1}{2} (\frac{x_n}{\sigma})^2}\bigg)\\
+L(\mu=0, \sigma^2|X_1, \dots, X_n)&=\bigg(\frac{1}{\sigma\sqrt{2\pi}}\bigg)^n e^{-\frac{1}{2\sigma^2} \bigg(\sum_{i=1}^{n} x_i^2\bigg)}
+\end{aligned}
+$$
+
+Thus, we have $L(\sigma^2) = \bigg(\frac{1}{\sigma\sqrt{2\pi}}\bigg)^n e^{-\frac{1}{2\sigma^2} \bigg(\sum_{i=1}^{n} x_i^2\bigg)}$. We can now take 
+the loglikelihood of this as follows:
+
+
+$$
+\begin{aligned}
+l(\sigma^2) &= ln(L(\sigma^2))\\
+l(\sigma^2) &= ln\Bigg(\bigg(\frac{1}{\sigma\sqrt{2\pi}}\bigg)^n e^{-\frac{1}{2\sigma^2} \bigg(\sum_{i=1}^{n} x_i^2\bigg)}\Bigg)\\
+l(\sigma^2) &= ln\Bigg(\bigg(\frac{1}{\sigma\sqrt{2\pi}}\bigg)^n\Bigg) + ln\bigg( e^{-\frac{1}{2\sigma^2} \bigg(\sum_{i=1}^{n} x_i^2\bigg)} \bigg)\\
+l(\sigma^2) &= n ln\bigg(\frac{1}{\sigma\sqrt{2\pi}}\bigg) - {\frac{1}{2\sigma^2} \sum_{i=1}^{n} x_i^2}\\
+\end{aligned}
+$$
+
+Now we can proceed with finding the MLE of $\sigma^2$ as such:
+
+
+$$
+\begin{aligned}
+\frac{\partial l}{\partial \sigma^2} &= -n + \frac{\sum_{i=1}^{n} x_i^2}{\sigma^2}\\
+\frac{\partial l}{\partial \sigma^2} &= -n + \frac{1}{\sigma^2}\bigg(\sum_{i=1}^{n} x_i^2 \bigg)
+\end{aligned}
+$$
+
+
+So, to find the maximum of sigma^2 we need to set the first derivative equal to 0.
+
+
+$$
+\begin{aligned}
+\frac{\partial l}{\partial \sigma^2} &= 0 = -n + \frac{\sum_{i=1}^{n} x_i^2}{\sigma^2}\\
+n &= \frac{\sum_{i=1}^{n} x_i^2}{\sigma^2}\\
+\sigma^2 &= \frac{1}{n}\sum_{i=1}^{n} x_i^2\\
+\hat{\sigma}_{MLE}^2 &= \frac{1}{n}\sum_{i=1}^{n} x_i^2
+\end{aligned}
+$$
+Now this could either be a maximum or a minimum. We need it to be a maximum so let's do the second derivative test. We get:
+
+$$
+\begin{aligned}
+\frac{\partial^2 l}{\partial (\sigma^2)^2} &= -\frac{1}{\sigma^3} \sum_{i=1}^{n} x_i^2\\
+\frac{\partial^2 l}{\partial (\sigma^2)^2} &< 0
+\end{aligned}
+$$
+
+Since our second derivative is negative, by the second derivative test we can conclude that our MLE is indeed a maximum.
+
+## Section 2 
+
+
+
+To begin, we will need to make a few assumptions. 1) Assume $X_1, X_2, X_3, \dots, X_n \stackrel{iid}{\sim} Poisson(\lambda)$. 2) Assume $\lambda \sim Exp(\beta)$, where $\lambda$ is the prior distribution, and $\beta$ is the mean parameter, such that $f(\lambda)=\frac{1}{\beta}e^{-\lambda /\beta}$, for $\lambda \geq 0.$
+
+We will now find the posterior distribution of $\lambda$.
+$$
+\begin{aligned}
+P(\lambda|\text{data}) & = \frac{P(\text{data}|\lambda)P(\lambda)}{P(\text{data})} \\
+P(\lambda|X_1, X_2, X_3,...,X_n) & = \frac{P(X_1, X_2, X_3,...,X_n|\lambda)P(\lambda)}{P(X_1, X_2, X_3,...,X_n)} \\
+P(\lambda|X_1, X_2, X_3,...,X_n) & = \frac{P(X_1|\lambda)P(X_2|\lambda)...P(X_n|\lambda)P(\lambda)}{P(X_1, X_2, X_3,...,X_n)} \\
+P(\lambda|X_1, X_2, X_3,...,X_n) & = \frac{\Pi_{i=1}^{n}( P(X_i|\lambda))\cdot P(\lambda)}{P(X_1, X_2, X_3,...,X_n)} \\
+P(\lambda|X_1, X_2, X_3,...,X_n) & = \frac{\Pi_{i=1}^{n}(\frac{e^{-\lambda}\lambda^{X_i}}{X_i !})\cdot \frac{1}{\beta} \cdot e^{-\frac{\lambda}{\beta}}}{P(X_1, X_2, X_3...X_n)} 
+\end{aligned}
+$$
+
+
+We want to find the functional form with respect to $\lambda$. Thus, all but $\lambda$ will be treated as a constant, call it $C$.
+
+$$
+\begin{aligned}
+P(\lambda|X_1, X_2, X_3,...,X_n) &= C \cdot\Pi_{i=1}^{n}({e^{-\lambda}\lambda^{X_i}})\cdot e^{-\frac{\lambda}{\beta}}\\
+P(\lambda|X_1, X_2, X_3,...,X_n) &= C \cdot({e^{-n\lambda}\lambda^{X_1+X_2+\dots+X_n}})\cdot e^{-\frac{\lambda}{\beta}}\\
+P(\lambda|X_1, X_2, X_3,...,X_n) &= Ce^{-n\lambda -\frac{\lambda}{\beta}}\lambda^{X_1+X_2+\dots+X_n}\\
+P(\lambda|X_1, X_2, X_3,...,X_n) &= Ce^{-\lambda(1 +\frac{1}{\beta})}\lambda^{X_1+X_2+\dots+X_n}
+\end{aligned}
+$$
+
+Since $\bar{X} = \frac{X_1+X_2+\dots +X_n}{n}$, we will rewrite $\bar{X}$ in terms of $X_1+X_2+\dots  +X_n$, which gives us $n\cdot\bar{X} = X_1+X_2+\dots +X_n$.
+
+And so we get $P(\lambda|X_1, X_2, X_3,...,X_n) = Ce^{-\lambda(n +\frac{1}{\beta})}\lambda^{n\cdot\bar{X}}$.
+
+Thus, we have derived that the posterior distribution of $\lambda \sim Gamma(\alpha, \beta)$, where $\alpha = n\bar{X}+1$, and $\beta=\frac{1}{n+\frac{1}{\beta}}$.
+
+
+

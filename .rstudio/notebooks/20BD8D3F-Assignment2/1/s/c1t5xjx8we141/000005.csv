@@ -1,0 +1,7 @@
+"0","data %>%"
+"0","  ggplot(aes(x = Population, y=AutoTheft_AVG))+"
+"0","  ggtitle(""Scatterplot of average auto thefts per neighbourhood to population in Toronto"")+"
+"0","  theme(plot.title = element_text(size=12))+"
+"0","  geom_point(col = ""blue"")"
+"2","Error in FUN(X[[i]], ...) : object 'Population' not found
+"

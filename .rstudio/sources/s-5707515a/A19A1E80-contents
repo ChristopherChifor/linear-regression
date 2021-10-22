@@ -1,0 +1,17 @@
+for (i in 1:20){
+  sample <- rnorm(i, mean = 10, sd = 4)
+  L_theta0 <- function() (2*pi*16)^{-10} * exp(-1/32)*sum((sample[i]-10)^2)
+  L_theta1 <- function() (2*pi*16)^{-10} * exp(-1/32)*sum((sample[i]-mean(sample))^2)
+}
+
+hist(sample, freq = FALSE, breaks = 100)
+-2*(log(L_theta0()/L_theta1())
+
+
+for(j in 1:100000){
+  sample_chi <- rchisq(j, df=1)
+}
+sample_chi
+density(sample_chi)
+lines(sample_chi)
+
