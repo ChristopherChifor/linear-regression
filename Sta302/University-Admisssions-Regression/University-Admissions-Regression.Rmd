@@ -1,10 +1,29 @@
 ---
-title: "R Notebook"
-output: pdf_notebook
+title: "Informative Title Name"
+author: "Parssa Kyanzadeh && Christopher Chifor"
+date: November 14, 2021
+subtitle: STA302 Video Project
+output:
+  pdf_document: default
 ---
 
 
-```{r}
+```{r, include=T}
+knitr::opts_chunk$set(warning = FALSE, message = FALSE)
+library(openintro)
+library(tidyverse)
+library(dplyr)
+
 data <- read.csv("./Video_project_dataset.csv")
 data
 ```
+
+
+```{r}
+data %>%
+  ggplot(aes(x = AVGFACSAL, y=ADM_RATE))+
+  geom_point(col = "blue")+
+  ggtitle("Scatterplot")+
+  theme(plot.title = element_text(size=12))
+```
+
