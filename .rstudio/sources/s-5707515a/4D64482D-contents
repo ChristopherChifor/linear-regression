@@ -1,0 +1,419 @@
+---
+title: "Predicting the Winner of Canada's next Federal Election"
+author: "Group 25: Magomed Evloev, Jose Whittembury, Christopher Chifor, Peter Xu"
+date: November 5, 2021
+subtitle: STA304 - Assignment 3
+output:
+  pdf_document: default
+---
+
+```{r, include=FALSE}
+knitr::opts_chunk$set(warning = FALSE, message = FALSE)
+library(openintro)
+library(tidyverse)
+```
+
+
+
+## Introduction
+
+Elections are an essential process of maintaining a democracy. They provide an opportunity for citizens of a nation to select a party they think will run the country best. Once an election is over and a party has been elected to run the government, the leader of the elected party becomes the prime minister. The prime minister has the power to make appointments to key positions in the government such as the cabinet, the Supreme Court, the senate, and various other positions ("The Prime Minister of Canada." thecanadaguide.com). Since the majority of legislation put before parliament originates from the cabinet, the Prime Minister has significant influence in the legislative process ("The Powers of the Canadian Prime Minister." www.constitutionalstudies.ca). Although there are checks on the prime minister’s power and s/he must maintain the confidence of the parliament, the prime minister has the ability to make changes that affect the day to day lives of Canadians. 
+
+In Trudeau’s first term as Prime Minister, he formed Canada’s first gender balanced cabinet, passed legislation that legalized marijuana, and helped resettle tens of thousands of refugees within Canada (Aiello, Rachel. "Here's how Canada changed under Justin Trudeau.). All these changes by Trudeau’s government have not only helped Canada gain a reputation of being a more tolerant and generous country on the world stage but also have helped Canadians feel more included in society as well as eliminated harsh sentences on Canadians who choose to use marijuana recreationally.
+
+Each party has their own agenda and prioritizes certain issues over others. Canada is a diverse country with people of various backgrounds who believe certain issues are more important than others. It is not obvious who will win a federal election because Canadians don’t all think the same. The Canadian election is an important event whose result is not obvious. **The goal of this analysis is to predict which party has the highest likelihood of winning the overall popular vote of the next Canadian federal election**. 
+
+To perform this analysis, we will use survey data that provides information on respondents such as their age, gender, and province they live in as well as which party they voted for in the 2019 Canadian federal election. This data will be explored further in the Data section. For each party, we will fit a model on the survey data that tells us the likelihood that an individual will vote for that party given their sex, age range, and province they reside in. After we have a model for each party, we will form a generalized estimate of the likelihood that the Canadian population will vote for each party using the census data. The process of constructing the model and generalizing to the population will be explained in the methods section. The census data includes the sex, province, and age of members of the Canadian population and like the survey data will be explored further in the Data section. Finally, we will display the results of our analysis and finish the report with some concluding remarks.
+
+
+## Data
+
+### 2019 CES Phone Survey
+
+This survey data was collected in 2019 in the context of the 2019 Canadian federal election .The purpose of this survey was to collect information on the opinions of Canadian citizens and permanent residents (aged 18 or older) during the campaign process and after the elections.
+
+The data was collected by Advanis Inc. and it was collected in two stages, the first one during the campaign period (from 2019-09-10 to 2019-10-20) and then after the elections(from 2019-10-22 to 2019-11-21).
+
+The procedure through which this was done was a two-wave panel with a modified rolling-cross section for the first part of the survey and then a recontact wave for the second part of it.
+
+```{r, include = FALSE}
+# Here you can load in and clean the census data (you may need to do the cleaning in a separate R script). 
+census_data <- read_csv("gss_clean.csv")
+# You may need additional chunks, in case you want to include some of the cleaning output.
+```
+
+### Cleaning Process
+
+We had to clean the survey data described above as well as the census data. 
+
+For the survey data, we first selected the variables we needed which were q3 which represents gender, q4 which represents province, age_range which gives us the age range of the respondent and p3 which gives the party they voted for in 2019. We also selected age in order to perform numerical summaries on the ages of the survey responders which we wouldn't be able to do with age_range since it's cateogrical. Age will only be used in this section, it's not necessary for the methods and analysis part. Next we filtered the data so that rows that did not include a party or province were removed. We also reduced the survey's gender variable into just male and female by removing all non-binary observations, this won't be an ethical or statistical issue as among all individuals surveyed there was only 1 case that reported identifying as neither a male or female, which represents less than 0.1% of the total observations in the survey. Next we renamed the variables so that it was obvious what each column meant. We renamed q4 to 'province', p3 to 'vote', and we left age_range alone. Then, given that we have Gender as a binary variable we make the assumption that its proportion of male and female observations is a good enough estimate for us to accurately impute sex from gender. So we rename gender to sex. Now we have sex, age_range, age, vote, and province from the survey data. Next, I converted each column of the survey data to strings except for age which is numeric, and replaced province, sex, and vote with their labels.
+
+In the census data, we selected rows where the province variable was one of the provinces and where sex was male or female. We then added an age_range variable that set the age range of each respondent based on their age.
+
+
+```{r, include = FALSE}
+# Here you can load in and clean the survey data (you may need to do the cleaning in a separate R script). 
+# First, if you don't already have it, install the devtools package:
+# install.packages("devtools")
+# Now use devtools to install the cesR package directly from Github:
+# devtools::install_github("hodgettsp/cesR")
+# Load it like any other package:
+#library(cesR)
+# There are many different CES datasets, and they have unique codes. 
+# See them with the get_cescodes() function:
+#get_cescodes()
+# Now pick one, let's try ces2019_phone
+#get_ces("ces2019_phone")
+#survey_data <- ces2019_phone
+# Alternative to what is in the comments above, I have locally loaded
+# and (mildly) cleaned the CES2019 phone data and have included it in here.
+# We can load it in:
+survey_data <- read_csv("ces2019-phone_clean.csv")
+```
+
+
+```{r, include = FALSE}
+#select variables from data that we need for analysis
+survey_data <- 
+  survey_data %>% 
+  select(age, age_range, p3, q3, q4) %>%
+  rename(sex = q3, province = q4, vote = p3)
+#filter data
+#We start by reducing the survey's Gender variable into just male and female by removing all non-binary observations, this won't be an ethical or statistical issue as among all individuals surveyed there was only 1 case that reported identifying as neither a male or female, which represents less than 0.1% of the total observations in the survey.
+#Then, given that we have Gender as a binary variable we make the assumption that its proportion of male and female observations is a good enough estimate for us to accurately impute sex from gender.
+survey_data <- 
+  survey_data %>% 
+  filter(sex == "1" | sex == "2")
+survey_data <- 
+  survey_data %>% 
+  filter(province %in% (1:10))
+survey_data <- 
+  survey_data %>% 
+  filter(vote %in% (1:7))
+#convert categorical data from numeric to string
+survey_data$province <- as.character(survey_data$province)
+survey_data$sex <- as.character(survey_data$sex)
+survey_data$vote <- as.character(survey_data$vote)
+#replace sex key with sex title
+survey_data$sex[survey_data$sex == "1"] <- "Male"
+survey_data$sex[survey_data$sex == "2"] <- "Female"
+#replace province key with province name
+survey_data$province[survey_data$province == "1"] <- "Newfoundland and Labrador"
+survey_data$province[survey_data$province == "2"] <- "Prince Edward Island"
+survey_data$province[survey_data$province == "3"] <- "Nova Scotia"
+survey_data$province[survey_data$province == "4"] <- "New Brunswick"
+survey_data$province[survey_data$province == "5"] <- "Quebec"
+survey_data$province[survey_data$province == "6"] <- "Ontario"
+survey_data$province[survey_data$province == "7"] <- "Manitoba"
+survey_data$province[survey_data$province == "8"] <- "Saskatchewan"
+survey_data$province[survey_data$province == "9"] <- "Alberta"
+survey_data$province[survey_data$province == "10"] <- "British Columbia"
+#replace party key with party name
+survey_data$vote[survey_data$vote == "1"] <- "Liberal Party"
+survey_data$vote[survey_data$vote == "2"] <- "Conservative Party"
+survey_data$vote[survey_data$vote == "3"] <- "NDP"
+survey_data$vote[survey_data$vote == "4"] <- "Bloc Québécois"
+survey_data$vote[survey_data$vote == "5"] <- "Green Party"
+survey_data$vote[survey_data$vote == "6"] <- "People's Party"
+survey_data$vote[survey_data$vote == "7"] <- "Other"
+#replace age_range key with age range
+survey_data$age_range[survey_data$age_range == "1"] <- "18-24"
+survey_data$age_range[survey_data$age_range == "2"] <- "25-34"
+survey_data$age_range[survey_data$age_range == "3"] <- "35-44"
+survey_data$age_range[survey_data$age_range == "4"] <- "45-54"
+survey_data$age_range[survey_data$age_range == "5"] <- "55+"
+         
+#select age, province, and sex from census
+#filter out data that does not include the province or the sex of the respondent
+#filter out respondents who aren't old enough to vote
+census_data <- census_data %>% 
+  mutate(age=round(age)) %>% 
+  filter(province == "Newfoundland and Labrador"| 
+         province == "Prince Edward Island"|
+         province == "Nova Scotia"| 
+         province == "New Brunswick"|
+         province == "Quebec"| 
+         province == "Ontario"|
+         province == "Manitoba"| 
+         province == "Saskatchewan"|
+         province == "Alberta"| 
+         province == "British Columbia") %>%
+  filter(sex == "Female" | sex == "Male") %>%
+  filter(age >= 18) %>%
+  select(age, sex, province)%>%
+  rename(age_range = age)
+#census_data$age_range <- as.character(census_data$age_range)
+#replace age with age range
+census_data$age_range[census_data$age_range >= 18 &census_data$age_range <=24] <- "18-24"
+census_data$age_range[census_data$age_range >= 25 &census_data$age_range <=34] <- "25-34"
+census_data$age_range[census_data$age_range >= 35 &census_data$age_range <=44] <- "35-44"
+census_data$age_range[census_data$age_range >= 45 &census_data$age_range <=54] <- "45-54"
+census_data$age_range[census_data$age_range >= 55] <- "55+"
+```
+
+
+### Variables
+
+Vote: This variable is a categorical variable that represents the party for which the respondent voted for, reported by the survey.
+
+Age Range: This is a categorical variable that represents the age group in which the respondent falls into at the moment of the interview.
+
+Sex: This is a categorical variable that will be the other individual level variable in our model, and it represents the sex of the respondent.
+
+Province: This is a categorical variable that will be one of our group level variables, and it represents the province at which the respondent was living at the date of the interview.
+
+\newpage
+
+
+
+### Summaries:
+
+The purpose of this commentary is to get a better understanding of our data distribution across our predictor variables and to see if these distributions justify the presence of such variable on our model.
+```{r, echo=FALSE}
+prop.table(table(survey_data$age_range , survey_data$vote))
+```
+Age Range-Vote Contingency table:
+Here we can clearly see how those respondents from the age groups 45-54 and 55+ voted mostly for the Liberal and Conservative parties, while those respondents from the younger age groups 18-24 and 25-34 voted mainly for the NDP party.
+Seeing these different distributions in voting among different age groups helps us confirm the importance of including the variable age-group into our predicting model.
+```{r, echo=FALSE}
+prop.table(table(survey_data$sex , survey_data$vote))
+```
+Sex-Vote Contingency table: 
+Here we can appreciate a pretty even distribution of male and female voters among the people that voted for all parties but one, the conservative party. Here the ratio of male to female voters was of 2:1.
+This result is of incredible importance and shows how in recent years Canadian woman have been feeling more and more identified with liberal values rather than the conservative ones, something that we should have present throughout this analysis and that allows us to use the sex of respondents as a tool  in our prediction model.
+```{r, echo=FALSE}
+prop.table(table(survey_data$province , survey_data$vote))
+```
+Province-Vote Contingency table: 
+Here we can see how provinces like Alberta and Manitoba voted conservative at a significant higher rate than liberal and how the opposite was also true in provinces like Quebec and Prince Edward Island. Again, seeing these discrepancies on our summary support our use of province as a predictor variable.
+
+
+
+```{r, include = FALSE}
+#Here we are plotting our the distribution of the votes across all of our 3 predictor variables
+# survey_data %>% ggplot(aes(y=reorder(province,province,
+#                      function(x)length(x)), x = (..count..)/sum(..count..))) + geom_bar(aes(fill = vote), position = "identity") + labs(title = "Proportion of each Province that voted for each Party", y="Province", x="Proportion", fill="Party")
+survey_data %>% ggplot(aes(y=reorder(province,province,
+                      function(x)length(x)), x = (..count..)/sum(..count..))) + geom_bar(aes(fill = vote))+ labs(title = "Proportion of each Province that voted for each Party", y="Province", x="Proportion", fill="Party")
+```
+
+We can see from the plot above the proportion of the dataset that each province makes up. This gives us insight into how representative the data is. We want the proportion of survey data made up by each province to be roughly similar to proportion of the population that is made up by each province. We can go to stats Canada to see how much of the population of Canada is made up by each province ("Population projection for Canada by province in 2020 and 2043." www.statista.com). We can see that Ontario, who has the highest population, has a much higher population than British Columbia, while in our dataset, the proportion of responders that were from BC is roughly the same as the proportion of responders from Ontario. Similarly, Alberta's population is almost 4 times as much as Saskatchewans, yet they make up roughly the same proportion of the survey data. Therefore, the survey data isn't very representative in terms of how the population is distributed across provinces.
+
+In addition, we can see from the bar plot the proportion of each province that voted for a particular party. We can see that in provinces like Alberta and Saskatchewan, the majority of the survey population voted conservative, while in larger provinces like Ontario and Quebec the majority of the province voted Liberal. Certain provinces have more influence than others in the federal election process. In Canada, the electoral process involves dividing the country into electoral districts called “ridings” ("How Canada’s electoral system works." cicnews.com, edited by Michael Schwartz, 30 Aug. 2021.). Canadians can vote for the candidate in their riding that represents the party they want to vote for. In each riding, the candidate with most votes gets a seat in parliament and whichever party wins the most seats wins the election. Some provinces have more influence on who gets voted into parliament than others since they are larger and have more ridings. For example, Ontario has 122 seats in parliament while Saskatchewan only has 10 ("House of Commons seat allocation by province 2022 to 2032." elections.ca, Elections Canada.). Therefore, having sample data that is representative of how the population is distributed in each province is really important.  
+
+
+## Methods
+
+To predict the overall popular vote for the next Canadian federal election, the final model will be formed as a logistic regression model. Logistic regression is a statistical model that is used to model a binary response variable and estimate the likelihood. Since we have seven different parties that are running for the election, seven models will be built based on seven different datasets. By using the logistic regression model, it will estimate the proportion of the votes or not for each party (1 will represent a vote for the party and 0 will represent no vote for the party). In the data section, age range, sex, and province are used as independent variables to predict the response variable which is the answer of which party one voted for. 
+
+### Model Specifics
+The model for Liberal party is a logistic model, which is used to estimate the vote for the Liberal party or not by using the Liberal dataset. In this model, it has age range, sex, and province, where age range is recorded as a categorical variable, and sex and province also as categorical variables. The logistic regression model is:
+$$ log (P_l/1-P_l) = \beta_0 + \beta_1 x_{age\_range} + \beta_2 x_{sex} + \beta_3 x_{province}$$
+
+Where $P_l$ represents the probability of a vote for the Liberal party or not, $\beta_0$ is the intercept term which represent the log odds of the probability of the Liberal party winning. The $\beta_1$ coefficient represents the change in log-odds for every one unit change in the age range. By holding other variables constant, let the age range increase by 1 unit, the odds ratio is $exp(\beta_1)$. The $beta_2$ coefficient represents the logarithm of odds ratio between the sex groups, the odds ratio of vote for Liberal party or not is $exp(\beta_2)$. The $\beta_3$ coefficient represents the log of odds ratio between provinces, the odds ratio of vote for Liberal party or not is $exp(\beta_3)$. 
+
+The model for the Conservative party is a logistic model, which is used to estimate if one voted for the Conservative party or not by using the Conservative dataset. In the model, it has age range, sex, and province, where age range is recorded as a categorical variable, and sex and province also as categorical variables. The logistic regression model is:
+$$ log (P_c/1-P_c) = \beta_0 + \beta_1 x_{age\_range} + \beta_2 x_{sex} + \beta_3 x_{province}$$
+
+Where $P_c$ represents the probability of a vote for the Conservative party or not, $\beta_0$ is the intercept term which represents the log odds of the probability of a vote for the Conservative party. The $\beta_1$ coefficient represents the change in log odds for every one unit change in age range. By holding other variables constant, let the age range increase by 1 unit, the odds ratio is $exp(\beta_1)$. The $beta_2$ coefficient represents the log of odds ratio between the sex groups, the odds ratio of a vote for the Conservative party or not is $exp(\beta_2)$. The $\beta_3$ coefficient represents the log of odds ratio between provinces, the odds ratio of a vote for the Conservative party or not is $exp(\beta_3)$.
+
+The model for the NDP is a logistic model, which is used to estimate if one voted for the NDP party or not by using the NDP dataset. In the model, it has age range, sex, and province, where age range is recorded as a categorical variable, and sex and province also as categorical variables. The logistic regression model is:
+$$ log (P_n/1-P_n) = \beta_0 + \beta_1 x_{age\_range} + \beta_2 x_{sex} + \beta_3 x_{province}$$
+
+Where $P_n$ represents the probability of a vote for the NDP or not, $\beta_0$ is the intercept term which represents the log odds of the probability a of vote for NDP. The $\beta_1$ coefficient represents the change in log odds for every one unit increase in age range. By holding other variables constant, let the age range increase by 1 unit, the odds ratio is $exp(\beta_1)$. The $beta_2$ coefficient represents the log of odds ratio between the sex groups, the odds ratio of a vote for NDP or not is $exp(\beta_2)$. The $\beta_3$ coefficient represents the log of odds ratio between provinces, the odds ratio of a vote for the NDP or not is $exp(\beta_3)$.
+
+The model for Bloc Quebecios is a logistic model, which is used to estimate if one voted for the Bloc Quebecois party or not by using the Bloc Quebecois dataset. In the model, it has age range, sex, and province, where age range is recorded as a categorical variable, and sex and province also as categorical variables. The logistic regression model is:
+$$ log (P_b/1-P_b) = \beta_0 + \beta_1 x_{age\_range} + \beta_2 x_{sex} + \beta_3 x_{province}$$
+
+Where $P_b$ represents the probability of a vote for the Bloc Quebecios or not, $\beta_0$ is the intercept term which represents the log odds of the probability of a vote for the Bloc Quebecios. The $\beta_1$ coefficient represents the change in log odds for every one unit increase in age range. By holding other variables constant, let the age range increase by 1 unit, the odds ratio is $exp(\beta_1)$.The $beta_2$ coefficient represents the log of odds ratio between the sex groups, the odds ratio of a vote for the Bloc Quebecios or not is $exp(\beta_2)$.The $\beta_3$ coefficient represents the log of odds ratio between provinces, the odds ratio of a vote for Bloc Quebecios or not is $exp(\beta_3)$.
+
+The model for Green Party is a logistic model, which is used to estimate if one voted for the Green party or not by using the Green dataset. In the model, it has age, sex, and province, where age range is recorded as a categorical variable, and sex and province also as categorical variables. The logistic regression model is:
+$$ log (P_g/1-P_g) = \beta_0 + \beta_1 x_{age\_range} + \beta_2 x_{sex} + \beta_3 x_{province}$$
+
+Where $P_g$ represents the probability of a vote for the Green Party or not, $\beta_0$ is the intercept term which represents the log odds of the probability of a vote for the Green Party. The $\beta_1$ coefficient represents the change in log odds for every one unit increase in age range. By holding other variables constant, let the age range increase by 1 unit, the odds ratio is $exp(\beta_1)$. The $beta_2$ coefficient represents the log of odds ratio between the sex groups, the odds ratio of a vote for the Green Party or not is $exp(\beta_2)$. The $\beta_3$ coefficient represents the log of odds ratio between provinces, the odds ratio of a vote for the Green Party or not is $exp(\beta_3)$.
+
+The model for People's Party is a logistic model, which is used to estimate if one voted for the Peopl's party or not by using the People's dataset. In the model, it has age range, sex, and province, where age range is recorded as a categorical variable, and sex and province also as categorical variables. The logistic regression model is:
+$$ log (P_p/1-P_p) = \beta_0 + \beta_1 x_{age\_range} + \beta_2 x_{sex} + \beta_3 x_{province}$$
+
+Where $P_p$ represents the probability of a vote for the People's Party or not, $\beta_0$ is the intercept term which represents the log odds of the probability of vote for People's Party. The $\beta_1$ coefficient represents change in log odds for every one unit increase in age. By holding other variables constant, let the age range increase by 1 unit, the odds ratio is $exp(\beta_1)$. The $beta_2$ coefficient represents the log of odds ratio between the sex groups, the odds ratio of a vote for the People's Party or not is $exp(\beta_2)$. The $\beta_3$ coefficient represents the log of odds ratio between provinces, the odds ratio of a vote for the People's Party or not is $exp(\beta_3)$.
+
+The model for the Other parties is a logistic model, which to estimate the a vote for the Other parties or not by using the Other parties dataset. In the model, it has age range, sex, and province, where age range is recorded as a categorical variable, and sex and province also as categorical variables. The logistic regression model is:
+$$ log (P_o/1-P_o) = \beta_0 + \beta_1 x_{age\_range} + \beta_2 x_{sex} + \beta_3 x_{province}$$
+
+Where $P_o$ represents the probability of a vote for the Other parties or not, $\beta_0$ is the intercept term which represents the log odds of the probability of a vote for the Other parties. The $\beta_1$ coefficient represents change in log odds for every one unit increase in age range. By holding other variables constant, let the age range increase by 1 unit, the odds ratio is $exp(\beta_1)$. The $beta_2$ coefficient represents the log of odds ratio between the sex groups, the odds ratio of a vote for Other parties or not is $exp(\beta_2)$. The $\beta_3$ coefficient represents the log of odds ratio between provinces, the odds ratio of a vote for the Other parties or not is $exp(\beta_3)$.
+
+### Model Selection 
+For model selection, there are two methods applied, one is p-value and one is Bayesian Information Criterion(BIC). By looking at the summary of each model one can see that most of the variables in these models have a small p-value(< 0.05), which represent that most of the variables have significant correlation with the vote count in each model. After checking the p-value, the method BIC was employed. BIC defines closeness to the true model, and it chooses the non-overfitted model. By applying the BIC method, some of the models have changes. For example, the model for Bloc Quebecios, the BIC returns the model only with the province. To make all the models by using the same variables, all the models keep all the variables for final modeling, even though there are some difference in the BIC result.
+
+
+## Post-Stratification 
+
+Post-Stratification is a technique for adjusting an unrepresentative sample, like an observational data, in which demographic predictors describe the strata. This technique is usually applied after the model has been fitted to the observed data. Post-Stratification can make a correction to the poorly representative samples, which allows to make more accurate inference about population level data. At this stage, our goal is to take in our national poll results and estimate how people voted for each party. We are looking to partition our survey data into data for our 7 major parties. We create new data sets for the voters of the: Liberals, Conservatives, NDP, Bloc Quebecois, Green, People's and Other. After this, we want to estimate our response variable for each data set using our multilevel regression model. We will do this by aggregating the estimates for each political party up to a population-level estimate by weighting each estimate for the parties, by their relative proportion in the population. We are essentially looking to extrapolate on how the entire population will vote.  To calculate the Post-Stratification based on the models, the formula is:
+$$ \hat{y}^{PS} = \frac{\sum N_j \hat{y}_j}{\sum N_j} $$
+
+Where $\hat{y}^{PS}$ is the estimation of vote for each cell, $N_j$ is the population size of the number $j$ cell based off the census data, and $\hat{y}_j$ is the estimate in each cell.
+
+All analysis for this report was programmed using `R version 4.0.2`.
+
+
+
+## Results 
+
+Elaborating on the methodologies section, we are fitting our model to see how the values of gender, age and province affect the probability of voting for each party. This was done by duplicating the survey data for each party. After the data was duplicated, an attribute was created which showcases whether an individual voted for that party (with 1 representing a vote and 0 representing no vote for each respective party). After this was completed, we fit the model for each one of the 7 data sets (The main 6 Canadian political parties plus the small parties grouped together and labeled as "Other").
+
+After completing this for each party, our post stratification technique was used to calculate an estimated probability to vote for that respective party. This is further illustrated in the following table:
+
+```{r, include=F}
+# Creating the Model
+liberal_data <- survey_data %>% 
+  mutate(votedliberal = ifelse(survey_data$vote == "Liberal Party", 1, 0))
+liberal_model <- glm(votedliberal ~ sex + province + age_range, data = liberal_data, family = binomial)
+conservative_data <- survey_data %>% 
+  mutate(votedconservative = ifelse(survey_data$vote == "Conservative Party", 1, 0))
+conservative_model <- glm(votedconservative ~  sex + province + age_range, data = conservative_data, family = binomial)
+ndp_data <- survey_data %>% 
+  mutate(votedndp = ifelse(survey_data$vote == "NDP", 1, 0))
+ndp_model <- glm(votedndp ~ sex + province + age_range, data = ndp_data, family = binomial)
+blocq_data <- survey_data %>% 
+  mutate(votedblocq = ifelse(survey_data$vote == "Bloc Québécois", 1, 0))
+blocq_model <- glm(votedblocq ~ sex + province, data = blocq_data, family = binomial)
+green_data <- survey_data %>% 
+  mutate(votedgreen = ifelse(survey_data$vote == "Green Party", 1, 0))
+green_model <- glm(votedgreen ~ sex + province + age_range, data = green_data, family = binomial)
+people_data <- survey_data %>%
+  mutate(votedpeople = ifelse(survey_data$vote == "People's Party", 1, 0))
+people_model <- glm(votedpeople ~ sex + province + age_range, data = people_data, family = binomial)
+other_data <- survey_data %>% 
+  mutate(votedother = ifelse(survey_data$vote == "Other", 1, 0))
+other_model <- glm(votedother ~ sex + province + age_range, data = other_data, family = binomial)
+step(liberal_model, trace = 0, k = log(nrow(liberal_data)))
+step(conservative_model, trace = 0, k = log(nrow(conservative_data)))               
+step(ndp_model, trace = 0, k = log(nrow(ndp_data)))               
+step(blocq_model, trace = 0, k = log(nrow(blocq_data)))
+step(green_model, trace = 0, k = log(nrow(green_data)))
+step(people_model, trace = 0, k = log(nrow(people_data)))
+step(other_model, trace = 0, k = log(nrow(other_data)))
+```
+
+```{r, include=F}
+census_data_counts <- census_data %>% 
+   group_by(sex, province, age_range) %>% 
+   summarise(n=n())
+census_data_counts$group_prop <- census_data_counts$n/sum(census_data_counts$n)
+```
+
+
+```{r, include = F}
+census_liberal <- census_data_counts
+census_cons <- census_data_counts
+census_ndp <- census_data_counts
+census_green <- census_data_counts
+census_quebec <- census_data_counts
+census_people <- census_data_counts
+census_other <- census_data_counts
+##generate estimates of voting for liberal
+census_liberal$liberal_estimate <- liberal_model %>%
+  predict(newdata=census_liberal)
+census_liberal$liberal_estimate <- exp(census_liberal$liberal_estimate)/(1+exp(census_liberal$liberal_estimate))
+census_liberal$liberal_predict_prop <- census_liberal$liberal_estimate * census_liberal$group_prop
+lib_pred <- sum(census_liberal$liberal_predict_prop)
+#generate estimate for voting conservative
+census_cons$estimate <- conservative_model %>%
+  predict(newdata=census_cons)
+census_cons$estimate <- exp(census_cons$estimate)/(1+exp(census_cons$estimate))
+census_cons$predict_prop <- census_cons$estimate * census_cons$group_prop
+cons_pred <- sum(census_cons$predict_prop)
+#generate estimate for voting ndp
+census_ndp$estimate <- ndp_model %>%
+  predict(newdata=census_ndp)
+census_ndp$estimate <- exp(census_ndp$estimate)/(1+exp(census_ndp$estimate))
+census_ndp$predict_prop <- census_ndp$estimate * census_ndp$group_prop
+ndp_pred <- sum(census_ndp$predict_prop)
+#generate estimate for voting bloc quebecois
+census_quebec$estimate <- blocq_model %>%
+  predict(newdata=census_quebec)
+census_quebec$estimate <- exp(census_quebec$estimate)/(1+exp(census_quebec$estimate))
+census_quebec$predict_prop <- census_quebec$estimate * census_quebec$group_prop
+quebec_pred <- sum(census_quebec$predict_prop)
+#generate estimate for voting green party
+census_green$estimate <- green_model %>%
+  predict(newdata=census_green)
+census_green$estimate <- exp(census_green$estimate)/(1+exp(census_green$estimate))
+census_green$predict_prop <- census_green$estimate * census_green$group_prop
+green_pred <- sum(census_green$predict_prop)
+#generate estimate for voting people's party
+census_people$estimate <- people_model %>%
+  predict(newdata=census_people)
+census_people$estimate <- exp(census_people$estimate)/(1+exp(census_people$estimate))
+census_people$predict_prop <- census_people$estimate * census_people$group_prop
+people_pred <- sum(census_people$predict_prop)
+#generate estimate for voting other
+census_other$estimate <- other_model %>%
+  predict(newdata=census_other)
+census_other$estimate <- exp(census_other$estimate)/(1+exp(census_other$estimate))
+census_other$predict_prop <- census_other$estimate * census_other$group_prop
+other_pred <- sum(census_other$predict_prop)
+```
+
+```{r, include=F}
+lib_pred
+cons_pred 
+ndp_pred
+quebec_pred
+green_pred
+people_pred
+other_pred
+```
+
+\newpage
+
+## Predicted Values 
+| Political Party | Estimated Value | 
+| ------------ | ------------ |
+| Liberals | 0.3406759 |  
+| ------------ | ------------ |
+| Conservatives | 0.2958395 |  
+| ------------ | ------------ |
+| NDP | 0.1815535 |  
+| ------------ | ------------ |
+| Bloc Quebecois | 0.0546449 |  
+| ------------ | ------------ |
+| Green | 0.1028644 |  
+| ------------ | ------------ |
+| People's | 0.01626909 |  
+| ------------ | ------------ |
+| Other | 0.005394099 |  
+
+As we can observe from the above table, our model predicts about a 34% vote for the Liberal party, about a 30% vote for the Conservative party, about a 18% vote for the NDP, about a 5% vote for the Bloc Quebecois, about a 10% vote for the Greens, about a 1% vote for the People's and <1% of the vote for other parties. The results are intuitively interpretable but it is important to note that if we aggregate all of the predicted voting proportions we get 100% of the vote which is what we are looking for. From this we can see that our model predicts a Liberal party government, with the Conservative party in a close second place.
+
+\newpage
+
+## Conclusions
+
+To summarize our goal was to find the likelihood that each party is voted for by the general population. We collected sample data, fit a model of the likelihood of voting for a party for each party, and generalized to the population to get an estimate of the likelihood that a party wins the election. In conclusion, we found that the Liberal Party has the highest likelihood of winning the overall popular vote of the next Canadian federal election.
+
+### Weaknesses
+
+Some weaknesses of our analysis are that the census data we used wasn't very representative of how the population is distributed across each province. For example, in our census data, residents from Ontario and British Columbia made up roughly the same proportion of our sample data. However, in reality, the population of Ontario is almost 3 times as big as British Columbia's. Our sample data showed that a significant portion of BC residents voted NDP, therefore we may have overestimated the likelihood of voting NDP since we over represented BC residents in our data.
+
+Furthermore, our analysis only works with data from 2019. Certain issues have arisen since the pandemic started in 2020 which may influence how people would vote now as opposed to 2019. Our survey data may not be representative of how people would vote in 2021 if an election were to begin. 
+
+### Next Step
+
+For future steps, I would change from a logistic regression model to a multilevel model. In addition, I would collect up to date survey data on how people would vote in 2021. I would also make it so that the survey data is representative of how the population is divided in each province. 
+
+\newpage
+
+## Bibliography
+
+1. Aiello, Rachel. "Here's how Canada changed under Justin Trudeau." www.ctvnews.ca, ctv news, 15 July 2019.
+
+2. "The Prime Minister of Canada." thecanadaguide.com, The Canada Guide.
+
+3.  "The Powers of the Canadian Prime Minister." www.constitutionalstudies.ca, 1 Jan. 2017.
+
+4. "Population projection for Canada by province in 2020 and 2043." www.statista.com, edited by Lucie Jeudy, 6 July 2021.
+
+5. "House of Commons seat allocation by province 2022 to 2032." elections.ca, Elections Canada.
+
+6. "How Canada’s electoral system works." cicnews.com, edited by Michael Schwartz, 30 Aug. 2021.

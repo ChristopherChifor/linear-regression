@@ -1,0 +1,8 @@
+"0","# Use this to create some plots. Should probably describe both the sample and population."
+"0","#For the graphs of categorical variables we will use barplots and for the numerical variable an scatterplot."
+"0","# plot(age, p3 , main=""Voted Party vs Age"", xlab=""Respondent Age "", ylab=""Voted Party"")"
+"0","# "
+"0","# par(las=2)"
+"0","# "
+"0","# barplot(table(survey_data$q3), main=""Sex"", horiz=TRUE)"
+"0","# barplot(table(survey_data$q4), main=""Province of Residence"", horiz=TRUE)"

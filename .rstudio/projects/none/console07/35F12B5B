@@ -1,0 +1,173 @@
+]0;/home/jovyan/Sta302jovyan@jupyter-ac5fcdab-2dd3bf-2d41ca-2db6c9-2da6bb964be8ad:~/Sta302$ git remote add origin https://github.com/ChristopherChifor/University-Admissions-Regression.git
+fatal: remote origin already exists.
+]0;/home/jovyan/Sta302jovyan@jupyter-ac5fcdab-2dd3bf-2d41ca-2db6c9-2da6bb964be8ad:~/Sta302$ git branch -M main
+]0;/home/jovyan/Sta302jovyan@jupyter-ac5fcdab-2dd3bf-2d41ca-2db6c9-2da6bb964be8ad:~/Sta302$ git push -u origin main
+remote: Support for password authentication was removed on August 13, 2021. Please use a personal access token instead.
+remote: Please see https://github.blog/2020-12-15-token-authentication-requirements-for-git-operations/ for more information.
+fatal: Authentication failed for 'https://github.com/ChristopherChifor/linear-regression.git/'
+]0;/home/jovyan/Sta302jovyan@jupyter-ac5fcdab-2dd3bf-2d41ca-2db6c9-2da6bb964be8ad:~/Sta302$ ChristopherChifor/University-Admissions-Regression[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[Kgit remote add origin https://github.com/ChristopherChifor/University-Admissions-Regression.git
+fatal: remote origin already exists.
+]0;/home/jovyan/Sta302jovyan@jupyter-ac5fcdab-2dd3bf-2d41ca-2db6c9-2da6bb964be8ad:~/Sta302$ git branch -M main
+rigin main]0;/home/jovyan/Sta302jovyan@jupyter-ac5fcdab-2dd3bf-2d41ca-2db6c9-2da6bb964be8ad:~/Sta302$ git push -u origin main
+remote: Support for password authentication was removed on August 13, 2021. Please use a personal access token instead.
+remote: Please see https://github.blog/2020-12-15-token-authentication-requirements-for-git-operations/ for more information.
+fatal: Authentication failed for 'https://github.com/ChristopherChifor/linear-regression.git/'
+]0;/home/jovyan/Sta302jovyan@jupyter-ac5fcdab-2dd3bf-2d41ca-2db6c9-2da6bb964be8ad:~/Sta302$ [Kjovyan@jupyter-ac5fcdab-2dd3bf-2d41ca-2db6c9-2da6bb964be8ad:~/Sta302$ ^C
+]0;/home/jovyan/Sta302jovyan@jupyter-ac5fcdab-2dd3bf-2d41ca-2db6c9-2da6bb964be8ad:~/Sta302$ git remote add origin https://github.com/ChristopherChifor/University-Admissions-Regression.git
+fatal: remote origin already exists.
+]0;/home/jovyan/Sta302jovyan@jupyter-ac5fcdab-2dd3bf-2d41ca-2db6c9-2da6bb964be8ad:~/Sta302$ git branch -M main
+]0;/home/jovyan/Sta302jovyan@jupyter-ac5fcdab-2dd3bf-2d41ca-2db6c9-2da6bb964be8ad:~/Sta302$ git push -u origin main[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[Kgit status
+
+On branch main
+Changes not staged for commit:
+  (use "git add/rm <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+  (commit or discard the untracked or modified content in submodules)
+	[31mmodified:   ../.rstudio/history_database[m
+	[31mmodified:   ../.rstudio/monitored/lists/file_mru[m
+	[31mmodified:   ../.rstudio/monitored/lists/help_history_links[m
+	[31mdeleted:    ../.rstudio/notebooks/1B63DBBB-Research Proposal/1/1851D95F5707515a/chunks.json[m
+	[31mdeleted:    ../.rstudio/notebooks/1B63DBBB-Research Proposal/1/s/csetup_chunk/000002.csv[m
+	[31mdeleted:    ../.rstudio/notebooks/1B63DBBB-Research Proposal/1/s/cvp4dy0s8wx89/000006.csv[m
+	[31mdeleted:    ../.rstudio/notebooks/1B63DBBB-Research Proposal/1/s/cvp4dy0s8wx89/000007.metadata[m
+	[31mdeleted:    ../.rstudio/notebooks/1B63DBBB-Research Proposal/1/s/cvp4dy0s8wx89/000007.rdf[m
+	[31mdeleted:    ../.rstudio/notebooks/1B63DBBB-Research Proposal/1/s/cvp4dy0s8wx89/000008.csv[m
+	[31mdeleted:    ../.rstudio/notebooks/1B63DBBB-Research Proposal/1/s/cvp4dy0s8wx89/000009.metadata[m
+	[31mdeleted:    ../.rstudio/notebooks/1B63DBBB-Research Proposal/1/s/cvp4dy0s8wx89/000009.rdf[m
+	[31mdeleted:    ../.rstudio/notebooks/20BD8D3F-Assignment2/1/1851D95F5707515a/c1t5xjx8we141/00000b.csv[m
+	[31mdeleted:    ../.rstudio/notebooks/20BD8D3F-Assignment2/1/1851D95F5707515a/c1t5xjx8we141/00000c.metadata[m
+	[31mdeleted:    ../.rstudio/notebooks/20BD8D3F-Assignment2/1/1851D95F5707515a/c1t5xjx8we141/00000c.png[m
+	[31mdeleted:    ../.rstudio/notebooks/20BD8D3F-Assignment2/1/1851D95F5707515a/c1t5xjx8we141/00000c.snapshot[m
+	[31mdeleted:    ../.rstudio/notebooks/20BD8D3F-Assignment2/1/1851D95F5707515a/c2ejabfq7stc2/000004.csv[m
+	[31mdeleted:    ../.rstudio/notebooks/20BD8D3F-Assignment2/1/1851D95F5707515a/c3fx35p68oyn6/000002.csv[m
+	[31mdeleted:    ../.rstudio/notebooks/20BD8D3F-Assignment2/1/1851D95F5707515a/c9udt8jzae6qq/000002.csv[m
+	[31mdeleted:    ../.rstudio/notebooks/20BD8D3F-Assignment2/1/1851D95F5707515a/cbv4neeqlmhgr/000002.csv[m
+	[31mdeleted:    ../.rstudio/notebooks/20BD8D3F-Assignment2/1/1851D95F5707515a/cbv4neeqlmhgr/000003.metadata[m
+	[31mdeleted:    ../.rstudio/notebooks/20BD8D3F-Assignment2/1/1851D95F5707515a/cbv4neeqlmhgr/000003.png[m
+	[31mdeleted:    ../.rstudio/notebooks/20BD8D3F-Assignment2/1/1851D95F5707515a/cbv4neeqlmhgr/000003.snapshot[m
+	[31mdeleted:    ../.rstudio/notebooks/20BD8D3F-Assignment2/1/1851D95F5707515a/chunks.json[m
+	[31mdeleted:    ../.rstudio/notebooks/20BD8D3F-Assignment2/1/1851D95F5707515a/cleecskcep6ns/000002.csv[m
+	[31mdeleted:    ../.rstudio/notebooks/20BD8D3F-Assignment2/1/1851D95F5707515a/cleecskcep6ns/000003.metadata[m
+	[31mdeleted:    ../.rstudio/notebooks/20BD8D3F-Assignment2/1/1851D95F5707515a/cleecskcep6ns/000003.png[m
+	[31mdeleted:    ../.rstudio/notebooks/20BD8D3F-Assignment2/1/1851D95F5707515a/cleecskcep6ns/000003.snapshot[m
+	[31mdeleted:    ../.rstudio/notebooks/20BD8D3F-Assignment2/1/1851D95F5707515a/cmvt2gdmjpav6/000002.csv[m
+	[31mdeleted:    ../.rstudio/notebooks/20BD8D3F-Assignment2/1/1851D95F5707515a/cmvt2gdmjpav6/000003.metadata[m
+	[31mdeleted:    ../.rstudio/notebooks/20BD8D3F-Assignment2/1/1851D95F5707515a/cmvt2gdmjpav6/000003.rdf[m
+	[31mdeleted:    ../.rstudio/notebooks/20BD8D3F-Assignment2/1/1851D95F5707515a/cmvt2gdmjpav6/000004.csv[m
+	[31mdeleted:    ../.rstudio/notebooks/20BD8D3F-Assignment2/1/1851D95F5707515a/cmvt2gdmjpav6/000005.metadata[m
+	[31mdeleted:    ../.rstudio/notebooks/20BD8D3F-Assignment2/1/1851D95F5707515a/cmvt2gdmjpav6/000005.rdf[m
+	[31mdeleted:    ../.rstudio/notebooks/20BD8D3F-Assignment2/1/1851D95F5707515a/coa0kihainwa1/000002.csv[m
+	[31mdeleted:    ../.rstudio/notebooks/20BD8D3F-Assignment2/1/1851D95F5707515a/cq482da830ppy/000002.csv[m
+	[31mdeleted:    ../.rstudio/notebooks/20BD8D3F-Assignment2/1/1851D95F5707515a/cq482da830ppy/000003.metadata[m
+	[31mdeleted:    ../.rstudio/notebooks/20BD8D3F-Assignment2/1/1851D95F5707515a/cq482da830ppy/000003.png[m
+	[31mdeleted:    ../.rstudio/notebooks/20BD8D3F-Assignment2/1/1851D95F5707515a/cq482da830ppy/000003.snapshot[m
+	[31mdeleted:    ../.rstudio/notebooks/20BD8D3F-Assignment2/1/1851D95F5707515a/czrx31fnxiwfh/000002.csv[m
+	[31mmodified:   ../.rstudio/notebooks/EF7D1CF0-FinalProject/1/1851D95F5707515a/chunks.json[m
+	[31mmodified:   ../.rstudio/notebooks/paths[m
+	[31mmodified:   ../.rstudio/persistent-state[m
+	[31mmodified:   ../.rstudio/projects/none/console07/AD5A9F3F[m
+	[31mmodified:   ../.rstudio/projects/none/console07/INDEX001[m
+	[31mmodified:   ../.rstudio/sessions/active/session-5707515a/properites/last-used[m
+	[31mmodified:   ../.rstudio/sessions/active/session-5707515a/session-persistent-state[m
+	[31mmodified:   ../.rstudio/sessions/active/session-5707515a/unsaved-notebooks/5EB0F33E/1/c6ivy7xa5v439/000005.png[m
+	[31mmodified:   ../.rstudio/sessions/active/session-5707515a/unsaved-notebooks/5EB0F33E/1/chunks.json[m
+	[31mmodified:   ../.rstudio/sessions/active/session-5707515a/unsaved-notebooks/5EB0F33E/1/cjfebuso6lj18/000031.png[m
+	[31mmodified:   ../.rstudio/sessions/active/session-5707515a/unsaved-notebooks/5EB0F33E/1/cjfebuso6lj18/000033.png[m
+	[31mmodified:   ../.rstudio/sources/prop/04596144[m
+	[31mmodified:   ../.rstudio/sources/prop/838D7A9F[m
+	[31mmodified:   ../.rstudio/sources/prop/FA93D8D5[m
+	[31mmodified:   ../.rstudio/sources/prop/INDEX[m
+	[31mdeleted:    ../.rstudio/sources/s-5707515a/27EC9A51[m
+	[31mmodified:   ../.rstudio/sources/s-5707515a/27EC9A51-contents[m
+	[31mmodified:   ../.rstudio/sources/s-5707515a/656323DA[m
+	[31mdeleted:    ../.rstudio/sources/s-5707515a/7806097F[m
+	[31mdeleted:    ../.rstudio/sources/s-5707515a/80EB25A5[m
+	[31mmodified:   ../.rstudio/sources/s-5707515a/lock_file[m
+	[31mdeleted:    ../STA304-F21-Assignment2.git[m
+	[31mmodified:   ../Sta238/STA238-Assignment1.git[m (modified content, untracked content)
+	[31mmodified:   ../Sta238/STA238-Assignment2.git[m (modified content, untracked content)
+	[31mmodified:   ../Sta238/STA238-Assignment3.git[m (modified content)
+	[31mmodified:   ../Sta238/STA238-FinalProject.git[m (modified content, untracked content)
+	[31mmodified:   ../Sta238/STA238-Week1.git[m (modified content, untracked content)
+	[31mmodified:   ../Sta238/STA238-Week3.git[m (modified content)
+	[31mmodified:   ../Sta238/STA238-Week4.git[m (modified content)
+	[31mmodified:   Research Proposal.Rmd[m
+	[31mmodified:   Research-Proposal.pdf[m
+	[31mmodified:   ../Sta304/STA304-F21-Assignment1.git[m (modified content, untracked content)
+	[31mmodified:   ../Sta304/STA304-F21-Week1Class.git[m (untracked content)
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	[31m../.gitconfig[m
+	[31m../.rstudio/notebooks/1B63DBBB-Research Proposal/1/s/csetup_chunk/000004.csv[m
+	[31m../.rstudio/notebooks/1B63DBBB-Research Proposal/1/s/cvp4dy0s8wx89/00000e.csv[m
+	[31m../.rstudio/notebooks/1B63DBBB-Research Proposal/1/s/cvp4dy0s8wx89/00000f.metadata[m
+	[31m../.rstudio/notebooks/1B63DBBB-Research Proposal/1/s/cvp4dy0s8wx89/00000f.rdf[m
+	[31m../.rstudio/notebooks/1B63DBBB-Research Proposal/1/s/cvp4dy0s8wx89/000010.csv[m
+	[31m../.rstudio/notebooks/1B63DBBB-Research Proposal/1/s/cvp4dy0s8wx89/000011.metadata[m
+	[31m../.rstudio/notebooks/1B63DBBB-Research Proposal/1/s/cvp4dy0s8wx89/000011.rdf[m
+	[31m../.rstudio/notebooks/828AAE0F-University-Admissions-Regression/[m
+	[31m../.rstudio/notebooks/924E7636-Assignment3/[m
+	[31m../.rstudio/notebooks/B262406F-Assignment2/[m
+	[31m../.rstudio/notebooks/EF7D1CF0-FinalProject/1/s/[m
+	[31m../.rstudio/projects/none/console07/35F12B5B[m
+	[31m../.rstudio/projects/none/console07/35F12B5B.env[m
+	[31m../.rstudio/projects/none/console07/4443E98D[m
+	[31m../.rstudio/projects/none/console07/4443E98D.env[m
+	[31m../.rstudio/projects/none/console07/8F328BCC[m
+	[31m../.rstudio/projects/none/console07/8F328BCC.env[m
+	[31m../.rstudio/projects_settings/last-project-path[m
+	[31m../.rstudio/sessions/active/session-5707515a/jobs/2C6560FD-output.json[m
+	[31m../.rstudio/sessions/active/session-5707515a/jobs/3179A2FA-output.json[m
+	[31m../.rstudio/sessions/active/session-5707515a/jobs/D83F48A2-output.json[m
+	[31m../.rstudio/sources/prop/2B51FB6B[m
+	[31m../.rstudio/sources/prop/352F32F7[m
+	[31m../.rstudio/sources/prop/8361575E[m
+	[31m../.rstudio/sources/prop/A6BC460F[m
+	[31m../.rstudio/sources/prop/B68BF5BD[m
+	[31m../.rstudio/sources/prop/B805AFFB[m
+	[31m../.rstudio/sources/s-5707515a/0464A5E6[m
+	[31m../.rstudio/sources/s-5707515a/0464A5E6-contents[m
+	[31m../.rstudio/sources/s-5707515a/0BDE4216-contents[m
+	[31m../.rstudio/sources/s-5707515a/14691A8C-contents[m
+	[31m../.rstudio/sources/s-5707515a/2F93304C-contents[m
+	[31m../.rstudio/sources/s-5707515a/32E44CBA-contents[m
+	[31m../.rstudio/sources/s-5707515a/45868FFF-contents[m
+	[31m../.rstudio/sources/s-5707515a/4D64482D[m
+	[31m../.rstudio/sources/s-5707515a/4D64482D-contents[m
+	[31m../.rstudio/sources/s-5707515a/72978F97-contents[m
+	[31m../.rstudio/sources/s-5707515a/7341AC1B[m
+	[31m../.rstudio/sources/s-5707515a/7341AC1B-contents[m
+	[31m../.rstudio/sources/s-5707515a/765DE2E9-contents[m
+	[31m../.rstudio/sources/s-5707515a/7A6CD977-contents[m
+	[31m../.rstudio/sources/s-5707515a/819F82F5-contents[m
+	[31m../.rstudio/sources/s-5707515a/8604EA93[m
+	[31m../.rstudio/sources/s-5707515a/8604EA93-contents[m
+	[31m../.rstudio/sources/s-5707515a/8E9577D0-contents[m
+	[31m../.rstudio/sources/s-5707515a/91BE9113-contents[m
+	[31m../.rstudio/sources/s-5707515a/A9CE47AE-contents[m
+	[31m../.rstudio/sources/s-5707515a/BC097E50[m
+	[31m../.rstudio/sources/s-5707515a/BC097E50-contents[m
+	[31m../.rstudio/sources/s-5707515a/BCBD9C44-contents[m
+	[31m../.rstudio/sources/s-5707515a/CB5759A9-contents[m
+	[31m../.rstudio/sources/s-5707515a/D41BB035-contents[m
+	[31m../.rstudio/sources/s-5707515a/DEC4C42D-contents[m
+	[31m../.rstudio/sources/s-5707515a/E162D53B-contents[m
+	[31m../.rstudio/sources/s-5707515a/E650109C[m
+	[31m../.rstudio/sources/s-5707515a/E650109C-contents[m
+	[31m../.rstudio/sources/s-5707515a/E6856A5F-contents[m
+	[31m../.rstudio/sources/s-5707515a/E7EAAC4B[m
+	[31m../.rstudio/sources/s-5707515a/E7EAAC4B-contents[m
+	[31m../.rstudio/sources/s-5707515a/EC52A572-contents[m
+	[31m../.rstudio/sources/s-5707515a/EF5554BD-contents[m
+	[31m../.rstudio/sources/s-5707515a/FB1833BD-contents[m
+	[31m../Assignment3.rmd[m
+	[31m../STA304-F21-Assignment3-code.git/[m
+	[31mUniversity-Admissions-Regression.Rmd[m
+	[31mUniversity-Admissions-Regression.nb.html[m
+	[31m../Sta304/STA304-F21-Assignment2.git/[m
+	[31m../Sta304/STA304-F21-Week4.git/[m
+
+no changes added to commit (use "git add" and/or "git commit -a")
+]0;/home/jovyan/Sta302jovyan@jupyter-ac5fcdab-2dd3bf-2d41ca-2db6c9-2da6bb964be8ad:~/Sta302$ 
+]0;/home/jovyan/Sta302jovyan@jupyter-ac5fcdab-2dd3bf-2d41ca-2db6c9-2da6bb964be8ad:~/Sta302$ git comm[K[K[K[Kadd -A

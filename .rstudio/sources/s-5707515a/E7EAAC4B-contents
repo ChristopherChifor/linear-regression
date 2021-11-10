@@ -1,0 +1,195 @@
+---
+title: "The Relationship Between the Number of Automobile Thefts and Their Population Sizes per Neighbourhood in Toronto"
+author: "Christopher Chifor - 1006001899"
+subtitle: Assignment 2
+output:
+  pdf_document: default
+---
+
+```{r, include=FALSE}
+knitr::opts_chunk$set(warning = FALSE, message = FALSE)
+library(tidyverse)
+library(readr)
+library(dplyr)
+library(opendatatoronto)
+```
+
+
+# Introduction
+
+We are curious to uncover if the number of automobile thefts in Toronto's neighbourhoods are related to their population size in 2020. This initial idea for the research comes from the fact that the police services are reporting that various crime rates have gone up in 2020, including automobile thefts (Katawazi, 2020). This is important since the entire city of Toronto would like to bring crime rates down as it is interested in being the safest city to live in. We are inclined to believe we will see a relationship between the amount of automobile thefts and population size in each neighbourhood in Toronto. 
+
+# Data
+
+## Data Collection Process
+
+The data was collected and provided openly via https://open.toronto.ca/dataset/neighbourhood-crime-rates/. It  includes the crime data for each neighbourhood in Toronto, with counts and rates for crimes such as: Assault, Auto Theft, Break and Enter, Robbery, Theft Over, Homicide and Shooting & Firearm Discharges. For the sake of this analysis we will only be focusing on automobile theft, or more specifically, number of automobile thefts for 2020, the population and the neighbourhood. It is also important to note that there are 140 neighbourhoods in Toronto as considered by the Toronto Police Services. These variables will assist us in unpacking their relationship and allowing us to inform the Toronto Police Services on how to more accurately distribute their resources to lower the crime rates for the coming years.
+
+
+## Data Summary
+
+Our data reports on the crime statistics per neighbourhoods from 2014-2020. We have 104 variables, four of which are identifier variables. This leaves us with 100 variables such as: individual neighbourhood population, number of robberies in 2016, assaults in 2019, neighbourhood name and of course the number of automobile thefts in 2020. For the sake of this analysis we will only consider: the population count for the neighbourhoods, the names of each neighbourhood and their respective number of automobile thefts. Since we are only interested in these three variables, we will be removing all other variables irrelevant to this study.
+
+```{r, include = F}
+
+# Here you can load in and clean the data (you may need to do the cleaning in a separate R script). 
+
+# You may need additional chunks, in case you want to include some of the cleaning output.
+
+# Notice that the include=FALSE means that the code, and its resulting output, in this chunk will not appear in the pdf.
+
+# get package
+package <- show_package("fc4d95a6-591f-411f-af17-327e6c5d03c7")
+package
+
+# get all resources for this package
+resources <- list_package_resources("fc4d95a6-591f-411f-af17-327e6c5d03c7")
+
+# identify datastore resources; by default, Toronto Open Data sets datastore resource format to CSV for non-geospatial and GeoJSON for geospatial resources
+datastore_resources <- filter(resources, tolower(format) %in% c('csv', 'geojson'))
+
+# load the first datastore resource as a sample
+data <- filter(datastore_resources, row_number()==1) %>% get_resource()
+
+```
+
+
+```{r, include=F}
+
+# Use this to calculate some summary measures. 
+
+summary(data$AutoTheft_2020)
+summary(data$F2020_Population_Projection)
+sd(data$AutoTheft_2020)
+sd(data$F2020_Population_Projection)
+```
+
+\newpage
+
+## **Numerical Summaries**
+
+
+## Population of Toronto's Neighbourhoods in 2020
+| Minimum | Median | Mean | Maximum   |Standard Deviation |
+| ------------ | ------------ | ------------ | ------------ |--------------|
+| 7,130 | 18,378 |  21,729 | 87,808 | 11,839.46 |
+
+## Automobile Thefts in Toronto's Neighbourhoods in 2020
+| Minimum | Median | Mean | Maximum   |Standard Deviation |
+| ------------ | ------------ | ------------ | ------------ |--------------|
+| 4.00 | 28.50 |  40.17 | 396.00 |42.38636 |
+
+
+Consider the the table for the Population variable first. We can observe that each neighbourhood in Toronto contains on average 21,729 people. This is sound, as we can estimate the total population of Toronto from this number by simply multiplying the average population per neighbourhood by the total number of neighbourhoods in Toronto (140). We can also observe some outlier observations such as the minimum population (Beechborough-Greenbrook) and on the other hand, the maximum population is 87,808 (Waterfront Communities-The Island), which is a highly dense part of the city. Contrarily, for the Automobile Thefts in Toronto's Neighbourhoods in 2020 we can see that the minimum amount of stolen automobiles is 4.00 (Ionview) and the maximum amount is 396.00 (West Humber-Clairville) in 2020. These are some extreme cases and we will still consider them as part of our analysis. It is also important to note that we will not be cleaning the data as it comes cleaned from Open Data Toronto. We will be removing all other crime statistics that do not affect our study.
+
+
+```{r, echo = F}
+
+# Use this to create some plots. 
+
+data %>%
+  ggplot(aes(x = F2020_Population_Projection, y=AutoTheft_2020))+
+  geom_point(col = "purple")+
+  ggtitle("Scatterplot of Auto Thefts per Neighbourhood to Population in Toronto")+
+  labs(x="Neighbourhood Population in 2020", y="Number of Auto Thefts")+
+  theme(plot.title = element_text(size=12))
+
+```
+
+
+As we can observe from the above graph, we have a large cluster of points near the bottom left of the graph. This is justified as from our Numerical Summaries, we noticed that the median population size is about 18,378 per neighbourhood, and the mean is about 21,729, which is evident from the graph. We can also see that there appears to be a positive linear correlation between the number of auto thefts and the population sizes of the neighbourhoods. This seems to line up with our initially posed hypothesis.
+
+All analysis for this report was programmed using `R version 4.1.1`.
+
+
+
+# Methods
+
+The model which will be used for this section of the report will be the frequentist linear regression model. The linear regression technique attempts to model the relationship between two variables by fitting a linear equation to some observed bivariate $(x,y)$ data. One variable is considered to be the independent variable (x), and the other is considered to be a dependent variable ($y$). Linear regression models are used to show/predict the relationship between two variables. We want to try to fit a straight line through the middle of the data, to summarize the general pattern/trend we see. In layman's terms we are essentially looking for "the best" straight line we can draw encompassing the entire observed data with our estimated data. Mathematically we have:
+
+$$ Y_i = \beta_0 + \beta_1 x_1 +  \beta_2 x_2 + U_i $$
+
+
+Firstly, we assume that $x_1,x_2,\dots, x_n$ are nonrandom and $y_1,y_2,\dots, y_n$ are realizations of random variables $Y_1,Y_2,\dots, Y_n$. The line $y = \beta_0 + \beta_1x_1 + \beta_2x_2$ is named the regression line. The parameters $\beta_0$, $\beta_1$ and $\beta_2$ represent the y-intercept and the coefficients of the population and the neighbourhood variables respectively. The random variables $U_1, U_2, \dots, U_n$ are assumed to be independent of each other. These random variables are assumed to have an expected value of 0. This is because the random fluctuation, which is what each $U_i$ represents, is considered to be approximated to the regression line. Lastly, since each of random fluctuation has the same variability, we assume that each $U_i$ term has the exact same variance. It is also important to note that $E[Y_i] = \alpha + \beta x_i$, since $E[U_i] = 0$. The model is appropiate for our case as we will be using two numerical variables which we can compare on our x and y axes (From STA238). Note we are not dropping any of the variables in our multiple linear regression model. We selected the number of automobile thefts to be the dependent variable as we hypothesize that for a change in the population size and the neighbourhood ($x_1$ and $x_2$) we will see a change in the number of automobile thefts.
+
+# Results 
+
+As aforementioned, we are interested in how the number of automobile thefts is affected by the population of the neighbourhoods in Toronto. Through our multiple linear regression analysis we observed our hypothesis of the positive correlation of the variables holds true. We can qualitatively see that for an increase in the size of a neighbourhood's population, we see an increase in the number of auto thefts in that neighbourhood. More specifically for about a 100 person increase population size for a given neighbourhood, our model gives us about a 1 automobile theft increase. This is further illustrated in the table below. We also see that we have an intercept of approximately 5 stolen vehicles for a population size of 0. This is not practically useful information. However, it is important to note at least for the sake of this analysis.
+
+```{r, include = F}
+
+# Here you can run a linear regression on your two variables of interest.
+
+#lm(y~x, data = your_data)  # This is for a simple linear regression.
+cor(data$AutoTheft_2020, data$F2020_Population_Projection)
+
+summary(lm(data$AutoTheft_2020 ~ data$F2020_Population_Projection+ data$Neighbourhood))
+```
+
+\newpage
+
+## Table of Coefficients from our Multiple Linear Regression Model
+
+| $\hat{\beta}_0$ |   5.0293846 |
+|--------------- | --------|
+| $\hat{\beta}_1$  | 0.0016173 |
+|--------------- | --------|
+| $\hat{\beta}_2$  |  -3.689 |
+|--------------- | --------|
+| $correlation\:coefficient \: (r)$  | 0.4517474 |
+
+
+```{r, echo=F}
+
+# Use this to calculate generate a scatterplot of your variables if desired.
+# You can use abline to overlay the scatterplot with the regression line (again, if desired).
+
+data %>%
+  ggplot(aes(x = F2020_Population_Projection, y=AutoTheft_2020))+
+  geom_point(col = "purple")+
+  ggtitle("Scatterplot of Auto Thefts per Neighbourhood to Population in Toronto")+
+  labs(x="Neighbourhood Population in 2020", y="Number of Auto Thefts")+
+  theme(plot.title = element_text(size=12))+
+  geom_abline(slope = 0.0016173, intercept = 5.0293846, col="red")
+
+```
+
+As seen from the above scatterplot, we have added our regression line in red. We can now more clearly see our slope and make sense of the practical application of it. It also appears that all of our initial assumptions hold in this case. The assumption is that the true relationship between x and y in the population is actually linear holds, the assumption that the error terms are mutually independent holds, and the assumption that all error terms have the same variance holds too since they are centred around the regression line. This regression line will help us predict and analyze data from our data set. This also seems to be quite reasonable as our population values are much larger than our automobile theft values. We should expect a positive slope, but one that is less than 1. Another notable finding is that our estimated y-intercept value is small, which in reality, does not make sense. However, this is irrelevant to our study as we cannot extrapolate to a negative population. This only helps when interpolating values within our minimum and maximum values for population.
+
+
+All analysis for this report was programmed using `R version 4.1.1`. Using the `lm()` function in base `R` to derive the estimates of a frequentest linear regression in this section [4].
+
+
+
+# Conclusions
+
+From our linear regression analysis we can observe a moderate positive linear correlation between our response and predictor variables. We observed that for a 100 person increase in population size for a given neighbourhood, our model gives us about a 1 automobile theft increase. This is due to their apparent correlation as given by our correlation coefficient $r=0.4517474$. A key takeaway from this would be that, larger neighbourhoods in Toronto have more stolen cars. For the most part, there is no real "bad part" of the city where crime is higher than everywhere else. The number of crimes seems to be distributed among all neighbourhoods somewhat equally. Initially we believed that the Toronto Police Services should reallocate their resources to neighbourhoods more in need. However, after our analysis we can say that the Toronto Police Services should increase their police force proportionally to the size of the respective neighbourhood.
+
+## Weaknesses
+
+A weakness of this study would be the fact that their are plenty of neighbourhoods in Toronto. This created some challenges in the creation of a multiple linear regression as we had a coefficient for each of the neighbourhoods as they are all categorical variables.
+
+## Next Steps
+
+In the future, it would be a good idea to group the neighbourhoods into larger regions of the city. If we had, say, 4 regions in the city of Toronto, this would make it easier for us to conduct a multiple linear regression.
+
+## Discussion
+
+With the rise of Covid-19 in 2020, we noticed a large increase of crimes in the city of Toronto relative to the previous year (2019). Of these crimes, automobile thefts were a common occurance. Our study will further assist the Toronto Police Services on how to allocate their squad/patrol vehicles to adequately ensure the automobile theft rates are low in the City of Toronto. 
+
+
+\newpage
+
+# Bibliography
+
+1. Grolemund, G. (2014, July 16) *Introduction to R Markdown*. RStudio. [https://rmarkdown.rstudio.com/articles_intro.html](https://rmarkdown.rstudio.com/articles_intro.html). (Last Accessed: October 12, 2021) 
+
+2. Dekking, F. M., et al. (2005) *A Modern Introduction to Probability and Statistics: Understanding why and how.* Springer Science & Business Media.
+
+3.  Allaire, J.J., et. el. *References: Introduction to R Markdown*. RStudio. [https://rmarkdown.rstudio.com/docs/](https://rmarkdown.rstudio.com/docs/). (Last Accessed: October 12, 2021) 
+
+4. Peter Dalgaard. (2008) *Introductory Statistics with R, 2nd edition*.
+
+5. Katawazi, M. (2020, April 1). These are the crimes that have been on the rise since the COVID-19 pandemic. Toronto. Retrieved October 19, 2021, from [https://toronto.ctvnews.ca/these-are-the-crimes-that-have-been-on-the-rise-since-the-covid-19-pandemic-1.4877760]. 
+
+6. Open Data Dataset. (2021, May 6). City of Toronto Open Data Portal. https://open.toronto.ca/dataset/neighbourhood-crime-rates/

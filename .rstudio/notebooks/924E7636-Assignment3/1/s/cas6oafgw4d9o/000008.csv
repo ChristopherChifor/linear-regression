@@ -1,0 +1,4 @@
+"0","# Creating the Model"
+"0","model <- glm(vote_liberal ~ age, data=survey_data, family=""binomial"")"
+"2","Error in eval(predvars, data, env) : object 'vote_liberal' not found
+"

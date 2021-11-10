@@ -1,0 +1,5 @@
+"0","#Here we are plotting our the distribution of the votes across all of our 3 predictor variables"
+"0","# survey_data %>% ggplot(aes(y=reorder(province,province,"
+"0","#                      function(x)length(x)), x = (..count..)/sum(..count..))) + geom_bar(aes(fill = vote), position = ""identity"") + labs(title = ""Proportion of each Province that voted for each Party"", y=""Province"", x=""Proportion"", fill=""Party"")"
+"0","survey_data %>% ggplot(aes(y=reorder(province,province,"
+"0","                      function(x)length(x)), x = (..count..)/sum(..count..))) + geom_bar(aes(fill = vote))+ labs(title = ""Proportion of each Province that voted for each Party"", y=""Province"", x=""Proportion"", fill=""Party"")"

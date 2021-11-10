@@ -1,0 +1,16 @@
+"0",""
+"0","# Here you can load in and clean the data (you may need to do the cleaning in a separate R script). "
+"0",""
+"0","# You may need additional chunks, in case you want to include some of the cleaning output."
+"0",""
+"0","fertility <- fertility %>%"
+"0","  select(`Data Source` ,X63) %>%"
+"0","  filter(!is.na(X63)) %>%"
+"0","  rename(Country = `Data Source`)%>%"
+"0","  rename(Fertility_Rate = X63) %>%"
+"0","  filter(Country != ""Country Name"") %>%"
+"0","  filter(Country != ""Bermuda"" & Country != ""Eritrea"" & Country != ""Faroe Islands"" & Country != ""Greenland"" & Country != ""Liechtenstein"" & Country != ""St. Martin (French part)"" & Country != ""Kosovo"" & Country != ""World"" & Country != ""Arab World"" & Country != ""Central Europe and the Baltics"" & Country != ""East Asia & Pacific (excluding high income)"" & Country != ""Early-demographic dividend"" & Country != ""East Asia & Pacific"" & Country != ""Europe & Central Asia (excluding high income)"" & Country != ""Europe & Central Asia"" & Country != ""Euro area"" & Country != ""European Union"" & Country != ""Fragile and conflict affected situations"" & Country != ""High income"" & Country != ""Heavily indebted poor countries (HIPC)"" & Country != ""IBRD only"" & Country != ""IDA total"" & Country != ""IDA blend"" & Country != ""IDA only"" & Country != ""Latin America & Caribbean (excluding high income)"" & Country != ""Latin America & Caribbean"" & Country != ""Least developed countries: UN classification"" & Country != ""Low income"" & Country != ""Lower middle income"" & Country != ""Low & middle income"" & Country != ""Late-demographic dividend"" & Country != ""Middle East & North Africa"" & Country != ""Middle income"" & Country != ""Middle East & North Africa (excluding high income)"" & Country != ""North America"" & Country != ""OECD members"" & Country != """" & Country != ""Other small states"" & Country != ""Pre-demographic dividend"" & Country != ""Pacific island small states"" & Country != ""Post-demographic dividend"" & Country != ""Sub-Saharan Africa (excluding high income)"" & Country != ""Small states"" & Country != ""East Asia & Pacific (IDA & IBRD countries)"" & Country != ""Europe & Central Asia (IDA & IBRD countries)"" & Country != ""Latin America & the Caribbean (IDA & IBRD countries)"" & Country != ""Middle East & North Africa (IDA & IBRD countries)"" & Country != ""South Asia (IDA & IBRD)"" & Country != ""Sub-Saharan Africa (IDA & IBRD countries)"" & Country != ""Upper middle income"" & Country != ""IDA & IBRD total"" & Country != ""South Asia"")"
+"2","Error: Can't subset columns that don't exist.
+[31mx[39m Column `X63` doesn't exist.
+[90mRun `rlang::last_error()` to see where the error occurred.[39m
+"

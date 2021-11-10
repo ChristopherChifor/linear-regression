@@ -1,0 +1,7 @@
+"0","knitr::opts_chunk$set(warning = FALSE, message = FALSE)"
+"2","There were 12 warnings (use warnings() to see them)"
+"2","
+"
+"0","library(openintro)"
+"0","library(tidyverse)"
+"0","library(dplyr)"

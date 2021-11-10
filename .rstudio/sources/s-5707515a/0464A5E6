@@ -1,0 +1,32 @@
+{
+    "id": "0464A5E6",
+    "path": null,
+    "project_path": null,
+    "type": "r_dataframe",
+    "hash": "0",
+    "contents": "",
+    "dirty": false,
+    "created": 1636076756617.0,
+    "source_on_save": false,
+    "relative_order": 9,
+    "properties": {
+        "expression": "liberal_data",
+        "caption": "liberal_data",
+        "totalObservations": 2480,
+        "displayedObservations": 2480,
+        "variables": 5,
+        "cacheKey": "2948A709",
+        "object": "liberal_data",
+        "environment": "",
+        "contentUrl": "grid_resource/gridviewer.html?env=&obj=liberal_data&cache_key=2948A709&max_cols=50",
+        "preview": 0
+    },
+    "folds": "",
+    "lastKnownWriteTime": 8243668985825599520,
+    "encoding": "",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1636076756617,
+    "read_only": false,
+    "read_only_alternatives": []
+}

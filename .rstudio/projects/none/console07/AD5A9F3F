@@ -65,3 +65,474 @@ Untracked files:
 	[31m../Sta314/[m
 
 ]0;/home/jovyan/Sta302jovyan@jupyter-ac5fcdab-2dd3bf-2d41ca-2db6c9-2da6bb964be8ad:~/Sta302$ git add -A
+warning: adding embedded git repository: STA304-F21-Assignment2.git
+[33mhint: You've added another git repository inside your current repository.[m
+[33mhint: Clones of the outer repository will not contain the contents of[m
+[33mhint: the embedded repository and will not know how to obtain it.[m
+[33mhint: If you meant to add a submodule, use:[m
+[33mhint: [m
+[33mhint: 	git submodule add <url> STA304-F21-Assignment2.git[m
+[33mhint: [m
+[33mhint: If you added this path by mistake, you can remove it from the[m
+[33mhint: index with:[m
+[33mhint: [m
+[33mhint: 	git rm --cached STA304-F21-Assignment2.git[m
+[33mhint: [m
+[33mhint: See "git help submodule" for more information.[m
+warning: adding embedded git repository: Sta238/STA238-A4-Extra-BootstrapVariance.git
+warning: adding embedded git repository: Sta238/STA238-Assignment1.git
+warning: adding embedded git repository: Sta238/STA238-Assignment2.git
+warning: adding embedded git repository: Sta238/STA238-Assignment3.git
+warning: adding embedded git repository: Sta238/STA238-Assignment4.git
+warning: adding embedded git repository: Sta238/STA238-FinalProject.git
+warning: adding embedded git repository: Sta238/STA238-W21-Week6Class.git
+warning: adding embedded git repository: Sta238/STA238-Week1.git
+warning: adding embedded git repository: Sta238/STA238-Week2.git
+warning: adding embedded git repository: Sta238/STA238-Week3.git
+warning: adding embedded git repository: Sta238/STA238-Week4.git
+warning: adding embedded git repository: Sta238/STA238-Week5.git
+warning: adding embedded git repository: Sta238/STA238-Week8-Class.git
+warning: adding embedded git repository: Sta238/sta238-book
+warning: adding embedded git repository: Sta304/STA304-F21-Assignment1.git
+warning: adding embedded git repository: Sta304/STA304-F21-Week1Class.git
+]0;/home/jovyan/Sta302jovyan@jupyter-ac5fcdab-2dd3bf-2d41ca-2db6c9-2da6bb964be8ad:~/Sta302$ git commit -m "push"
+
+*** Please tell me who you are.
+
+Run
+
+  git config --global user.email "you@example.com"
+  git config --global user.name "Your Name"
+
+to set your account's default identity.
+Omit --global to set the identity only in this repository.
+
+fatal: unable to auto-detect email address (got 'jovyan@jupyter-ac5fcdab-2dd3bf-2d41ca-2db6c9-2da6bb964be8ad.(none)')
+]0;/home/jovyan/Sta302jovyan@jupyter-ac5fcdab-2dd3bf-2d41ca-2db6c9-2da6bb964be8ad:~/Sta302$ git config --global yser[K[K[K[Kusern[K.name "christopher.chifor[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[KChfir[K[K[KristopherChifor"
+]0;/home/jovyan/Sta302jovyan@jupyter-ac5fcdab-2dd3bf-2d41ca-2db6c9-2da6bb964be8ad:~/Sta302$ git coni[Kfig -- [Kgo[Klobal user.email " [K[K[K"[K "chrius[Kchristopher.[K_chifor@yahooc[K.co"[K[Ka"
+]0;/home/jovyan/Sta302jovyan@jupyter-ac5fcdab-2dd3bf-2d41ca-2db6c9-2da6bb964be8ad:~/Sta302$ git commit -m "Iniital[K[K[K[Ktial C[Kcommit [K"
+[master (root-commit) 7f4d74d] Initial commit
+ 404 files changed, 44436 insertions(+)
+ create mode 100644 .config/rstudio/rstudio-prefs.json
+ create mode 100644 .ipython/profile_default/startup/README
+ create mode 100644 .jupyter/migrated
+ create mode 100644 .local/share/jupyter/notebook_secret
+ create mode 100644 .local/share/jupyter/runtime/nbserver-1-open.html
+ create mode 100644 .local/share/jupyter/runtime/nbserver-1.json
+ create mode 100644 .local/share/rstudio/rstudio-server.json
+ create mode 100644 .rstudio/addin_registry
+ create mode 100644 .rstudio/client-state/console.temporary
+ create mode 100644 .rstudio/client-state/environment-grid.persistent
+ create mode 100644 .rstudio/client-state/environment-panel.temporary
+ create mode 100644 .rstudio/client-state/history.temporary
+ create mode 100644 .rstudio/client-state/workbenchp.persistent
+ create mode 100644 .rstudio/history_database
+ create mode 100644 .rstudio/history_database.1
+ create mode 100644 .rstudio/monitored/lists/addins_mru
+ create mode 100644 .rstudio/monitored/lists/file_mru
+ create mode 100644 .rstudio/monitored/lists/help_history_links
+ create mode 100644 .rstudio/monitored/lists/plot_publish_mru
+ create mode 100644 .rstudio/monitored/lists/project_mru
+ create mode 100644 .rstudio/monitored/lists/user_dictionary
+ create mode 100644 .rstudio/monitored/user-settings/user-settings
+ create mode 100644 .rstudio/notebooks/1B63DBBB-Research Proposal/1/1851D95F5707515a/chunks.json
+ create mode 100644 .rstudio/notebooks/1B63DBBB-Research Proposal/1/s/cfz7bye762rt1/000002.csv
+ create mode 100644 .rstudio/notebooks/1B63DBBB-Research Proposal/1/s/chunks.json
+ create mode 100644 .rstudio/notebooks/1B63DBBB-Research Proposal/1/s/csetup_chunk/000002.csv
+ create mode 100644 .rstudio/notebooks/1B63DBBB-Research Proposal/1/s/cvp4dy0s8wx89/000006.csv
+ create mode 100644 .rstudio/notebooks/1B63DBBB-Research Proposal/1/s/cvp4dy0s8wx89/000007.metadata
+ create mode 100644 .rstudio/notebooks/1B63DBBB-Research Proposal/1/s/cvp4dy0s8wx89/000007.rdf
+ create mode 100644 .rstudio/notebooks/1B63DBBB-Research Proposal/1/s/cvp4dy0s8wx89/000008.csv
+ create mode 100644 .rstudio/notebooks/1B63DBBB-Research Proposal/1/s/cvp4dy0s8wx89/000009.metadata
+ create mode 100644 .rstudio/notebooks/1B63DBBB-Research Proposal/1/s/cvp4dy0s8wx89/000009.rdf
+ create mode 100644 .rstudio/notebooks/20BD8D3F-Assignment2/1/1851D95F5707515a/c1t5xjx8we141/00000b.csv
+ create mode 100644 .rstudio/notebooks/20BD8D3F-Assignment2/1/1851D95F5707515a/c1t5xjx8we141/00000c.metadata
+ create mode 100644 .rstudio/notebooks/20BD8D3F-Assignment2/1/1851D95F5707515a/c1t5xjx8we141/00000c.png
+ create mode 100644 .rstudio/notebooks/20BD8D3F-Assignment2/1/1851D95F5707515a/c1t5xjx8we141/00000c.snapshot
+ create mode 100644 .rstudio/notebooks/20BD8D3F-Assignment2/1/1851D95F5707515a/c2ejabfq7stc2/000004.csv
+ create mode 100644 .rstudio/notebooks/20BD8D3F-Assignment2/1/1851D95F5707515a/c3fx35p68oyn6/000002.csv
+ create mode 100644 .rstudio/notebooks/20BD8D3F-Assignment2/1/1851D95F5707515a/c9udt8jzae6qq/000002.csv
+ create mode 100644 .rstudio/notebooks/20BD8D3F-Assignment2/1/1851D95F5707515a/cbv4neeqlmhgr/000002.csv
+ create mode 100644 .rstudio/notebooks/20BD8D3F-Assignment2/1/1851D95F5707515a/cbv4neeqlmhgr/000003.metadata
+ create mode 100644 .rstudio/notebooks/20BD8D3F-Assignment2/1/1851D95F5707515a/cbv4neeqlmhgr/000003.png
+ create mode 100644 .rstudio/notebooks/20BD8D3F-Assignment2/1/1851D95F5707515a/cbv4neeqlmhgr/000003.snapshot
+ create mode 100644 .rstudio/notebooks/20BD8D3F-Assignment2/1/1851D95F5707515a/chunks.json
+ create mode 100644 .rstudio/notebooks/20BD8D3F-Assignment2/1/1851D95F5707515a/cleecskcep6ns/000002.csv
+ create mode 100644 .rstudio/notebooks/20BD8D3F-Assignment2/1/1851D95F5707515a/cleecskcep6ns/000003.metadata
+ create mode 100644 .rstudio/notebooks/20BD8D3F-Assignment2/1/1851D95F5707515a/cleecskcep6ns/000003.png
+ create mode 100644 .rstudio/notebooks/20BD8D3F-Assignment2/1/1851D95F5707515a/cleecskcep6ns/000003.snapshot
+ create mode 100644 .rstudio/notebooks/20BD8D3F-Assignment2/1/1851D95F5707515a/cmvt2gdmjpav6/000002.csv
+ create mode 100644 .rstudio/notebooks/20BD8D3F-Assignment2/1/1851D95F5707515a/cmvt2gdmjpav6/000003.metadata
+ create mode 100644 .rstudio/notebooks/20BD8D3F-Assignment2/1/1851D95F5707515a/cmvt2gdmjpav6/000003.rdf
+ create mode 100644 .rstudio/notebooks/20BD8D3F-Assignment2/1/1851D95F5707515a/cmvt2gdmjpav6/000004.csv
+ create mode 100644 .rstudio/notebooks/20BD8D3F-Assignment2/1/1851D95F5707515a/cmvt2gdmjpav6/000005.metadata
+ create mode 100644 .rstudio/notebooks/20BD8D3F-Assignment2/1/1851D95F5707515a/cmvt2gdmjpav6/000005.rdf
+ create mode 100644 .rstudio/notebooks/20BD8D3F-Assignment2/1/1851D95F5707515a/coa0kihainwa1/000002.csv
+ create mode 100644 .rstudio/notebooks/20BD8D3F-Assignment2/1/1851D95F5707515a/cq482da830ppy/000002.csv
+ create mode 100644 .rstudio/notebooks/20BD8D3F-Assignment2/1/1851D95F5707515a/cq482da830ppy/000003.metadata
+ create mode 100644 .rstudio/notebooks/20BD8D3F-Assignment2/1/1851D95F5707515a/cq482da830ppy/000003.png
+ create mode 100644 .rstudio/notebooks/20BD8D3F-Assignment2/1/1851D95F5707515a/cq482da830ppy/000003.snapshot
+ create mode 100644 .rstudio/notebooks/20BD8D3F-Assignment2/1/1851D95F5707515a/czrx31fnxiwfh/000002.csv
+ create mode 100644 .rstudio/notebooks/20BD8D3F-Assignment2/1/s/c1t5xjx8we141/000005.csv
+ create mode 100644 .rstudio/notebooks/20BD8D3F-Assignment2/1/s/c1t5xjx8we141/000006.error
+ create mode 100644 .rstudio/notebooks/20BD8D3F-Assignment2/1/s/c1t5xjx8we141/000007.metadata
+ create mode 100644 .rstudio/notebooks/20BD8D3F-Assignment2/1/s/c1t5xjx8we141/000007.png
+ create mode 100644 .rstudio/notebooks/20BD8D3F-Assignment2/1/s/c3fx35p68oyn6/000002.csv
+ create mode 100644 .rstudio/notebooks/20BD8D3F-Assignment2/1/s/c9udt8jzae6qq/000002.csv
+ create mode 100644 .rstudio/notebooks/20BD8D3F-Assignment2/1/s/cbv4neeqlmhgr/000004.csv
+ create mode 100644 .rstudio/notebooks/20BD8D3F-Assignment2/1/s/cbv4neeqlmhgr/000005.metadata
+ create mode 100644 .rstudio/notebooks/20BD8D3F-Assignment2/1/s/cbv4neeqlmhgr/000005.png
+ create mode 100644 .rstudio/notebooks/20BD8D3F-Assignment2/1/s/cbv4neeqlmhgr/000005.snapshot
+ create mode 100644 .rstudio/notebooks/20BD8D3F-Assignment2/1/s/cleecskcep6ns/000004.csv
+ create mode 100644 .rstudio/notebooks/20BD8D3F-Assignment2/1/s/cleecskcep6ns/000005.metadata
+ create mode 100644 .rstudio/notebooks/20BD8D3F-Assignment2/1/s/cleecskcep6ns/000005.png
+ create mode 100644 .rstudio/notebooks/20BD8D3F-Assignment2/1/s/cleecskcep6ns/000005.snapshot
+ create mode 100644 .rstudio/notebooks/20BD8D3F-Assignment2/1/s/cmvt2gdmjpav6/000010.csv
+ create mode 100644 .rstudio/notebooks/20BD8D3F-Assignment2/1/s/cmvt2gdmjpav6/000011.metadata
+ create mode 100644 .rstudio/notebooks/20BD8D3F-Assignment2/1/s/cmvt2gdmjpav6/000011.rdf
+ create mode 100644 .rstudio/notebooks/20BD8D3F-Assignment2/1/s/cmvt2gdmjpav6/000012.csv
+ create mode 100644 .rstudio/notebooks/20BD8D3F-Assignment2/1/s/cmvt2gdmjpav6/000013.metadata
+ create mode 100644 .rstudio/notebooks/20BD8D3F-Assignment2/1/s/cmvt2gdmjpav6/000013.rdf
+ create mode 100644 .rstudio/notebooks/20BD8D3F-Assignment2/1/s/coa0kihainwa1/000002.csv
+ create mode 100644 .rstudio/notebooks/20BD8D3F-Assignment2/1/s/cq482da830ppy/000004.csv
+ create mode 100644 .rstudio/notebooks/20BD8D3F-Assignment2/1/s/cq482da830ppy/000005.metadata
+ create mode 100644 .rstudio/notebooks/20BD8D3F-Assignment2/1/s/cq482da830ppy/000005.png
+ create mode 100644 .rstudio/notebooks/20BD8D3F-Assignment2/1/s/cq482da830ppy/000005.snapshot
+ create mode 100644 .rstudio/notebooks/20BD8D3F-Assignment2/1/s/czrx31fnxiwfh/000004.csv
+ create mode 100644 .rstudio/notebooks/6EED731A-Assignment1/1/1851D95F5707515a/chunks.json
+ create mode 100644 .rstudio/notebooks/6EED731A-Assignment1/1/s/c1qarm5unlu3o/00000c.csv
+ create mode 100644 .rstudio/notebooks/6EED731A-Assignment1/1/s/c1qarm5unlu3o/00000d.metadata
+ create mode 100644 .rstudio/notebooks/6EED731A-Assignment1/1/s/c1qarm5unlu3o/00000d.png
+ create mode 100644 .rstudio/notebooks/6EED731A-Assignment1/1/s/c1qarm5unlu3o/00000d.snapshot
+ create mode 100644 .rstudio/notebooks/6EED731A-Assignment1/1/s/c1qarm5unlu3o/00000e.csv
+ create mode 100644 .rstudio/notebooks/6EED731A-Assignment1/1/s/c8xcj99j875ww/000002.csv
+ create mode 100644 .rstudio/notebooks/6EED731A-Assignment1/1/s/cc8s264s6ezak/000002.csv
+ create mode 100644 .rstudio/notebooks/6EED731A-Assignment1/1/s/cejm6u18323ip/000002.csv
+ create mode 100644 .rstudio/notebooks/6EED731A-Assignment1/1/s/chunks.json
+ create mode 100644 .rstudio/notebooks/6EED731A-Assignment1/1/s/cue4qozkbl6b9/000002.csv
+ create mode 100644 .rstudio/notebooks/884554AA-STA302Lab1/1/s/c11846q2ombth/000008.csv
+ create mode 100644 .rstudio/notebooks/884554AA-STA302Lab1/1/s/c11846q2ombth/000009.metadata
+ create mode 100644 .rstudio/notebooks/884554AA-STA302Lab1/1/s/c11846q2ombth/000009.png
+ create mode 100644 .rstudio/notebooks/884554AA-STA302Lab1/1/s/c11846q2ombth/000009.snapshot
+ create mode 100644 .rstudio/notebooks/884554AA-STA302Lab1/1/s/cfph49xo08xx8/000006.csv
+ create mode 100644 .rstudio/notebooks/884554AA-STA302Lab1/1/s/cfph49xo08xx8/000007.metadata
+ create mode 100644 .rstudio/notebooks/884554AA-STA302Lab1/1/s/cfph49xo08xx8/000007.rdf
+ create mode 100644 .rstudio/notebooks/884554AA-STA302Lab1/1/s/cgzaq3n81cyac/00001a.csv
+ create mode 100644 .rstudio/notebooks/884554AA-STA302Lab1/1/s/cgzaq3n81cyac/00001c.csv
+ create mode 100644 .rstudio/notebooks/884554AA-STA302Lab1/1/s/cgzaq3n81cyac/00001e.csv
+ create mode 100644 .rstudio/notebooks/884554AA-STA302Lab1/1/s/cgzaq3n81cyac/00001f.metadata
+ create mode 100644 .rstudio/notebooks/884554AA-STA302Lab1/1/s/cgzaq3n81cyac/00001f.png
+ create mode 100644 .rstudio/notebooks/884554AA-STA302Lab1/1/s/cgzaq3n81cyac/00001f.snapshot
+ create mode 100644 .rstudio/notebooks/884554AA-STA302Lab1/1/s/chunks.json
+ create mode 100644 .rstudio/notebooks/884554AA-STA302Lab1/1/s/cix6htwpcvt5k/000015.csv
+ create mode 100644 .rstudio/notebooks/884554AA-STA302Lab1/1/s/cix6htwpcvt5k/000016.metadata
+ create mode 100644 .rstudio/notebooks/884554AA-STA302Lab1/1/s/cix6htwpcvt5k/000016.png
+ create mode 100644 .rstudio/notebooks/884554AA-STA302Lab1/1/s/cix6htwpcvt5k/000016.snapshot
+ create mode 100644 .rstudio/notebooks/884554AA-STA302Lab1/1/s/cix6htwpcvt5k/000017.csv
+ create mode 100644 .rstudio/notebooks/884554AA-STA302Lab1/1/s/cix6htwpcvt5k/000018.metadata
+ create mode 100644 .rstudio/notebooks/884554AA-STA302Lab1/1/s/cix6htwpcvt5k/000018.png
+ create mode 100644 .rstudio/notebooks/884554AA-STA302Lab1/1/s/cix6htwpcvt5k/000018.snapshot
+ create mode 100644 .rstudio/notebooks/884554AA-STA302Lab1/1/s/ckaj3bn13chs0/000033.csv
+ create mode 100644 .rstudio/notebooks/884554AA-STA302Lab1/1/s/ckaj3bn13chs0/000035.csv
+ create mode 100644 .rstudio/notebooks/884554AA-STA302Lab1/1/s/ckaj3bn13chs0/000036.metadata
+ create mode 100644 .rstudio/notebooks/884554AA-STA302Lab1/1/s/ckaj3bn13chs0/000036.png
+ create mode 100644 .rstudio/notebooks/884554AA-STA302Lab1/1/s/ckaj3bn13chs0/000036.snapshot
+ create mode 100644 .rstudio/notebooks/884554AA-STA302Lab1/1/s/ckaj3bn13chs0/000037.csv
+ create mode 100644 .rstudio/notebooks/884554AA-STA302Lab1/1/s/cmt426inxlnb6/000002.csv
+ create mode 100644 .rstudio/notebooks/884554AA-STA302Lab1/1/s/cpokrfdoldjiy/000002.csv
+ create mode 100644 .rstudio/notebooks/884554AA-STA302Lab1/1/s/cpoop7o7b1mcz/000002.csv
+ create mode 100644 .rstudio/notebooks/884554AA-STA302Lab1/1/s/cqcnuahuw71rq/000002.csv
+ create mode 100644 .rstudio/notebooks/C4AB0FFC-Module 3 R Class/1/s/c0uq8r9ftlbye/000002.csv
+ create mode 100644 .rstudio/notebooks/C4AB0FFC-Module 3 R Class/1/s/c38lb6p84sjh0/000002.csv
+ create mode 100644 .rstudio/notebooks/C4AB0FFC-Module 3 R Class/1/s/chunks.json
+ create mode 100644 .rstudio/notebooks/C4AB0FFC-Module 3 R Class/1/s/cm0w3ev6o1sx7/000002.csv
+ create mode 100644 .rstudio/notebooks/C4AB0FFC-Module 3 R Class/1/s/cu9ntexg2xf8w/000002.csv
+ create mode 100644 .rstudio/notebooks/EF7D1CF0-FinalProject/1/1851D95F5707515a/chunks.json
+ create mode 100644 .rstudio/notebooks/patch-chunk-names
+ create mode 100644 .rstudio/notebooks/paths
+ create mode 100644 .rstudio/pcs/files-pane.pper
+ create mode 100644 .rstudio/pcs/source-pane.pper
+ create mode 100644 .rstudio/pcs/windowlayoutstate.pper
+ create mode 100644 .rstudio/pcs/workbench-pane.pper
+ create mode 100644 .rstudio/persistent-state
+ create mode 100644 .rstudio/projects/none/console06/INDEX001
+ create mode 100644 .rstudio/projects/none/console07/AD5A9F3F
+ create mode 100644 .rstudio/projects/none/console07/AD5A9F3F.env
+ create mode 100644 .rstudio/projects/none/console07/INDEX001
+ create mode 100644 .rstudio/projects_settings/next-session-project
+ create mode 100644 .rstudio/saved_source_markers
+ create mode 100644 .rstudio/sessions/active/session-5707515a/graphics-r3/0804c03f-5f85-4ee4-b9b5-3e77809f1ff1.png
+ create mode 100644 .rstudio/sessions/active/session-5707515a/graphics-r3/0804c03f-5f85-4ee4-b9b5-3e77809f1ff1.snapshot
+ create mode 100644 .rstudio/sessions/active/session-5707515a/graphics-r3/783961af-7a0b-4c54-a20f-adfd4ba85572.png
+ create mode 100644 .rstudio/sessions/active/session-5707515a/graphics-r3/783961af-7a0b-4c54-a20f-adfd4ba85572.snapshot
+ create mode 100644 .rstudio/sessions/active/session-5707515a/graphics-r3/INDEX
+ create mode 100644 .rstudio/sessions/active/session-5707515a/graphics-r3/dd0a5015-cf3d-49b3-a674-6c69642e22e4.png
+ create mode 100644 .rstudio/sessions/active/session-5707515a/graphics-r3/dd0a5015-cf3d-49b3-a674-6c69642e22e4.snapshot
+ create mode 100644 .rstudio/sessions/active/session-5707515a/graphics-r3/empty.png
+ create mode 100644 .rstudio/sessions/active/session-5707515a/jobs/2542FD88-output.json
+ create mode 100644 .rstudio/sessions/active/session-5707515a/jobs/37603CB5-output.json
+ create mode 100644 .rstudio/sessions/active/session-5707515a/jobs/B57F5DCD-output.json
+ create mode 100644 .rstudio/sessions/active/session-5707515a/jobs/DFE8115B-output.json
+ create mode 100644 .rstudio/sessions/active/session-5707515a/jobs/FED3A4F8-output.json
+ create mode 100644 .rstudio/sessions/active/session-5707515a/properites/executing
+ create mode 100644 .rstudio/sessions/active/session-5707515a/properites/initial
+ create mode 100644 .rstudio/sessions/active/session-5707515a/properites/last-used
+ create mode 100644 .rstudio/sessions/active/session-5707515a/properites/project
+ create mode 100644 .rstudio/sessions/active/session-5707515a/properites/r-version
+ create mode 100644 .rstudio/sessions/active/session-5707515a/properites/r-version-home
+ create mode 100644 .rstudio/sessions/active/session-5707515a/properites/r-version-label
+ create mode 100644 .rstudio/sessions/active/session-5707515a/properites/running
+ create mode 100644 .rstudio/sessions/active/session-5707515a/properites/save_prompt_required
+ create mode 100644 .rstudio/sessions/active/session-5707515a/properites/working-dir
+ create mode 100644 .rstudio/sessions/active/session-5707515a/rmd-outputs
+ create mode 100644 .rstudio/sessions/active/session-5707515a/session-persistent-state
+ create mode 100644 .rstudio/sessions/active/session-5707515a/suspended-session-data/console_actions
+ create mode 100644 .rstudio/sessions/active/session-5707515a/suspended-session-data/environment
+ create mode 100644 .rstudio/sessions/active/session-5707515a/suspended-session-data/environment_vars
+ create mode 100644 .rstudio/sessions/active/session-5707515a/suspended-session-data/history
+ create mode 100644 .rstudio/sessions/active/session-5707515a/suspended-session-data/libpaths
+ create mode 100644 .rstudio/sessions/active/session-5707515a/suspended-session-data/options
+ create mode 100644 .rstudio/sessions/active/session-5707515a/suspended-session-data/rversion
+ create mode 100644 .rstudio/sessions/active/session-5707515a/suspended-session-data/search_path/package_paths
+ create mode 100644 .rstudio/sessions/active/session-5707515a/suspended-session-data/search_path/search_path_elements
+ create mode 100644 .rstudio/sessions/active/session-5707515a/suspended-session-data/settings
+ create mode 100644 .rstudio/sessions/active/session-5707515a/unsaved-notebooks/5EB0F33E/1/c6ivy7xa5v439/000004.csv
+ create mode 100644 .rstudio/sessions/active/session-5707515a/unsaved-notebooks/5EB0F33E/1/c6ivy7xa5v439/000005.metadata
+ create mode 100644 .rstudio/sessions/active/session-5707515a/unsaved-notebooks/5EB0F33E/1/c6ivy7xa5v439/000005.png
+ create mode 100644 .rstudio/sessions/active/session-5707515a/unsaved-notebooks/5EB0F33E/1/c6ivy7xa5v439/000005.snapshot
+ create mode 100644 .rstudio/sessions/active/session-5707515a/unsaved-notebooks/5EB0F33E/1/chunks.json
+ create mode 100644 .rstudio/sessions/active/session-5707515a/unsaved-notebooks/5EB0F33E/1/cjfebuso6lj18/000030.csv
+ create mode 100644 .rstudio/sessions/active/session-5707515a/unsaved-notebooks/5EB0F33E/1/cjfebuso6lj18/000031.metadata
+ create mode 100644 .rstudio/sessions/active/session-5707515a/unsaved-notebooks/5EB0F33E/1/cjfebuso6lj18/000031.png
+ create mode 100644 .rstudio/sessions/active/session-5707515a/unsaved-notebooks/5EB0F33E/1/cjfebuso6lj18/000031.snapshot
+ create mode 100644 .rstudio/sessions/active/session-5707515a/unsaved-notebooks/5EB0F33E/1/cjfebuso6lj18/000032.csv
+ create mode 100644 .rstudio/sessions/active/session-5707515a/unsaved-notebooks/5EB0F33E/1/cjfebuso6lj18/000033.metadata
+ create mode 100644 .rstudio/sessions/active/session-5707515a/unsaved-notebooks/5EB0F33E/1/cjfebuso6lj18/000033.png
+ create mode 100644 .rstudio/sessions/active/session-5707515a/unsaved-notebooks/5EB0F33E/1/cjfebuso6lj18/000033.snapshot
+ create mode 100644 .rstudio/sessions/active/session-5707515a/unsaved-notebooks/5EB0F33E/1/cjfebuso6lj18/000034.csv
+ create mode 100644 .rstudio/sessions/active/session-5707515a/unsaved-notebooks/5EB0F33E/1/cjfebuso6lj18/000035.error
+ create mode 100644 .rstudio/sessions/active/session-5707515a/unsaved-notebooks/5EB0F33E/1/csetup_chunk/000002.csv
+ create mode 100644 .rstudio/sessions/active/session-5707515a/unsaved-notebooks/AB2F1403/1/chunks.json
+ create mode 100644 .rstudio/sessions/active/session-5707515a/unsaved-notebooks/CB861660/1/chunks.json
+ create mode 100644 .rstudio/sources/prop/04596144
+ create mode 100644 .rstudio/sources/prop/1547DC68
+ create mode 100644 .rstudio/sources/prop/26B80EF6
+ create mode 100644 .rstudio/sources/prop/31026079
+ create mode 100644 .rstudio/sources/prop/3D7D5E6C
+ create mode 100644 .rstudio/sources/prop/453F3171
+ create mode 100644 .rstudio/sources/prop/4C61AC4E
+ create mode 100644 .rstudio/sources/prop/4E298FBC
+ create mode 100644 .rstudio/sources/prop/507DB9F3
+ create mode 100644 .rstudio/sources/prop/50C85730
+ create mode 100644 .rstudio/sources/prop/529B2E8E
+ create mode 100644 .rstudio/sources/prop/602972AE
+ create mode 100644 .rstudio/sources/prop/6963BF8E
+ create mode 100644 .rstudio/sources/prop/6FACCC0F
+ create mode 100644 .rstudio/sources/prop/6FF14C2F
+ create mode 100644 .rstudio/sources/prop/797C1F1F
+ create mode 100644 .rstudio/sources/prop/7D19A28A
+ create mode 100644 .rstudio/sources/prop/838D7A9F
+ create mode 100644 .rstudio/sources/prop/84CF77B5
+ create mode 100644 .rstudio/sources/prop/8E96CC54
+ create mode 100644 .rstudio/sources/prop/90965971
+ create mode 100644 .rstudio/sources/prop/997CD45B
+ create mode 100644 .rstudio/sources/prop/9A54FE03
+ create mode 100644 .rstudio/sources/prop/9D4D7EB5
+ create mode 100644 .rstudio/sources/prop/A6AA5F88
+ create mode 100644 .rstudio/sources/prop/AD42AFE0
+ create mode 100644 .rstudio/sources/prop/B182C492
+ create mode 100644 .rstudio/sources/prop/B18CC107
+ create mode 100644 .rstudio/sources/prop/BD67036E
+ create mode 100644 .rstudio/sources/prop/C3CE0893
+ create mode 100644 .rstudio/sources/prop/C5BCFE28
+ create mode 100644 .rstudio/sources/prop/C6E06A5B
+ create mode 100644 .rstudio/sources/prop/D1F0523C
+ create mode 100644 .rstudio/sources/prop/DAEE0B4B
+ create mode 100644 .rstudio/sources/prop/ED554468
+ create mode 100644 .rstudio/sources/prop/EDFDB256
+ create mode 100644 .rstudio/sources/prop/F21C3B03
+ create mode 100644 .rstudio/sources/prop/F32E6179
+ create mode 100644 .rstudio/sources/prop/FA93D8D5
+ create mode 100644 .rstudio/sources/prop/INDEX
+ create mode 100644 .rstudio/sources/s-5707515a/08947F47-contents
+ create mode 100644 .rstudio/sources/s-5707515a/171B1DC4-contents
+ create mode 100644 .rstudio/sources/s-5707515a/176D35E-contents
+ create mode 100644 .rstudio/sources/s-5707515a/18F2A9F1-contents
+ create mode 100644 .rstudio/sources/s-5707515a/20AB9074-contents
+ create mode 100644 .rstudio/sources/s-5707515a/2743C8A6-contents
+ create mode 100644 .rstudio/sources/s-5707515a/27EC9A51
+ create mode 100644 .rstudio/sources/s-5707515a/27EC9A51-contents
+ create mode 100644 .rstudio/sources/s-5707515a/2A099E0E-contents
+ create mode 100644 .rstudio/sources/s-5707515a/2B429F7E-contents
+ create mode 100644 .rstudio/sources/s-5707515a/2BEC3284-contents
+ create mode 100644 .rstudio/sources/s-5707515a/2C2BA8A7-contents
+ create mode 100644 .rstudio/sources/s-5707515a/31680121-contents
+ create mode 100644 .rstudio/sources/s-5707515a/3518F9F0-contents
+ create mode 100644 .rstudio/sources/s-5707515a/3709224B-contents
+ create mode 100644 .rstudio/sources/s-5707515a/376F14FD-contents
+ create mode 100644 .rstudio/sources/s-5707515a/37A612B8-contents
+ create mode 100644 .rstudio/sources/s-5707515a/38120882-contents
+ create mode 100644 .rstudio/sources/s-5707515a/3883306E-contents
+ create mode 100644 .rstudio/sources/s-5707515a/39726F7-contents
+ create mode 100644 .rstudio/sources/s-5707515a/397EC8AF-contents
+ create mode 100644 .rstudio/sources/s-5707515a/3BFA09D0-contents
+ create mode 100644 .rstudio/sources/s-5707515a/3E14A3B0-contents
+ create mode 100644 .rstudio/sources/s-5707515a/3E23D2BB-contents
+ create mode 100644 .rstudio/sources/s-5707515a/3F3B1939
+ create mode 100644 .rstudio/sources/s-5707515a/3F3B1939-contents
+ create mode 100644 .rstudio/sources/s-5707515a/4009E838-contents
+ create mode 100644 .rstudio/sources/s-5707515a/421AE81F-contents
+ create mode 100644 .rstudio/sources/s-5707515a/42645741-contents
+ create mode 100644 .rstudio/sources/s-5707515a/43F81BBC-contents
+ create mode 100644 .rstudio/sources/s-5707515a/4436FC5-contents
+ create mode 100644 .rstudio/sources/s-5707515a/44E18690-contents
+ create mode 100644 .rstudio/sources/s-5707515a/45D81191-contents
+ create mode 100644 .rstudio/sources/s-5707515a/46D7EAE0-contents
+ create mode 100644 .rstudio/sources/s-5707515a/47F9F5C2-contents
+ create mode 100644 .rstudio/sources/s-5707515a/4D56924C-contents
+ create mode 100644 .rstudio/sources/s-5707515a/4E3F453A-contents
+ create mode 100644 .rstudio/sources/s-5707515a/4F59789-contents
+ create mode 100644 .rstudio/sources/s-5707515a/50924D32-contents
+ create mode 100644 .rstudio/sources/s-5707515a/50CBE1B3-contents
+ create mode 100644 .rstudio/sources/s-5707515a/5606DAB3-contents
+ create mode 100644 .rstudio/sources/s-5707515a/56DFE8F2-contents
+ create mode 100644 .rstudio/sources/s-5707515a/57220C31-contents
+ create mode 100644 .rstudio/sources/s-5707515a/59DB9305-contents
+ create mode 100644 .rstudio/sources/s-5707515a/5B9E0CA7-contents
+ create mode 100644 .rstudio/sources/s-5707515a/5E6BCA80-contents
+ create mode 100644 .rstudio/sources/s-5707515a/5EB0F33E
+ create mode 100644 .rstudio/sources/s-5707515a/5EB0F33E-contents
+ create mode 100644 .rstudio/sources/s-5707515a/5F5F4615-contents
+ create mode 100644 .rstudio/sources/s-5707515a/635E4A59-contents
+ create mode 100644 .rstudio/sources/s-5707515a/656323DA
+ create mode 100644 .rstudio/sources/s-5707515a/656323DA-contents
+ create mode 100644 .rstudio/sources/s-5707515a/684579F4-contents
+ create mode 100644 .rstudio/sources/s-5707515a/6A67E141-contents
+ create mode 100644 .rstudio/sources/s-5707515a/6C31C981-contents
+ create mode 100644 .rstudio/sources/s-5707515a/6C3F61D1-contents
+ create mode 100644 .rstudio/sources/s-5707515a/6C85F679-contents
+ create mode 100644 .rstudio/sources/s-5707515a/70C14838-contents
+ create mode 100644 .rstudio/sources/s-5707515a/72C28E29-contents
+ create mode 100644 .rstudio/sources/s-5707515a/73BB4929-contents
+ create mode 100644 .rstudio/sources/s-5707515a/741777AB-contents
+ create mode 100644 .rstudio/sources/s-5707515a/74FCD5D6-contents
+ create mode 100644 .rstudio/sources/s-5707515a/7806097F
+ create mode 100644 .rstudio/sources/s-5707515a/7806097F-contents
+ create mode 100644 .rstudio/sources/s-5707515a/79AB2039-contents
+ create mode 100644 .rstudio/sources/s-5707515a/7AAD157D-contents
+ create mode 100644 .rstudio/sources/s-5707515a/7CE4692B-contents
+ create mode 100644 .rstudio/sources/s-5707515a/7DDF8960-contents
+ create mode 100644 .rstudio/sources/s-5707515a/80EB25A5
+ create mode 100644 .rstudio/sources/s-5707515a/80EB25A5-contents
+ create mode 100644 .rstudio/sources/s-5707515a/81F6D87F-contents
+ create mode 100644 .rstudio/sources/s-5707515a/82218169-contents
+ create mode 100644 .rstudio/sources/s-5707515a/8222232C-contents
+ create mode 100644 .rstudio/sources/s-5707515a/83445408-contents
+ create mode 100644 .rstudio/sources/s-5707515a/85CBBA49-contents
+ create mode 100644 .rstudio/sources/s-5707515a/8A65E264-contents
+ create mode 100644 .rstudio/sources/s-5707515a/901E48BF-contents
+ create mode 100644 .rstudio/sources/s-5707515a/958A435C-contents
+ create mode 100644 .rstudio/sources/s-5707515a/98655694-contents
+ create mode 100644 .rstudio/sources/s-5707515a/988570A1-contents
+ create mode 100644 .rstudio/sources/s-5707515a/A19A1E80-contents
+ create mode 100644 .rstudio/sources/s-5707515a/A444CC31-contents
+ create mode 100644 .rstudio/sources/s-5707515a/A5D0E51B-contents
+ create mode 100644 .rstudio/sources/s-5707515a/A89F323B-contents
+ create mode 100644 .rstudio/sources/s-5707515a/AB2F1403-contents
+ create mode 100644 .rstudio/sources/s-5707515a/ABD8CEA3-contents
+ create mode 100644 .rstudio/sources/s-5707515a/AC378D36-contents
+ create mode 100644 .rstudio/sources/s-5707515a/AF949DB4-contents
+ create mode 100644 .rstudio/sources/s-5707515a/AFCAB3A1-contents
+ create mode 100644 .rstudio/sources/s-5707515a/B2EADCB3-contents
+ create mode 100644 .rstudio/sources/s-5707515a/B824B8A-contents
+ create mode 100644 .rstudio/sources/s-5707515a/B8C9BF17-contents
+ create mode 100644 .rstudio/sources/s-5707515a/B8E99D3F-contents
+ create mode 100644 .rstudio/sources/s-5707515a/BC91FA06-contents
+ create mode 100644 .rstudio/sources/s-5707515a/C166996D-contents
+ create mode 100644 .rstudio/sources/s-5707515a/C3373F66-contents
+ create mode 100644 .rstudio/sources/s-5707515a/C36E979B-contents
+ create mode 100644 .rstudio/sources/s-5707515a/CB861660-contents
+ create mode 100644 .rstudio/sources/s-5707515a/D048DF5A-contents
+ create mode 100644 .rstudio/sources/s-5707515a/D12FE8C2-contents
+ create mode 100644 .rstudio/sources/s-5707515a/D37A4AC6-contents
+ create mode 100644 .rstudio/sources/s-5707515a/D637FA24-contents
+ create mode 100644 .rstudio/sources/s-5707515a/D7028917-contents
+ create mode 100644 .rstudio/sources/s-5707515a/DD5E069C-contents
+ create mode 100644 .rstudio/sources/s-5707515a/DEDAFECB-contents
+ create mode 100644 .rstudio/sources/s-5707515a/E1DC40C0-contents
+ create mode 100644 .rstudio/sources/s-5707515a/E2679491-contents
+ create mode 100644 .rstudio/sources/s-5707515a/E5998F36-contents
+ create mode 100644 .rstudio/sources/s-5707515a/E9068AC1-contents
+ create mode 100644 .rstudio/sources/s-5707515a/E9146E61-contents
+ create mode 100644 .rstudio/sources/s-5707515a/EB1868C7-contents
+ create mode 100644 .rstudio/sources/s-5707515a/EF189E90-contents
+ create mode 100644 .rstudio/sources/s-5707515a/F18CF795-contents
+ create mode 100644 .rstudio/sources/s-5707515a/F58E7280-contents
+ create mode 100644 .rstudio/sources/s-5707515a/F61AC826-contents
+ create mode 100644 .rstudio/sources/s-5707515a/FDF0C3E8-contents
+ create mode 100644 .rstudio/sources/s-5707515a/FFAC42C8-contents
+ create mode 100644 .rstudio/sources/s-5707515a/FFC11430-contents
+ create mode 100644 .rstudio/sources/s-5707515a/lock_file
+ create mode 100644 .subversion/README.txt
+ create mode 100644 .subversion/config
+ create mode 100644 .subversion/servers
+ create mode 100644 README.md
+ create mode 160000 STA304-F21-Assignment2.git
+ create mode 100644 Sta238/Class work/Simulation.Rmd
+ create mode 160000 Sta238/STA238-A4-Extra-BootstrapVariance.git
+ create mode 160000 Sta238/STA238-Assignment1.git
+ create mode 160000 Sta238/STA238-Assignment2.git
+ create mode 160000 Sta238/STA238-Assignment3.git
+ create mode 160000 Sta238/STA238-Assignment4.git
+ create mode 160000 Sta238/STA238-FinalProject.git
+ create mode 160000 Sta238/STA238-W21-Week6Class.git
+ create mode 160000 Sta238/STA238-Week1.git
+ create mode 160000 Sta238/STA238-Week2.git
+ create mode 160000 Sta238/STA238-Week3.git
+ create mode 160000 Sta238/STA238-Week4.git
+ create mode 160000 Sta238/STA238-Week5.git
+ create mode 160000 Sta238/STA238-Week8-Class.git
+ create mode 100644 Sta238/Simulation.Rmd
+ create mode 160000 Sta238/sta238-book
+ create mode 100644 Sta302/.ipynb_checkpoints/STA302Lab1-checkpoint.Rmd
+ create mode 100644 Sta302/Module 2 R Class.Rmd
+ create mode 100644 Sta302/Module 3 R Class.Rmd
+ create mode 100644 Sta302/Research Proposal.Rmd
+ create mode 100644 Sta302/Research-Proposal.pdf
+ create mode 100644 Sta302/STA302Lab1.Rmd
+ create mode 100644 Sta302/STA302Lab1.pdf
+ create mode 100644 Sta302/STA302Lab2.Rmd
+ create mode 100644 Sta302/cleaning_sim.csv
+ create mode 100644 Sta302/newpenguins.csv
+ create mode 100644 Sta302/nyc.csv
+ create mode 100644 Sta302/penguins.csv
+ create mode 160000 Sta304/STA304-F21-Assignment1.git
+ create mode 160000 Sta304/STA304-F21-Week1Class.git
+ create mode 100644 Sta314/.ipynb_checkpoints/hw1-checkpoint.ipynb
+ create mode 100644 Sta314/.ipynb_checkpoints/lec03-checkpoint.ipynb
+ create mode 100644 Sta314/.ipynb_checkpoints/tut02_lecture-checkpoint.ipynb
+ create mode 100644 Sta314/.ipynb_checkpoints/tut04_lecture-checkpoint.ipynb
+ create mode 100644 Sta314/hw1.ipynb
+ create mode 100644 Sta314/lec03.ipynb
+ create mode 100644 Sta314/tut02_lecture.ipynb
+ create mode 100644 Sta314/tut02_worksheet.ipynb
+ create mode 100644 Sta314/tut04_lecture.ipynb
+]0;/home/jovyan/Sta302jovyan@jupyter-ac5fcdab-2dd3bf-2d41ca-2db6c9-2da6bb964be8ad:~/Sta302$ git push
+fatal: The current branch master has no upstream branch.
+To push the current branch and set the remote as upstream, use
+
+    git push --set-upstream origin master
+
+]0;/home/jovyan/Sta302jovyan@jupyter-ac5fcdab-2dd3bf-2d41ca-2db6c9-2da6bb964be8ad:~/Sta302$ git remote add origin https://github.com/ChristopherChifor/linear-regression.git
+fatal: remote origin already exists.
+]0;/home/jovyan/Sta302jovyan@jupyter-ac5fcdab-2dd3bf-2d41ca-2db6c9-2da6bb964be8ad:~/Sta302$ git branch -M main
+]0;/home/jovyan/Sta302jovyan@jupyter-ac5fcdab-2dd3bf-2d41ca-2db6c9-2da6bb964be8ad:~/Sta302$ git push -u origin main[K[K[K[K[K master
+error: src refspec master does not match any
+[31merror: failed to push some refs to 'https://github.com/ChristopherChifor/linear-regression.git'
+[m]0;/home/jovyan/Sta302jovyan@jupyter-ac5fcdab-2dd3bf-2d41ca-2db6c9-2da6bb964be8ad:~/Sta302$ git branch
+[?1h=* [32mmain[m[m
+[K[?1l>]0;/home/jovyan/Sta302jovyan@jupyter-ac5fcdab-2dd3bf-2d41ca-2db6c9-2da6bb964be8ad:~/Sta302$ git push -u orii[Kgin main
+remote: Support for password authentication was removed on August 13, 2021. Please use a personal access token instead.
+remote: Please see https://github.blog/2020-12-15-token-authentication-requirements-for-git-operations/ for more information.
+fatal: Authentication failed for 'https://github.com/ChristopherChifor/linear-regression.git/'
+]0;/home/jovyan/Sta302jovyan@jupyter-ac5fcdab-2dd3bf-2d41ca-2db6c9-2da6bb964be8ad:~/Sta302$ [Kjovyan@jupyter-ac5fcdab-2dd3bf-2d41ca-2db6c9-2da6bb964be8ad:~/Sta302$ 

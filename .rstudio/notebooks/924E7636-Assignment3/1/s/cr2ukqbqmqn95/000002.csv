@@ -1,0 +1,6 @@
+"0","census_data_counts <- census_data %>% "
+"0","   group_by(sex, province, age_range) %>% "
+"0","   summarise(n=n())"
+"2","`summarise()` has grouped output by 'sex', 'province'. You can override using the `.groups` argument.
+"
+"0","census_data_counts$group_prop <- census_data_counts$n/sum(census_data_counts$n)"

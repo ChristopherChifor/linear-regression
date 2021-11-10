@@ -1,0 +1,9 @@
+"0","# Here I will perform the post-stratification calculation"
+"0","census_data_counts <- census_data %>% "
+"0","  group_by(age) %>% "
+"0","  summarise(n=n())"
+"0","census_data_counts$estimate <-"
+"0","  liberal_model %>%"
+"0","  predict(newdata = census_data_counts)"
+"2","Error in eval(predvars, data, env) : object 'sex' not found
+"

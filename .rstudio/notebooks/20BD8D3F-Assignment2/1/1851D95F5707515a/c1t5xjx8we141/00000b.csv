@@ -1,5 +1,0 @@
-"0","data %>%"
-"0","  ggplot(aes(x = F2020_Population_Projection, y=AutoTheft_Rate2020))+"
-"0","  ggtitle(""Scatterplot of average auto thefts per neighbourhood to population in Toronto"")+"
-"0","  theme(plot.title = element_text(size=12))+"
-"0","  geom_point(col = ""blue"")"
