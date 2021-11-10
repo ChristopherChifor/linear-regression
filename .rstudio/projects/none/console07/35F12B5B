@@ -171,3 +171,215 @@ Untracked files:
 no changes added to commit (use "git add" and/or "git commit -a")
 ]0;/home/jovyan/Sta302jovyan@jupyter-ac5fcdab-2dd3bf-2d41ca-2db6c9-2da6bb964be8ad:~/Sta302$ 
 ]0;/home/jovyan/Sta302jovyan@jupyter-ac5fcdab-2dd3bf-2d41ca-2db6c9-2da6bb964be8ad:~/Sta302$ git comm[K[K[K[Kadd -A
+warning: adding embedded git repository: STA304-F21-Assignment3-code.git
+[33mhint: You've added another git repository inside your current repository.[m
+[33mhint: Clones of the outer repository will not contain the contents of[m
+[33mhint: the embedded repository and will not know how to obtain it.[m
+[33mhint: If you meant to add a submodule, use:[m
+[33mhint: [m
+[33mhint: 	git submodule add <url> STA304-F21-Assignment3-code.git[m
+[33mhint: [m
+[33mhint: If you added this path by mistake, you can remove it from the[m
+[33mhint: index with:[m
+[33mhint: [m
+[33mhint: 	git rm --cached STA304-F21-Assignment3-code.git[m
+[33mhint: [m
+[33mhint: See "git help submodule" for more information.[m
+warning: adding embedded git repository: Sta304/STA304-F21-Assignment2.git
+warning: adding embedded git repository: Sta304/STA304-F21-Week4.git
+]0;/home/jovyan/Sta302jovyan@jupyter-ac5fcdab-2dd3bf-2d41ca-2db6c9-2da6bb964be8ad:~/Sta302$ git commit -m "Adding files"
+[main 4029514] Adding files
+ 176 files changed, 15181 insertions(+), 286 deletions(-)
+ create mode 100644 .gitconfig
+ delete mode 100644 .rstudio/notebooks/1B63DBBB-Research Proposal/1/1851D95F5707515a/chunks.json
+ rename .rstudio/notebooks/1B63DBBB-Research Proposal/1/s/csetup_chunk/{000002.csv => 000004.csv} (100%)
+ rename .rstudio/notebooks/1B63DBBB-Research Proposal/1/s/cvp4dy0s8wx89/{000006.csv => 00000e.csv} (100%)
+ rename .rstudio/notebooks/1B63DBBB-Research Proposal/1/s/cvp4dy0s8wx89/{000007.metadata => 00000f.metadata} (100%)
+ rename .rstudio/notebooks/1B63DBBB-Research Proposal/1/s/cvp4dy0s8wx89/{000007.rdf => 00000f.rdf} (100%)
+ rename .rstudio/notebooks/1B63DBBB-Research Proposal/1/s/cvp4dy0s8wx89/{000008.csv => 000010.csv} (100%)
+ rename .rstudio/notebooks/1B63DBBB-Research Proposal/1/s/cvp4dy0s8wx89/{000009.metadata => 000011.metadata} (100%)
+ rename .rstudio/notebooks/1B63DBBB-Research Proposal/1/s/cvp4dy0s8wx89/{000009.rdf => 000011.rdf} (100%)
+ delete mode 100644 .rstudio/notebooks/20BD8D3F-Assignment2/1/1851D95F5707515a/c1t5xjx8we141/00000b.csv
+ delete mode 100644 .rstudio/notebooks/20BD8D3F-Assignment2/1/1851D95F5707515a/c1t5xjx8we141/00000c.png
+ delete mode 100644 .rstudio/notebooks/20BD8D3F-Assignment2/1/1851D95F5707515a/c2ejabfq7stc2/000004.csv
+ delete mode 100644 .rstudio/notebooks/20BD8D3F-Assignment2/1/1851D95F5707515a/c3fx35p68oyn6/000002.csv
+ delete mode 100644 .rstudio/notebooks/20BD8D3F-Assignment2/1/1851D95F5707515a/c9udt8jzae6qq/000002.csv
+ delete mode 100644 .rstudio/notebooks/20BD8D3F-Assignment2/1/1851D95F5707515a/cbv4neeqlmhgr/000002.csv
+ delete mode 100644 .rstudio/notebooks/20BD8D3F-Assignment2/1/1851D95F5707515a/cbv4neeqlmhgr/000003.png
+ delete mode 100644 .rstudio/notebooks/20BD8D3F-Assignment2/1/1851D95F5707515a/cbv4neeqlmhgr/000003.snapshot
+ delete mode 100644 .rstudio/notebooks/20BD8D3F-Assignment2/1/1851D95F5707515a/chunks.json
+ delete mode 100644 .rstudio/notebooks/20BD8D3F-Assignment2/1/1851D95F5707515a/cleecskcep6ns/000002.csv
+ delete mode 100644 .rstudio/notebooks/20BD8D3F-Assignment2/1/1851D95F5707515a/cleecskcep6ns/000003.png
+ delete mode 100644 .rstudio/notebooks/20BD8D3F-Assignment2/1/1851D95F5707515a/cleecskcep6ns/000003.snapshot
+ delete mode 100644 .rstudio/notebooks/20BD8D3F-Assignment2/1/1851D95F5707515a/cmvt2gdmjpav6/000005.metadata
+ delete mode 100644 .rstudio/notebooks/20BD8D3F-Assignment2/1/1851D95F5707515a/cmvt2gdmjpav6/000005.rdf
+ delete mode 100644 .rstudio/notebooks/20BD8D3F-Assignment2/1/1851D95F5707515a/coa0kihainwa1/000002.csv
+ delete mode 100644 .rstudio/notebooks/20BD8D3F-Assignment2/1/1851D95F5707515a/cq482da830ppy/000002.csv
+ delete mode 100644 .rstudio/notebooks/20BD8D3F-Assignment2/1/1851D95F5707515a/cq482da830ppy/000003.metadata
+ delete mode 100644 .rstudio/notebooks/20BD8D3F-Assignment2/1/1851D95F5707515a/cq482da830ppy/000003.png
+ delete mode 100644 .rstudio/notebooks/20BD8D3F-Assignment2/1/1851D95F5707515a/cq482da830ppy/000003.snapshot
+ delete mode 100644 .rstudio/notebooks/20BD8D3F-Assignment2/1/1851D95F5707515a/czrx31fnxiwfh/000002.csv
+ create mode 100644 .rstudio/notebooks/828AAE0F-University-Admissions-Regression/1/1851D95F5707515a/chunks.json
+ create mode 100644 .rstudio/notebooks/828AAE0F-University-Admissions-Regression/1/s/chunks.json
+ create mode 100644 .rstudio/notebooks/924E7636-Assignment3/1/1851D95F5707515a/chunks.json
+ create mode 100644 .rstudio/notebooks/924E7636-Assignment3/1/s/c20r5g56efduo/000002.csv
+ create mode 100644 .rstudio/notebooks/924E7636-Assignment3/1/s/c2f6bym0tscme/000002.csv
+ create mode 100644 .rstudio/notebooks/924E7636-Assignment3/1/s/c3fuzm46sbe3r/000004.csv
+ create mode 100644 .rstudio/notebooks/924E7636-Assignment3/1/s/c56g674iurkjp/000002.csv
+ create mode 100644 .rstudio/notebooks/924E7636-Assignment3/1/s/c57eq84945akb/000002.csv
+ create mode 100644 .rstudio/notebooks/924E7636-Assignment3/1/s/c6565rho7wixx/000002.csv
+ create mode 100644 .rstudio/notebooks/924E7636-Assignment3/1/s/c6bd7xucg6pwe/000002.csv
+ create mode 100644 .rstudio/notebooks/924E7636-Assignment3/1/s/c6twoil8sui5k/000002.csv
+ create mode 100644 .rstudio/notebooks/924E7636-Assignment3/1/s/c8jf1ym7nb7g0/000002.csv
+ create mode 100644 .rstudio/notebooks/924E7636-Assignment3/1/s/cas6oafgw4d9o/000008.csv
+ create mode 100644 .rstudio/notebooks/924E7636-Assignment3/1/s/cas6oafgw4d9o/000009.error
+ create mode 100644 .rstudio/notebooks/924E7636-Assignment3/1/s/cc3rpzmei4grz/000002.csv
+ create mode 100644 .rstudio/notebooks/924E7636-Assignment3/1/s/cdg6dvsyfhdrz/000006.csv
+ create mode 100644 .rstudio/notebooks/924E7636-Assignment3/1/s/cdg6dvsyfhdrz/000007.error
+ create mode 100644 .rstudio/notebooks/924E7636-Assignment3/1/s/cfollnux5lscx/000002.csv
+ create mode 100644 .rstudio/notebooks/924E7636-Assignment3/1/s/chafgr2bylva9/000002.csv
+ create mode 100644 .rstudio/notebooks/924E7636-Assignment3/1/s/chunks.json
+ create mode 100644 .rstudio/notebooks/924E7636-Assignment3/1/s/chyol0t6a5cy4/000002.csv
+ create mode 100644 .rstudio/notebooks/924E7636-Assignment3/1/s/cijkz1ncb03r6/000002.csv
+ create mode 100644 .rstudio/notebooks/924E7636-Assignment3/1/s/ciwvwenzhn7ce/000002.csv
+ create mode 100644 .rstudio/notebooks/924E7636-Assignment3/1/s/cjt99qlrzt00z/000002.csv
+ create mode 100644 .rstudio/notebooks/924E7636-Assignment3/1/s/ck9mskim6dhbj/000002.csv
+ create mode 100644 .rstudio/notebooks/924E7636-Assignment3/1/s/clgcjz8phfs41/000002.csv
+ create mode 100644 .rstudio/notebooks/924E7636-Assignment3/1/s/cls4kbb7vrpk4/000002.csv
+ create mode 100644 .rstudio/notebooks/924E7636-Assignment3/1/s/cmcyodv9knzrm/000002.csv
+ create mode 100644 .rstudio/notebooks/924E7636-Assignment3/1/s/cnl9r6cufyemi/000002.csv
+ create mode 100644 .rstudio/notebooks/924E7636-Assignment3/1/s/co954ttljz38j/000002.csv
+ create mode 100644 .rstudio/notebooks/924E7636-Assignment3/1/s/cpwymlghbjto0/000002.csv
+ create mode 100644 .rstudio/notebooks/924E7636-Assignment3/1/s/cpwymlghbjto0/000003.error
+ create mode 100644 .rstudio/notebooks/924E7636-Assignment3/1/s/cqxsrhoybqjat/00000a.csv
+ create mode 100644 .rstudio/notebooks/924E7636-Assignment3/1/s/cqxsrhoybqjat/00000b.error
+ create mode 100644 .rstudio/notebooks/924E7636-Assignment3/1/s/cr2ukqbqmqn95/000002.csv
+ create mode 100644 .rstudio/notebooks/924E7636-Assignment3/1/s/cumpgibaom30x/000002.csv
+ create mode 100644 .rstudio/notebooks/924E7636-Assignment3/1/s/cvzdlf5iiaqn8/000002.csv
+ create mode 100644 .rstudio/notebooks/924E7636-Assignment3/1/s/cwnsqcb0lfocb/000002.csv
+ create mode 100644 .rstudio/notebooks/924E7636-Assignment3/1/s/cyrn4bztx6ah8/000002.csv
+ create mode 100644 .rstudio/notebooks/924E7636-Assignment3/1/s/czjk9wor160r1/000002.csv
+ create mode 100644 .rstudio/notebooks/924E7636-Assignment3/1/s/czsc4vzgb468d/000002.csv
+ rename .rstudio/notebooks/{20BD8D3F-Assignment2/1/1851D95F5707515a/cbv4neeqlmhgr => 924E7636-Assignment3/1/s/czsc4vzgb468d}/000003.metadata (100%)
+ create mode 100644 .rstudio/notebooks/924E7636-Assignment3/1/s/czsc4vzgb468d/000003.png
+ create mode 100644 .rstudio/notebooks/924E7636-Assignment3/1/s/czsc4vzgb468d/000003.snapshot
+ create mode 100644 .rstudio/notebooks/924E7636-Assignment3/1/s/czuynrmiotfwm/000002.csv
+ create mode 100644 .rstudio/notebooks/B262406F-Assignment2/1/1851D95F5707515a/chunks.json
+ create mode 100644 .rstudio/notebooks/B262406F-Assignment2/1/s/c138kou0oe2xq/000002.csv
+ create mode 100644 .rstudio/notebooks/B262406F-Assignment2/1/s/cebq0hanl25ef/000002.csv
+ create mode 100644 .rstudio/notebooks/B262406F-Assignment2/1/s/chunks.json
+ create mode 100644 .rstudio/notebooks/B262406F-Assignment2/1/s/cj1b97h8xm8gm/000004.csv
+ rename .rstudio/notebooks/{20BD8D3F-Assignment2/1/1851D95F5707515a/c1t5xjx8we141/00000c.metadata => B262406F-Assignment2/1/s/cj1b97h8xm8gm/000005.metadata} (100%)
+ create mode 100644 .rstudio/notebooks/B262406F-Assignment2/1/s/cj1b97h8xm8gm/000005.png
+ create mode 100644 .rstudio/notebooks/B262406F-Assignment2/1/s/cj1b97h8xm8gm/000005.snapshot
+ create mode 100644 .rstudio/notebooks/B262406F-Assignment2/1/s/cnc3siwjcye82/000002.csv
+ rename .rstudio/notebooks/{20BD8D3F-Assignment2/1/1851D95F5707515a/cmvt2gdmjpav6/000002.csv => B262406F-Assignment2/1/s/cnigst3zyi9d2/000064.csv} (51%)
+ rename .rstudio/notebooks/{20BD8D3F-Assignment2/1/1851D95F5707515a/cmvt2gdmjpav6/000003.metadata => B262406F-Assignment2/1/s/cnigst3zyi9d2/000065.metadata} (100%)
+ rename .rstudio/notebooks/{20BD8D3F-Assignment2/1/1851D95F5707515a/cmvt2gdmjpav6/000003.rdf => B262406F-Assignment2/1/s/cnigst3zyi9d2/000065.rdf} (71%)
+ rename .rstudio/notebooks/{20BD8D3F-Assignment2/1/1851D95F5707515a/cmvt2gdmjpav6/000004.csv => B262406F-Assignment2/1/s/cnigst3zyi9d2/000066.csv} (66%)
+ create mode 100644 .rstudio/notebooks/B262406F-Assignment2/1/s/cnmws60sczdkp/000022.csv
+ rename .rstudio/notebooks/{20BD8D3F-Assignment2/1/1851D95F5707515a/cleecskcep6ns/000003.metadata => B262406F-Assignment2/1/s/cnmws60sczdkp/000023.metadata} (100%)
+ create mode 100644 .rstudio/notebooks/B262406F-Assignment2/1/s/cnmws60sczdkp/000023.png
+ rename .rstudio/notebooks/{20BD8D3F-Assignment2/1/1851D95F5707515a/c1t5xjx8we141/00000c.snapshot => B262406F-Assignment2/1/s/cnmws60sczdkp/000023.snapshot} (84%)
+ rewrite .rstudio/notebooks/EF7D1CF0-FinalProject/1/1851D95F5707515a/chunks.json (76%)
+ create mode 100644 .rstudio/notebooks/EF7D1CF0-FinalProject/1/s/c7ytqwvkwu2jj/000004.csv
+ create mode 100644 .rstudio/notebooks/EF7D1CF0-FinalProject/1/s/c7ytqwvkwu2jj/000005.error
+ create mode 100644 .rstudio/notebooks/EF7D1CF0-FinalProject/1/s/cse4r2ohwwo4j/000002.csv
+ create mode 100644 .rstudio/notebooks/EF7D1CF0-FinalProject/1/s/czcpgai2lfgn6/000002.csv
+ create mode 100644 .rstudio/projects/none/console07/35F12B5B
+ create mode 100644 .rstudio/projects/none/console07/35F12B5B.env
+ create mode 100644 .rstudio/projects/none/console07/4443E98D
+ create mode 100644 .rstudio/projects/none/console07/4443E98D.env
+ create mode 100644 .rstudio/projects/none/console07/8F328BCC
+ create mode 100644 .rstudio/projects/none/console07/8F328BCC.env
+ rewrite .rstudio/projects/none/console07/INDEX001 (69%)
+ create mode 100644 .rstudio/projects_settings/last-project-path
+ create mode 100644 .rstudio/sessions/active/session-5707515a/jobs/2C6560FD-output.json
+ create mode 100644 .rstudio/sessions/active/session-5707515a/jobs/3179A2FA-output.json
+ create mode 100644 .rstudio/sessions/active/session-5707515a/jobs/D83F48A2-output.json
+ rewrite .rstudio/sessions/active/session-5707515a/unsaved-notebooks/5EB0F33E/1/c6ivy7xa5v439/000005.png (88%)
+ rewrite .rstudio/sessions/active/session-5707515a/unsaved-notebooks/5EB0F33E/1/cjfebuso6lj18/000031.png (89%)
+ rewrite .rstudio/sessions/active/session-5707515a/unsaved-notebooks/5EB0F33E/1/cjfebuso6lj18/000033.png (87%)
+ create mode 100644 .rstudio/sources/prop/2B51FB6B
+ create mode 100644 .rstudio/sources/prop/352F32F7
+ create mode 100644 .rstudio/sources/prop/8361575E
+ create mode 100644 .rstudio/sources/prop/A6BC460F
+ create mode 100644 .rstudio/sources/prop/B68BF5BD
+ create mode 100644 .rstudio/sources/prop/B805AFFB
+ create mode 100644 .rstudio/sources/s-5707515a/0464A5E6
+ create mode 100644 .rstudio/sources/s-5707515a/0464A5E6-contents
+ create mode 100644 .rstudio/sources/s-5707515a/0BDE4216-contents
+ create mode 100644 .rstudio/sources/s-5707515a/14691A8C-contents
+ create mode 100644 .rstudio/sources/s-5707515a/2F93304C-contents
+ create mode 100644 .rstudio/sources/s-5707515a/32E44CBA-contents
+ create mode 100644 .rstudio/sources/s-5707515a/45868FFF-contents
+ create mode 100644 .rstudio/sources/s-5707515a/4D64482D
+ create mode 100644 .rstudio/sources/s-5707515a/4D64482D-contents
+ create mode 100644 .rstudio/sources/s-5707515a/72978F97-contents
+ create mode 100644 .rstudio/sources/s-5707515a/7341AC1B
+ create mode 100644 .rstudio/sources/s-5707515a/7341AC1B-contents
+ create mode 100644 .rstudio/sources/s-5707515a/765DE2E9-contents
+ delete mode 100644 .rstudio/sources/s-5707515a/7806097F
+ create mode 100644 .rstudio/sources/s-5707515a/7A6CD977-contents
+ create mode 100644 .rstudio/sources/s-5707515a/819F82F5-contents
+ create mode 100644 .rstudio/sources/s-5707515a/8604EA93
+ create mode 100644 .rstudio/sources/s-5707515a/8604EA93-contents
+ create mode 100644 .rstudio/sources/s-5707515a/8E9577D0-contents
+ create mode 100644 .rstudio/sources/s-5707515a/91BE9113-contents
+ create mode 100644 .rstudio/sources/s-5707515a/A9CE47AE-contents
+ rename .rstudio/sources/s-5707515a/{80EB25A5 => BC097E50} (73%)
+ create mode 100644 .rstudio/sources/s-5707515a/BC097E50-contents
+ create mode 100644 .rstudio/sources/s-5707515a/BCBD9C44-contents
+ create mode 100644 .rstudio/sources/s-5707515a/CB5759A9-contents
+ create mode 100644 .rstudio/sources/s-5707515a/D41BB035-contents
+ create mode 100644 .rstudio/sources/s-5707515a/DEC4C42D-contents
+ create mode 100644 .rstudio/sources/s-5707515a/E162D53B-contents
+ rename .rstudio/sources/s-5707515a/{27EC9A51 => E650109C} (62%)
+ create mode 100644 .rstudio/sources/s-5707515a/E650109C-contents
+ create mode 100644 .rstudio/sources/s-5707515a/E6856A5F-contents
+ create mode 100644 .rstudio/sources/s-5707515a/E7EAAC4B
+ create mode 100644 .rstudio/sources/s-5707515a/E7EAAC4B-contents
+ create mode 100644 .rstudio/sources/s-5707515a/EC52A572-contents
+ create mode 100644 .rstudio/sources/s-5707515a/EF5554BD-contents
+ create mode 100644 .rstudio/sources/s-5707515a/FB1833BD-contents
+ create mode 100644 Assignment3.rmd
+ create mode 160000 STA304-F21-Assignment3-code.git
+ create mode 100644 Sta302/University-Admissions-Regression.Rmd
+ create mode 100644 Sta302/University-Admissions-Regression.nb.html
+ rename STA304-F21-Assignment2.git => Sta304/STA304-F21-Assignment2.git (100%)
+ create mode 160000 Sta304/STA304-F21-Week4.git
+]0;/home/jovyan/Sta302jovyan@jupyter-ac5fcdab-2dd3bf-2d41ca-2db6c9-2da6bb964be8ad:~/Sta302$ git push
+fatal: The current branch main has no upstream branch.
+To push the current branch and set the remote as upstream, use
+
+    git push --set-upstream origin main
+
+]0;/home/jovyan/Sta302jovyan@jupyter-ac5fcdab-2dd3bf-2d41ca-2db6c9-2da6bb964be8ad:~/Sta302$  --set-upstra[Keam origin main
+bash: --set-upstream: command not found
+]0;/home/jovyan/Sta302jovyan@jupyter-ac5fcdab-2dd3bf-2d41ca-2db6c9-2da6bb964be8ad:~/Sta302$ git push[K[K[K[Kpush --set-uptr[K[Kstream origin main
+remote: Support for password authentication was removed on August 13, 2021. Please use a personal access token instead.
+remote: Please see https://github.blog/2020-12-15-token-authentication-requirements-for-git-operations/ for more information.
+fatal: Authentication failed for 'https://github.com/ChristopherChifor/linear-regression.git/'
+]0;/home/jovyan/Sta302jovyan@jupyter-ac5fcdab-2dd3bf-2d41ca-2db6c9-2da6bb964be8ad:~/Sta302$ d[Kgit config -l
+[?1h=credential.https://github.com.helper=!git-credential-github-app --app-key-file /etc/github/github-app-private-key.pem --app-id 93515[m
+credential.https://github.com.usehttppath=true[m
+user.name=ChristopherChifor[m
+user.email=christopher_chifor@yahoo.ca[m
+core.repositoryformatversion=0[m
+core.filemode=true[m
+core.bare=false[m
+core.logallrefupdates=true[m
+remote.origin.url=https://github.com/ChristopherChifor/linear-regression.git[m
+remote.origin.fetch=+refs/heads/*:refs/remotes/origin/*[m
+[K[?1l>]0;/home/jovyan/Sta302jovyan@jupyter-ac5fcdab-2dd3bf-2d41ca-2db6c9-2da6bb964be8ad:~/Sta302$ git config -lpush --set-upstream origin main
+Enumerating objects: 547, done.
+Counting objects:   0% (1/547)Counting objects:   1% (6/547)Counting objects:   2% (11/547)Counting objects:   3% (17/547)Counting objects:   4% (22/547)Counting objects:   5% (28/547)Counting objects:   6% (33/547)Counting objects:   7% (39/547)Counting objects:   8% (44/547)Counting objects:   9% (50/547)Counting objects:  10% (55/547)Counting objects:  11% (61/547)Counting objects:  12% (66/547)Counting objects:  13% (72/547)Counting objects:  14% (77/547)Counting objects:  15% (83/547)Counting objects:  16% (88/547)Counting objects:  17% (93/547)Counting objects:  18% (99/547)Counting objects:  19% (104/547)Counting objects:  20% (110/547)Counting objects:  21% (115/547)Counting objects:  22% (121/547)Counting objects:  23% (126/547)Counting objects:  24% (132/547)Counting objects:  25% (137/547)Counting objects:  26% (143/547)Counting objects:  27% (148/547)Counting objects:  28% (154/547)Counting objects:  29% (159/547)Counting objects:  30% (165/547)Counting objects:  31% (170/547)Counting objects:  32% (176/547)Counting objects:  33% (181/547)Counting objects:  34% (186/547)Counting objects:  35% (192/547)Counting objects:  36% (197/547)Counting objects:  37% (203/547)Counting objects:  38% (208/547)Counting objects:  39% (214/547)Counting objects:  40% (219/547)Counting objects:  41% (225/547)Counting objects:  42% (230/547)Counting objects:  43% (236/547)Counting objects:  44% (241/547)Counting objects:  45% (247/547)Counting objects:  46% (252/547)Counting objects:  47% (258/547)Counting objects:  48% (263/547)Counting objects:  49% (269/547)Counting objects:  50% (274/547)Counting objects:  51% (279/547)Counting objects:  52% (285/547)Counting objects:  53% (290/547)Counting objects:  54% (296/547)Counting objects:  55% (301/547)Counting objects:  56% (307/547)Counting objects:  57% (312/547)Counting objects:  58% (318/547)Counting objects:  59% (323/547)Counting objects:  60% (329/547)Counting objects:  61% (334/547)Counting objects:  62% (340/547)Counting objects:  63% (345/547)Counting objects:  64% (351/547)Counting objects:  65% (356/547)Counting objects:  66% (362/547)Counting objects:  67% (367/547)Counting objects:  68% (372/547)Counting objects:  69% (378/547)Counting objects:  70% (383/547)Counting objects:  71% (389/547)Counting objects:  72% (394/547)Counting objects:  73% (400/547)Counting objects:  74% (405/547)Counting objects:  75% (411/547)Counting objects:  76% (416/547)Counting objects:  77% (422/547)Counting objects:  78% (427/547)Counting objects:  79% (433/547)Counting objects:  80% (438/547)Counting objects:  81% (444/547)Counting objects:  82% (449/547)Counting objects:  83% (455/547)Counting objects:  84% (460/547)Counting objects:  85% (465/547)Counting objects:  86% (471/547)Counting objects:  86% (475/547)Counting objects:  87% (476/547)Counting objects:  88% (482/547)Counting objects:  89% (487/547)Counting objects:  90% (493/547)Counting objects:  91% (498/547)Counting objects:  92% (504/547)Counting objects:  93% (509/547)Counting objects:  94% (515/547)Counting objects:  95% (520/547)Counting objects:  96% (526/547)Counting objects:  97% (531/547)Counting objects:  98% (537/547)Counting objects:  99% (542/547)Counting objects: 100% (547/547)Counting objects: 100% (547/547), done.
+Delta compression using up to 8 threads
+Compressing objects:   0% (1/425)Compressing objects:   1% (5/425)Compressing objects:   2% (9/425)Compressing objects:   3% (13/425)Compressing objects:   4% (17/425)Compressing objects:   5% (22/425)Compressing objects:   6% (26/425)Compressing objects:   7% (30/425)Compressing objects:   8% (34/425)Compressing objects:   9% (39/425)Compressing objects:  10% (43/425)Compressing objects:  11% (47/425)Compressing objects:  12% (51/425)Compressing objects:  13% (56/425)Compressing objects:  14% (60/425)Compressing objects:  15% (64/425)Compressing objects:  16% (68/425)Compressing objects:  17% (73/425)Compressing objects:  18% (77/425)Compressing objects:  19% (81/425)Compressing objects:  20% (85/425)Compressing objects:  21% (90/425)Compressing objects:  22% (94/425)Compressing objects:  23% (98/425)Compressing objects:  24% (102/425)Compressing objects:  25% (107/425)Compressing objects:  26% (111/425)Compressing objects:  27% (115/425)Compressing objects:  28% (119/425)Compressing objects:  29% (124/425)Compressing objects:  30% (128/425)Compressing objects:  31% (132/425)Compressing objects:  32% (136/425)Compressing objects:  33% (141/425)Compressing objects:  34% (145/425)Compressing objects:  35% (149/425)Compressing objects:  36% (153/425)Compressing objects:  37% (158/425)Compressing objects:  38% (162/425)Compressing objects:  39% (166/425)Compressing objects:  40% (170/425)Compressing objects:  41% (175/425)Compressing objects:  42% (179/425)Compressing objects:  43% (183/425)Compressing objects:  44% (187/425)Compressing objects:  45% (192/425)Compressing objects:  46% (196/425)Compressing objects:  47% (200/425)Compressing objects:  48% (204/425)Compressing objects:  49% (209/425)Compressing objects:  50% (213/425)Compressing objects:  51% (217/425)Compressing objects:  52% (221/425)Compressing objects:  53% (226/425)Compressing objects:  54% (230/425)Compressing objects:  55% (234/425)Compressing objects:  56% (238/425)Compressing objects:  57% (243/425)Compressing objects:  58% (247/425)Compressing objects:  59% (251/425)Compressing objects:  60% (255/425)Compressing objects:  61% (260/425)Compressing objects:  62% (264/425)Compressing objects:  63% (268/425)Compressing objects:  64% (272/425)Compressing objects:  65% (277/425)Compressing objects:  66% (281/425)Compressing objects:  67% (285/425)Compressing objects:  68% (289/425)Compressing objects:  69% (294/425)Compressing objects:  70% (298/425)Compressing objects:  71% (302/425)Compressing objects:  72% (306/425)Compressing objects:  73% (311/425)Compressing objects:  74% (315/425)Compressing objects:  75% (319/425)Compressing objects:  76% (323/425)Compressing objects:  77% (328/425)Compressing objects:  78% (332/425)Compressing objects:  79% (336/425)Compressing objects:  80% (340/425)Compressing objects:  81% (345/425)Compressing objects:  82% (349/425)Compressing objects:  83% (353/425)Compressing objects:  84% (357/425)Compressing objects:  85% (362/425)Compressing objects:  86% (366/425)Compressing objects:  87% (370/425)Compressing objects:  88% (374/425)Compressing objects:  89% (379/425)Compressing objects:  90% (383/425)Compressing objects:  91% (387/425)Compressing objects:  92% (391/425)Compressing objects:  93% (396/425)Compressing objects:  94% (400/425)Compressing objects:  95% (404/425)Compressing objects:  96% (408/425)Compressing objects:  97% (413/425)Compressing objects:  98% (417/425)Compressing objects:  99% (421/425)Compressing objects: 100% (425/425)Compressing objects: 100% (425/425), done.
+Writing objects:   0% (1/547)Writing objects:   1% (6/547)Writing objects:   2% (11/547)Writing objects:   3% (17/547)Writing objects:   4% (22/547)Writing objects:   5% (28/547)Writing objects:   6% (33/547)Writing objects:   7% (39/547)Writing objects:   8% (44/547)Writing objects:   9% (50/547)Writing objects:  10% (55/547)Writing objects:  11% (61/547)Writing objects:  12% (66/547)Writing objects:  13% (72/547)Writing objects:  14% (79/547)Writing objects:  15% (83/547)Writing objects:  16% (88/547)Writing objects:  17% (93/547)Writing objects:  18% (99/547)Writing objects:  19% (105/547)Writing objects:  20% (110/547)Writing objects:  21% (115/547)Writing objects:  22% (121/547)Writing objects:  23% (126/547)Writing objects:  24% (132/547)Writing objects:  25% (137/547)Writing objects:  26% (143/547), 1.07 MiB | 2.12 MiB/sWriting objects:  27% (148/547), 1.07 MiB | 2.12 MiB/sWriting objects:  28% (154/547), 1.07 MiB | 2.12 MiB/sWriting objects:  29% (159/547), 1.07 MiB | 2.12 MiB/sWriting objects:  30% (165/547), 1.07 MiB | 2.12 MiB/sWriting objects:  31% (170/547), 1.07 MiB | 2.12 MiB/sWriting objects:  32% (176/547), 1.07 MiB | 2.12 MiB/sWriting objects:  33% (181/547), 1.07 MiB | 2.12 MiB/sWriting objects:  34% (186/547), 1.07 MiB | 2.12 MiB/sWriting objects:  35% (192/547), 1.07 MiB | 2.12 MiB/sWriting objects:  36% (197/547), 1.07 MiB | 2.12 MiB/sWriting objects:  37% (203/547), 1.07 MiB | 2.12 MiB/sWriting objects:  38% (208/547), 1.07 MiB | 2.12 MiB/sWriting objects:  39% (214/547), 1.07 MiB | 2.12 MiB/sWriting objects:  40% (219/547), 1.07 MiB | 2.12 MiB/sWriting objects:  41% (225/547), 1.07 MiB | 2.12 MiB/sWriting objects:  42% (230/547), 1.07 MiB | 2.12 MiB/sWriting objects:  43% (236/547), 1.07 MiB | 2.12 MiB/sWriting objects:  44% (241/547), 1.07 MiB | 2.12 MiB/sWriting objects:  45% (247/547), 1.07 MiB | 2.12 MiB/sWriting objects:  46% (252/547), 1.07 MiB | 2.12 MiB/sWriting objects:  47% (258/547), 1.07 MiB | 2.12 MiB/sWriting objects:  48% (263/547), 1.07 MiB | 2.12 MiB/sWriting objects:  49% (269/547), 1.07 MiB | 2.12 MiB/sWriting objects:  50% (274/547), 1.07 MiB | 2.12 MiB/sWriting objects:  51% (280/547), 1.07 MiB | 2.12 MiB/sWriting objects:  52% (285/547), 1.07 MiB | 2.12 MiB/sWriting objects:  53% (290/547), 1.07 MiB | 2.12 MiB/sWriting objects:  54% (297/547), 1.07 MiB | 2.12 MiB/sWriting objects:  55% (303/547), 1.07 MiB | 2.12 MiB/sWriting objects:  56% (307/547), 1.07 MiB | 2.12 MiB/sWriting objects:  57% (312/547), 1.07 MiB | 2.12 MiB/sWriting objects:  58% (318/547), 1.07 MiB | 2.12 MiB/sWriting objects:  59% (323/547), 1.07 MiB | 2.12 MiB/sWriting objects:  59% (324/547), 2.27 MiB | 1.37 MiB/sWriting objects:  60% (329/547), 2.27 MiB | 1.37 MiB/sWriting objects:  61% (334/547), 2.27 MiB | 1.37 MiB/sWriting objects:  62% (340/547), 2.27 MiB | 1.37 MiB/sWriting objects:  63% (345/547), 2.27 MiB | 1.37 MiB/sWriting objects:  64% (351/547), 2.27 MiB | 1.37 MiB/sWriting objects:  65% (356/547), 2.27 MiB | 1.37 MiB/sWriting objects:  66% (362/547), 2.27 MiB | 1.37 MiB/sWriting objects:  67% (367/547), 2.27 MiB | 1.37 MiB/sWriting objects:  68% (372/547), 2.27 MiB | 1.37 MiB/sWriting objects:  69% (378/547), 2.27 MiB | 1.37 MiB/sWriting objects:  70% (383/547), 2.27 MiB | 1.37 MiB/sWriting objects:  71% (390/547), 2.27 MiB | 1.37 MiB/sWriting objects:  72% (394/547), 2.27 MiB | 1.37 MiB/sWriting objects:  73% (400/547), 2.27 MiB | 1.37 MiB/sWriting objects:  74% (406/547), 2.27 MiB | 1.37 MiB/sWriting objects:  75% (412/547), 2.27 MiB | 1.37 MiB/sWriting objects:  76% (416/547), 2.27 MiB | 1.37 MiB/sWriting objects:  77% (422/547), 2.27 MiB | 1.37 MiB/sWriting objects:  78% (427/547), 2.27 MiB | 1.37 MiB/sWriting objects:  79% (433/547), 2.27 MiB | 1.37 MiB/sWriting objects:  80% (438/547), 2.27 MiB | 1.37 MiB/sWriting objects:  81% (444/547), 2.27 MiB | 1.37 MiB/sWriting objects:  82% (449/547), 2.27 MiB | 1.37 MiB/sWriting objects:  83% (455/547), 2.27 MiB | 1.37 MiB/sWriting objects:  84% (460/547), 2.27 MiB | 1.37 MiB/sWriting objects:  85% (465/547), 2.27 MiB | 1.37 MiB/sWriting objects:  86% (471/547), 2.27 MiB | 1.37 MiB/sWriting objects:  86% (475/547), 2.27 MiB | 1.37 MiB/sWriting objects:  87% (476/547), 2.27 MiB | 1.37 MiB/sWriting objects:  88% (482/547), 2.27 MiB | 1.37 MiB/sWriting objects:  89% (487/547), 2.27 MiB | 1.37 MiB/sWriting objects:  90% (493/547), 2.27 MiB | 1.37 MiB/sWriting objects:  91% (498/547), 2.27 MiB | 1.37 MiB/sWriting objects:  92% (504/547), 2.27 MiB | 1.37 MiB/sWriting objects:  93% (509/547), 2.27 MiB | 1.37 MiB/sWriting objects:  94% (515/547), 2.27 MiB | 1.37 MiB/sWriting objects:  95% (520/547), 2.27 MiB | 1.37 MiB/sWriting objects:  96% (526/547), 2.27 MiB | 1.37 MiB/sWriting objects:  97% (531/547), 2.27 MiB | 1.37 MiB/sWriting objects:  98% (537/547), 2.27 MiB | 1.37 MiB/sWriting objects:  99% (542/547), 2.27 MiB | 1.37 MiB/sWriting objects: 100% (547/547), 2.27 MiB | 1.37 MiB/sWriting objects: 100% (547/547), 7.70 MiB | 3.61 MiB/s, done.
+Total 547 (delta 92), reused 0 (delta 0)
+remote: Resolving deltas:   0% (0/92)[Kremote: Resolving deltas:   1% (1/92)[Kremote: Resolving deltas:   2% (2/92)[Kremote: Resolving deltas:   3% (3/92)[Kremote: Resolving deltas:   4% (4/92)[Kremote: Resolving deltas:   5% (5/92)[Kremote: Resolving deltas:   6% (6/92)[Kremote: Resolving deltas:   7% (7/92)[Kremote: Resolving deltas:   8% (8/92)[Kremote: Resolving deltas:   9% (9/92)[Kremote: Resolving deltas:  10% (10/92)[Kremote: Resolving deltas:  11% (11/92)[Kremote: Resolving deltas:  13% (12/92)[Kremote: Resolving deltas:  14% (13/92)[Kremote: Resolving deltas:  15% (14/92)[Kremote: Resolving deltas:  16% (15/92)[Kremote: Resolving deltas:  17% (16/92)[Kremote: Resolving deltas:  18% (17/92)[Kremote: Resolving deltas:  19% (18/92)[Kremote: Resolving deltas:  20% (19/92)[Kremote: Resolving deltas:  21% (20/92)[Kremote: Resolving deltas:  22% (21/92)[Kremote: Resolving deltas:  23% (22/92)[Kremote: Resolving deltas:  25% (23/92)[Kremote: Resolving deltas:  26% (24/92)[Kremote: Resolving deltas:  27% (25/92)[Kremote: Resolving deltas:  28% (26/92)[Kremote: Resolving deltas:  29% (27/92)[Kremote: Resolving deltas:  30% (28/92)[Kremote: Resolving deltas:  31% (29/92)[Kremote: Resolving deltas:  32% (30/92)[Kremote: Resolving deltas:  33% (31/92)[Kremote: Resolving deltas:  34% (32/92)[Kremote: Resolving deltas:  35% (33/92)[Kremote: Resolving deltas:  36% (34/92)[Kremote: Resolving deltas:  38% (35/92)[Kremote: Resolving deltas:  39% (36/92)[Kremote: Resolving deltas:  40% (37/92)[Kremote: Resolving deltas:  41% (38/92)[Kremote: Resolving deltas:  42% (39/92)[Kremote: Resolving deltas:  43% (40/92)[Kremote: Resolving deltas:  44% (41/92)[Kremote: Resolving deltas:  45% (42/92)[Kremote: Resolving deltas:  46% (43/92)[Kremote: Resolving deltas:  47% (44/92)[Kremote: Resolving deltas:  48% (45/92)[Kremote: Resolving deltas:  50% (46/92)[Kremote: Resolving deltas:  51% (47/92)[Kremote: Resolving deltas:  52% (48/92)[Kremote: Resolving deltas:  53% (49/92)[Kremote: Resolving deltas:  54% (50/92)[Kremote: Resolving deltas:  55% (51/92)[Kremote: Resolving deltas:  56% (52/92)[Kremote: Resolving deltas:  57% (53/92)[Kremote: Resolving deltas:  58% (54/92)[Kremote: Resolving deltas:  59% (55/92)[Kremote: Resolving deltas:  60% (56/92)[Kremote: Resolving deltas:  61% (57/92)[Kremote: Resolving deltas:  63% (58/92)[Kremote: Resolving deltas:  64% (59/92)[Kremote: Resolving deltas:  65% (60/92)[Kremote: Resolving deltas:  66% (61/92)[Kremote: Resolving deltas:  67% (62/92)[Kremote: Resolving deltas:  68% (63/92)[Kremote: Resolving deltas:  69% (64/92)[Kremote: Resolving deltas:  70% (65/92)[Kremote: Resolving deltas:  71% (66/92)[Kremote: Resolving deltas:  72% (67/92)[Kremote: Resolving deltas:  73% (68/92)[Kremote: Resolving deltas:  75% (69/92)[Kremote: Resolving deltas:  76% (70/92)[Kremote: Resolving deltas:  77% (71/92)[Kremote: Resolving deltas:  78% (72/92)[Kremote: Resolving deltas:  79% (73/92)[Kremote: Resolving deltas:  80% (74/92)[Kremote: Resolving deltas:  81% (75/92)[Kremote: Resolving deltas:  82% (76/92)[Kremote: Resolving deltas:  83% (77/92)[Kremote: Resolving deltas:  84% (78/92)[Kremote: Resolving deltas:  85% (79/92)[Kremote: Resolving deltas:  86% (80/92)[Kremote: Resolving deltas:  88% (81/92)[Kremote: Resolving deltas:  89% (82/92)[Kremote: Resolving deltas:  90% (83/92)[Kremote: Resolving deltas:  91% (84/92)[Kremote: Resolving deltas:  92% (85/92)[Kremote: Resolving deltas:  93% (86/92)[Kremote: Resolving deltas:  94% (87/92)[Kremote: Resolving deltas:  95% (88/92)[Kremote: Resolving deltas:  96% (89/92)[Kremote: Resolving deltas:  97% (90/92)[Kremote: Resolving deltas:  98% (91/92)[Kremote: Resolving deltas: 100% (92/92)[Kremote: Resolving deltas: 100% (92/92), done.[K
+To https://github.com/ChristopherChifor/linear-regression.git
+ * [new branch]      main -> main
+Branch 'main' set up to track remote branch 'main' from 'origin'.
+]0;/home/jovyan/Sta302jovyan@jupyter-ac5fcdab-2dd3bf-2d41ca-2db6c9-2da6bb964be8ad:~/Sta302$ 
