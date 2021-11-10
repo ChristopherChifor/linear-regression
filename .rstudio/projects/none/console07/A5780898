@@ -349,3 +349,38 @@ Changes not staged for commit:
 
 no changes added to commit (use "git add" and/or "git commit -a")
 ]0;/home/jovyan/Sta302jovyan@jupyter-ac5fcdab-2dd3bf-2d41ca-2db6c9-2da6bb964be8ad:~/Sta302$ git add -A && git commt[Kit -m "Changes" && git push
+[main 06f18da] Changes
+ 3 files changed, 94 insertions(+), 2 deletions(-)
+error: unable to read askpass response from 'rpostback-askpass'
+Username for 'https://github.com/ChristopherChifor/linear-regression.git': st  git add -A
+remote: Support for password authentication was removed on August 13, 2021. Please use a personal access token instead.
+remote: Please see https://github.blog/2020-12-15-token-authentication-requirements-for-git-operations/ for more information.
+fatal: Authentication failed for 'https://github.com/ChristopherChifor/linear-regression.git/'
+]0;/home/jovyan/Sta302jovyan@jupyter-ac5fcdab-2dd3bf-2d41ca-2db6c9-2da6bb964be8ad:~/Sta302$ git add -A
+]0;/home/jovyan/Sta302jovyan@jupyter-ac5fcdab-2dd3bf-2d41ca-2db6c9-2da6bb964be8ad:~/Sta302$ git sd[Ktatus
+On branch main
+Your branch is ahead of 'origin/main' by 1 commit.
+  (use "git push" to publish your local commits)
+
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+	[32mmodified:   ../.rstudio/projects/none/console07/A5780898[m
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+  (commit or discard the untracked or modified content in submodules)
+	[31mmodified:   ../.rstudio/projects/none/console07/A5780898[m
+	[31mmodified:   ../STA304-F21-Assignment3-code.git[m (modified content, untracked content)
+	[31mmodified:   ../Sta238/STA238-Assignment1.git[m (modified content, untracked content)
+	[31mmodified:   ../Sta238/STA238-Assignment2.git[m (modified content, untracked content)
+	[31mmodified:   ../Sta238/STA238-Assignment3.git[m (modified content)
+	[31mmodified:   ../Sta238/STA238-FinalProject.git[m (modified content, untracked content)
+	[31mmodified:   ../Sta238/STA238-Week1.git[m (modified content, untracked content)
+	[31mmodified:   ../Sta238/STA238-Week3.git[m (modified content)
+	[31mmodified:   ../Sta238/STA238-Week4.git[m (modified content)
+	[31mmodified:   ../Sta304/STA304-F21-Assignment1.git[m (modified content, untracked content)
+	[31mmodified:   ../Sta304/STA304-F21-Assignment2.git[m (modified content, untracked content)
+	[31mmodified:   ../Sta304/STA304-F21-Week1Class.git[m (untracked content)
+
+]0;/home/jovyan/Sta302jovyan@jupyter-ac5fcdab-2dd3bf-2d41ca-2db6c9-2da6bb964be8ad:~/Sta302$ git add -A
