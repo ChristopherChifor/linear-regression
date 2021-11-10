@@ -20,10 +20,49 @@ data
 
 
 ```{r}
-data %>%
-  ggplot(aes(x = AVGFACSAL, y=ADM_RATE))+
+attributes <- c("UNITID"
+"INSTNM",
+"STABBR",
+"NUMBRANCH",
+"CONTROL",
+"REGION",
+"HBCU",
+"PBI",
+"TRIBAL",
+"HSI",
+"WOMENONLY",
+"ADM_RATE",
+"COSTT4_A",
+"AVGFACSAL",
+"PFTFAC",
+"PCTPELL",
+"UG25ABV",
+"INC_PCT_LO",
+"PAR_ED_PCT_1STGEN",
+"FEMALE",
+"MD_FAMINC",
+"PCT_WHITE",
+"PCT_BLACK",
+"PCT_ASIAN",
+"PCT_HISPANIC",
+"PCT_BA",
+"PCT_GRAD_PROF",
+"PCT_BORN_US",
+"POVERTY_RATE",
+"UNEMP_RATE)
+
+// Loop over all attributes
+
+for (attr in attributes) {
+  data %>%
+  ggplot(aes(x = attr, y=ADM_RATE))+
   geom_point(col = "blue")+
   ggtitle("Scatterplot")+
   theme(plot.title = element_text(size=12))
+}
+
 ```
+
+
+
 
