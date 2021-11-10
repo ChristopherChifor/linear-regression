@@ -1,0 +1,79 @@
+]0;/home/jovyan/Sta302/University-Admisssions-Regressionjovyan@jupyter-ac5fcdab-2dd3bf-2d41ca-2db6c9-2da6bb964be8ad:~/Sta302/University-Admisssions-Regression$ [K[Ajovyan@jupyter-ac5fcdab-2dd3bf-2d41ca-2db6c9-2da6bb964be8ad:~/Sta302/University-Admisssions-Regression$ git status 
+On branch main
+Your branch is up to date with 'origin/main'.
+
+Changes not staged for commit:
+  (use "git add/rm <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+  (commit or discard the untracked or modified content in submodules)
+	[31mmodified:   ../../.rstudio/monitored/lists/file_mru[m
+	[31mdeleted:    ../../.rstudio/notebooks/828AAE0F-University-Admissions-Regression/1/1851D95F5707515a/chunks.json[m
+	[31mmodified:   ../../.rstudio/notebooks/paths[m
+	[31mmodified:   ../../.rstudio/projects/none/console07/35F12B5B[m
+	[31mmodified:   ../../.rstudio/projects/none/console07/INDEX001[m
+	[31mmodified:   ../../.rstudio/sources/prop/2B51FB6B[m
+	[31mmodified:   ../../.rstudio/sources/prop/INDEX[m
+	[31mmodified:   ../../.rstudio/sources/s-5707515a/4D64482D[m
+	[31mdeleted:    ../../.rstudio/sources/s-5707515a/7341AC1B[m
+	[31mmodified:   ../../STA304-F21-Assignment3-code.git[m (modified content, untracked content)
+	[31mmodified:   ../../Sta238/STA238-Assignment1.git[m (modified content, untracked content)
+	[31mmodified:   ../../Sta238/STA238-Assignment2.git[m (modified content, untracked content)
+	[31mmodified:   ../../Sta238/STA238-Assignment3.git[m (modified content)
+	[31mmodified:   ../../Sta238/STA238-FinalProject.git[m (modified content, untracked content)
+	[31mmodified:   ../../Sta238/STA238-Week1.git[m (modified content, untracked content)
+	[31mmodified:   ../../Sta238/STA238-Week3.git[m (modified content)
+	[31mmodified:   ../../Sta238/STA238-Week4.git[m (modified content)
+	[31mdeleted:    ../University-Admissions-Regression.Rmd[m
+	[31mmodified:   ../../Sta304/STA304-F21-Assignment1.git[m (modified content, untracked content)
+	[31mmodified:   ../../Sta304/STA304-F21-Assignment2.git[m (modified content, untracked content)
+	[31mmodified:   ../../Sta304/STA304-F21-Week1Class.git[m (untracked content)
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	[31m../../.rstudio/notebooks/D818B622-University-Admissions-Regression/[m
+	[31m../../.rstudio/projects/none/console07/A5780898[m
+	[31m../../.rstudio/sources/prop/58C86993[m
+	[31m../../.rstudio/sources/s-5707515a/24DFC0EF[m
+	[31m../../.rstudio/sources/s-5707515a/24DFC0EF-contents[m
+	[31m./[m
+
+no changes added to commit (use "git add" and/or "git commit -a")
+]0;/home/jovyan/Sta302/University-Admisssions-Regressionjovyan@jupyter-ac5fcdab-2dd3bf-2d41ca-2db6c9-2da6bb964be8ad:~/Sta302/University-Admisssions-Regression$ git commit -am "Added University"
+[main 1715afb] Added University
+ 10 files changed, 218 insertions(+), 49 deletions(-)
+ delete mode 100644 .rstudio/notebooks/828AAE0F-University-Admissions-Regression/1/1851D95F5707515a/chunks.json
+ delete mode 100644 .rstudio/sources/s-5707515a/7341AC1B
+ delete mode 100644 Sta302/University-Admissions-Regression.Rmd
+]0;/home/jovyan/Sta302/University-Admisssions-Regressionjovyan@jupyter-ac5fcdab-2dd3bf-2d41ca-2db6c9-2da6bb964be8ad:~/Sta302/University-Admisssions-Regression$ git status
+On branch main
+Your branch is ahead of 'origin/main' by 1 commit.
+  (use "git push" to publish your local commits)
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+  (commit or discard the untracked or modified content in submodules)
+	[31mmodified:   ../../STA304-F21-Assignment3-code.git[m (modified content, untracked content)
+	[31mmodified:   ../../Sta238/STA238-Assignment1.git[m (modified content, untracked content)
+	[31mmodified:   ../../Sta238/STA238-Assignment2.git[m (modified content, untracked content)
+	[31mmodified:   ../../Sta238/STA238-Assignment3.git[m (modified content)
+	[31mmodified:   ../../Sta238/STA238-FinalProject.git[m (modified content, untracked content)
+	[31mmodified:   ../../Sta238/STA238-Week1.git[m (modified content, untracked content)
+	[31mmodified:   ../../Sta238/STA238-Week3.git[m (modified content)
+	[31mmodified:   ../../Sta238/STA238-Week4.git[m (modified content)
+	[31mmodified:   ../../Sta304/STA304-F21-Assignment1.git[m (modified content, untracked content)
+	[31mmodified:   ../../Sta304/STA304-F21-Assignment2.git[m (modified content, untracked content)
+	[31mmodified:   ../../Sta304/STA304-F21-Week1Class.git[m (untracked content)
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	[31m../../.rstudio/notebooks/D818B622-University-Admissions-Regression/[m
+	[31m../../.rstudio/projects/none/console07/A5780898[m
+	[31m../../.rstudio/projects/none/console07/A5780898.env[m
+	[31m../../.rstudio/sources/prop/58C86993[m
+	[31m../../.rstudio/sources/s-5707515a/24DFC0EF[m
+	[31m../../.rstudio/sources/s-5707515a/24DFC0EF-contents[m
+	[31m./[m
+
+no changes added to commit (use "git add" and/or "git commit -a")
+]0;/home/jovyan/Sta302/University-Admisssions-Regressionjovyan@jupyter-ac5fcdab-2dd3bf-2d41ca-2db6c9-2da6bb964be8ad:~/Sta302/University-Admisssions-Regression$ git add -A
