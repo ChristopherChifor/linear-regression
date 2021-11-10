@@ -1,25 +1,25 @@
 {
-    "id": "24DFC0EF",
+    "id": "A06BCD43",
     "path": "~/Sta302/University-Admisssions-Regression/University-Admissions-Regression.Rmd",
     "project_path": null,
     "type": "r_markdown",
     "hash": "0",
     "contents": "",
     "dirty": true,
-    "created": 1636565748882.0,
+    "created": 1636566556684.0,
     "source_on_save": false,
     "relative_order": 10,
     "properties": {
         "chunk_output_type": "inline",
-        "cursorPosition": "4,3",
+        "cursorPosition": "20,23",
         "scrollLine": "0"
     },
     "folds": "",
-    "lastKnownWriteTime": 1636565759,
+    "lastKnownWriteTime": 1636566526,
     "encoding": "UTF-8",
     "collab_server": "",
     "source_window": "",
-    "last_content_update": 1636565774712,
+    "last_content_update": 1636566720822,
     "read_only": false,
     "read_only_alternatives": []
 }
