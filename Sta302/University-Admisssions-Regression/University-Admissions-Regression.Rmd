@@ -15,54 +15,334 @@ library(tidyverse)
 library(dplyr)
 
 data <- read.csv("./Video_project_dataset.csv")
-data
+glimpse(data)
 ```
 
 
 ```{r}
-attributes <- c("UNITID"
-"INSTNM",
-"STABBR",
-"NUMBRANCH",
-"CONTROL",
-"REGION",
-"HBCU",
-"PBI",
-"TRIBAL",
-"HSI",
-"WOMENONLY",
-"ADM_RATE",
-"COSTT4_A",
-"AVGFACSAL",
-"PFTFAC",
-"PCTPELL",
-"UG25ABV",
-"INC_PCT_LO",
-"PAR_ED_PCT_1STGEN",
-"FEMALE",
-"MD_FAMINC",
-"PCT_WHITE",
-"PCT_BLACK",
-"PCT_ASIAN",
-"PCT_HISPANIC",
-"PCT_BA",
-"PCT_GRAD_PROF",
-"PCT_BORN_US",
-"POVERTY_RATE",
-"UNEMP_RATE)
+data %>% ggplot(aes(x = UNITID, y=ADM_RATE))+
+      geom_point(col = "blue")+
+      ggtitle("Scatterplot")+
+      theme(plot.title = element_text(size=12))
+    
 
-// Loop over all attributes
+    data %>% ggplot(aes(x = INSTNM, y=ADM_RATE))+
+      geom_point(col = "blue")+
+      ggtitle("Scatterplot")+
+      theme(plot.title = element_text(size=12))
+    
 
-for (attr in attributes) {
-  data %>%
-  ggplot(aes(x = attr, y=ADM_RATE))+
-  geom_point(col = "blue")+
-  ggtitle("Scatterplot")+
-  theme(plot.title = element_text(size=12))
-}
+    data %>% ggplot(aes(x = STABBR, y=ADM_RATE))+
+      geom_point(col = "blue")+
+      ggtitle("Scatterplot")+
+      theme(plot.title = element_text(size=12))
+    
+
+    data %>% ggplot(aes(x = NUMBRANCH, y=ADM_RATE))+
+      geom_point(col = "blue")+
+      ggtitle("Scatterplot")+
+      theme(plot.title = element_text(size=12))
+    
+
+    data %>% ggplot(aes(x = CONTROL, y=ADM_RATE))+
+      geom_point(col = "blue")+
+      ggtitle("Scatterplot")+
+      theme(plot.title = element_text(size=12))
+    
+
+    data %>% ggplot(aes(x = REGION, y=ADM_RATE))+
+      geom_point(col = "blue")+
+      ggtitle("Scatterplot")+
+      theme(plot.title = element_text(size=12))
+    
+
+    data %>% ggplot(aes(x = HBCU, y=ADM_RATE))+
+      geom_point(col = "blue")+
+      ggtitle("Scatterplot")+
+      theme(plot.title = element_text(size=12))
+    
+
+    data %>% ggplot(aes(x = PBI, y=ADM_RATE))+
+      geom_point(col = "blue")+
+      ggtitle("Scatterplot")+
+      theme(plot.title = element_text(size=12))
+    
+
+    data %>% ggplot(aes(x = TRIBAL, y=ADM_RATE))+
+      geom_point(col = "blue")+
+      ggtitle("Scatterplot")+
+      theme(plot.title = element_text(size=12))
+    
+
+    data %>% ggplot(aes(x = HSI, y=ADM_RATE))+
+      geom_point(col = "blue")+
+      ggtitle("Scatterplot")+
+      theme(plot.title = element_text(size=12))
+    
+
+    data %>% ggplot(aes(x = WOMENONLY, y=ADM_RATE))+
+      geom_point(col = "blue")+
+      ggtitle("Scatterplot")+
+      theme(plot.title = element_text(size=12))
+    
+
+    data %>% ggplot(aes(x = ADM_RATE, y=ADM_RATE))+
+      geom_point(col = "blue")+
+      ggtitle("Scatterplot")+
+      theme(plot.title = element_text(size=12))
+    
+
+    data %>% ggplot(aes(x = COSTT4_A, y=ADM_RATE))+
+      geom_point(col = "blue")+
+      ggtitle("Scatterplot")+
+      theme(plot.title = element_text(size=12))
+    
+
+    data %>% ggplot(aes(x = AVGFACSAL, y=ADM_RATE))+
+      geom_point(col = "blue")+
+      ggtitle("Scatterplot")+
+      theme(plot.title = element_text(size=12))
+    
+
+    data %>% ggplot(aes(x = PFTFAC, y=ADM_RATE))+
+      geom_point(col = "blue")+
+      ggtitle("Scatterplot")+
+      theme(plot.title = element_text(size=12))
+    
+
+    data %>% ggplot(aes(x = PCTPELL, y=ADM_RATE))+
+      geom_point(col = "blue")+
+      ggtitle("Scatterplot")+
+      theme(plot.title = element_text(size=12))
+    
+
+    data %>% ggplot(aes(x = UG25ABV, y=ADM_RATE))+
+      geom_point(col = "blue")+
+      ggtitle("Scatterplot")+
+      theme(plot.title = element_text(size=12))
+    
+
+    data %>% ggplot(aes(x = INC_PCT_LO, y=ADM_RATE))+
+      geom_point(col = "blue")+
+      ggtitle("Scatterplot")+
+      theme(plot.title = element_text(size=12))
+    
+
+    data %>% ggplot(aes(x = PAR_ED_PCT_1STGEN, y=ADM_RATE))+
+      geom_point(col = "blue")+
+      ggtitle("Scatterplot")+
+      theme(plot.title = element_text(size=12))
+    
+
+    data %>% ggplot(aes(x = FEMALE, y=ADM_RATE))+
+      geom_point(col = "blue")+
+      ggtitle("Scatterplot")+
+      theme(plot.title = element_text(size=12))
+    
+
+    data %>% ggplot(aes(x = MD_FAMINC, y=ADM_RATE))+
+      geom_point(col = "blue")+
+      ggtitle("Scatterplot")+
+      theme(plot.title = element_text(size=12))
+    
+
+    data %>% ggplot(aes(x = PCT_WHITE, y=ADM_RATE))+
+      geom_point(col = "blue")+
+      ggtitle("Scatterplot")+
+      theme(plot.title = element_text(size=12))
+    
+
+    data %>% ggplot(aes(x = PCT_BLACK, y=ADM_RATE))+
+      geom_point(col = "blue")+
+      ggtitle("Scatterplot")+
+      theme(plot.title = element_text(size=12))
+    
+
+    data %>% ggplot(aes(x = PCT_ASIAN, y=ADM_RATE))+
+      geom_point(col = "blue")+
+      ggtitle("Scatterplot")+
+      theme(plot.title = element_text(size=12))
+    
+
+    data %>% ggplot(aes(x = PCT_HISPANIC, y=ADM_RATE))+
+      geom_point(col = "blue")+
+      ggtitle("Scatterplot")+
+      theme(plot.title = element_text(size=12))
+    
+
+    data %>% ggplot(aes(x = PCT_BA, y=ADM_RATE))+
+      geom_point(col = "blue")+
+      ggtitle("Scatterplot")+
+      theme(plot.title = element_text(size=12))
+    
+
+    data %>% ggplot(aes(x = PCT_GRAD_PROF, y=ADM_RATE))+
+      geom_point(col = "blue")+
+      ggtitle("Scatterplot")+
+      theme(plot.title = element_text(size=12))
+    
+
+    data %>% ggplot(aes(x = PCT_BORN_US, y=ADM_RATE))+
+      geom_point(col = "blue")+
+      ggtitle("Scatterplot")+
+      theme(plot.title = element_text(size=12))
+    
+
+    data %>% ggplot(aes(x = POVERTY_RATE, y=ADM_RATE))+
+      geom_point(col = "blue")+
+      ggtitle("Scatterplot")+
+      theme(plot.title = element_text(size=12))
+    
+
+    data %>% ggplot(aes(x = UNEMP_RATE, y=ADM_RATE))+
+      geom_point(col = "blue")+
+      ggtitle("Scatterplot")+
+      theme(plot.title = element_text(size=12))
+```
+
+
+
+```{r}
+
+    
+     boxplot(data$ADM_RATE~data$NUMBRANCH,
+        col ="brown", 
+        ylab = "Admission Rate",
+        xlab = "Number of Branch Campuses",
+        main = "Admission Rate for Number of Branch Campuses")
+
+    
+     boxplot(data$ADM_RATE~data$CONTROL,
+        col ="blue", 
+        ylab = "Admission Rate",
+        xlab = "Control of Institution",
+        main = "Admission Rate for the Control of Institution")
+
+    
+     boxplot(data$ADM_RATE~data$REGION,
+        col ="green", 
+        ylab = "Admission Rate",
+        xlab = "Regional Location of Institution",
+        main = "Admission Rate of Regional Location of Institution")
+
+    
+     boxplot(data$ADM_RATE~data$HBCU,
+        col ="yellow", 
+        ylab = "Admission Rate",
+        xlab = "Historically Black College and University",
+        main = "Admission Rate for Black Universities")
+
+    
+     boxplot(data$ADM_RATE~data$PBI,
+        col ="red", 
+        ylab = "Admission Rate",
+        xlab = "Day of the Week ",
+        main = "Day of the Week vs Admission Rate")
+
+    
+     boxplot(data$ADM_RATE~data$TRIBAL,
+        col ="beige", 
+        ylab = "Admission Rate",
+        xlab = "Day of the Week ",
+        main = "Day of the Week vs Admission Rate")
+
+    
+     boxplot(data$ADM_RATE~data$HSI,
+        col ="grey", 
+        ylab = "Admission Rate",
+        xlab = "Day of the Week ",
+        main = "Day of the Week vs Admission Rate")
+
+    
+     boxplot(data$ADM_RATE~data$WOMENONLY,
+        col ="orange", 
+        ylab = "Admission Rate",
+        xlab = "Women-only College",
+        main = "Admission Rate for Women's Colleges")
 
 ```
 
 
 
+# Selecting a model via backwards selection
 
+```{r}
+
+full <- lm(ADM_RATE ~ NUMBRANCH + CONTROL + REGION + HBCU + PBI + TRIBAL + HSI + WOMENONLY + COSTT4_A + AVGFACSAL + PFTFAC + PCTPELL + UG25ABV + INC_PCT_LO + PAR_ED_PCT_1STGEN + FEMALE + MD_FAMINC + PCT_WHITE + PCT_BLACK + PCT_ASIAN + PCT_HISPANIC + PCT_BA + PCT_GRAD_PROF + PCT_BORN_US + POVERTY_RATE + UNEMP_RATE, data=data)
+
+
+summary(full)
+```
+
+
+Removing PBI, REGION, PCT_BLACK
+```{r}
+
+full <- lm(ADM_RATE ~ NUMBRANCH + CONTROL + HBCU + TRIBAL + HSI + WOMENONLY + COSTT4_A + AVGFACSAL + PFTFAC + PCTPELL + UG25ABV + INC_PCT_LO + PAR_ED_PCT_1STGEN + FEMALE + MD_FAMINC + PCT_WHITE + PCT_ASIAN + PCT_HISPANIC + PCT_BA + PCT_GRAD_PROF + PCT_BORN_US + POVERTY_RATE + UNEMP_RATE, data=data)
+
+
+summary(full)
+```
+
+Removing UG25ABV, INC_PCT_LO, HBCU
+
+```{r}
+
+full <- lm(ADM_RATE ~ NUMBRANCH + CONTROL + TRIBAL + HSI + WOMENONLY + COSTT4_A + AVGFACSAL + PFTFAC + PCTPELL +  PAR_ED_PCT_1STGEN + FEMALE + MD_FAMINC + PCT_WHITE + PCT_ASIAN + PCT_HISPANIC + PCT_BA + PCT_GRAD_PROF + PCT_BORN_US + POVERTY_RATE + UNEMP_RATE, data=data)
+
+
+summary(full)
+```
+
+Removing PCT_BORN_US, PAR_ED_PCT_1STGEN, TRIBAL
+
+```{r}
+
+full <- lm(ADM_RATE ~ NUMBRANCH + CONTROL+ HSI + WOMENONLY + COSTT4_A + AVGFACSAL + PFTFAC + PCTPELL + FEMALE + MD_FAMINC + PCT_WHITE + PCT_ASIAN + PCT_HISPANIC + PCT_BA + PCT_GRAD_PROF + POVERTY_RATE + UNEMP_RATE, data=data)
+
+
+summary(full)
+```
+
+#Removing PCTPTELL
+```{r}
+
+full <- lm(ADM_RATE ~ NUMBRANCH + CONTROL+ HSI + WOMENONLY + COSTT4_A + AVGFACSAL + PFTFAC + FEMALE + MD_FAMINC + PCT_WHITE + PCT_ASIAN + PCT_HISPANIC + PCT_BA + PCT_GRAD_PROF + POVERTY_RATE + UNEMP_RATE, data=data)
+
+
+summary(full)
+```
+
+
+
+#Removing WOMENONLY
+```{r}
+
+full <- lm(ADM_RATE ~ NUMBRANCH + CONTROL+ HSI  + COSTT4_A + AVGFACSAL + PFTFAC + FEMALE + MD_FAMINC + PCT_WHITE + PCT_ASIAN + PCT_HISPANIC + PCT_BA + PCT_GRAD_PROF + POVERTY_RATE + UNEMP_RATE, data=data)
+summary(full)
+```
+
+Removing PCT_HISPANIC AND PCT_BA
+
+```{r}
+
+full <- lm(ADM_RATE ~ NUMBRANCH + CONTROL+ HSI  + COSTT4_A + AVGFACSAL + PFTFAC + FEMALE + MD_FAMINC + PCT_WHITE + PCT_ASIAN +  PCT_GRAD_PROF + POVERTY_RATE + UNEMP_RATE, data=data)
+summary(full)
+```
+
+
+
+Remmoving PCT_ASIAN
+
+```{r}
+
+full <- lm(ADM_RATE ~ NUMBRANCH + CONTROL+ HSI  + COSTT4_A + AVGFACSAL + PFTFAC + FEMALE + MD_FAMINC + PCT_WHITE + PCT_HISPANIC + PCT_BA + PCT_GRAD_PROF + POVERTY_RATE + UNEMP_RATE, data=data)
+summary(full)
+```
+
+Removing Percent of Hispanics 
+```{r}
+
+full <- lm(ADM_RATE ~ NUMBRANCH + CONTROL+ HSI  + COSTT4_A + AVGFACSAL + PFTFAC + FEMALE + MD_FAMINC + PCT_WHITE  + PCT_BA + PCT_GRAD_PROF + POVERTY_RATE + UNEMP_RATE, data=data)
+summary(full)
+```
